@@ -1,0 +1,6227 @@
+{
+ "configs": [
+  {
+   "mode": "timer",
+   "variant": "a",
+   "build": "green",
+   "n": 10000000,
+   "runs": 1,
+   "gcs": 4,
+   "all_by_timer": true,
+   "mark_clock_ms": {
+    "median": 1154,
+    "min": 1014,
+    "max": 1297
+   },
+   "mark_cpu_ms": {
+    "median": 2307,
+    "min": 2027,
+    "max": 2594
+   },
+   "stw_ms": {
+    "median": 0.037,
+    "min": 0.032,
+    "max": 0.046
+   },
+   "live_mb": {
+    "median": 1113,
+    "min": 1113,
+    "max": 1113
+   },
+   "interval_s": {
+    "median": 121.05199999999999,
+    "min": 120.95599999999999,
+    "max": 121.34100000000007
+   },
+   "objects": 25015419,
+   "heap_mb": 1113.1911926269531,
+   "rss_mb": 1328.82421875,
+   "fill": [
+    "6.167s"
+   ],
+   "raw": [
+    {
+     "file": "timer/a-green-1.log",
+     "variant": "a",
+     "build": "green",
+     "mode": "timer",
+     "n": 10000000,
+     "objects": 25015419,
+     "heap_mb": 1113.1911926269531,
+     "fill": "6.167s",
+     "rss_mb": 1328.82421875,
+     "gcs": [
+      {
+       "num": 14,
+       "at": 127.673,
+       "mark": 915,
+       "mark_cpu": 1829,
+       "assist": 0,
+       "bg": 1829,
+       "idle": 0,
+       "stw": 0.066,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 15,
+       "at": 248.629,
+       "mark": 1014,
+       "mark_cpu": 2027,
+       "assist": 0,
+       "bg": 2027,
+       "idle": 0,
+       "stw": 0.046,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 16,
+       "at": 369.681,
+       "mark": 1204,
+       "mark_cpu": 2408,
+       "assist": 0,
+       "bg": 2408,
+       "idle": 0,
+       "stw": 0.032,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 17,
+       "at": 490.936,
+       "mark": 1297,
+       "mark_cpu": 2594,
+       "assist": 0,
+       "bg": 2594,
+       "idle": 0,
+       "stw": 0.038,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 18,
+       "at": 612.277,
+       "mark": 1154,
+       "mark_cpu": 2307,
+       "assist": 0,
+       "bg": 2307,
+       "idle": 0,
+       "stw": 0.037,
+       "live": 1113,
+       "by_timer": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "timer",
+   "variant": "b",
+   "build": "green",
+   "n": 10000000,
+   "runs": 1,
+   "gcs": 0,
+   "all_by_timer": true,
+   "mark_clock_ms": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "mark_cpu_ms": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "stw_ms": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "live_mb": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "interval_s": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "objects": 32979,
+   "heap_mb": 426.80892181396484,
+   "rss_mb": 0,
+   "fill": [
+    "2.762s"
+   ],
+   "raw": [
+    {
+     "file": "timer/b-green-1.log",
+     "variant": "b",
+     "build": "green",
+     "mode": "timer",
+     "n": 10000000,
+     "objects": 32979,
+     "heap_mb": 426.80892181396484,
+     "fill": "2.762s",
+     "rss_mb": 0,
+     "gcs": [
+      {
+       "num": 16,
+       "at": 123.785,
+       "mark": 1.5,
+       "mark_cpu": 1.6,
+       "assist": 0,
+       "bg": 1.6,
+       "idle": 0,
+       "stw": 0.028,
+       "live": 426,
+       "by_timer": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "a",
+   "build": "green",
+   "n": 100000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 3.1,
+    "min": 2.8,
+    "max": 3.9
+   },
+   "mark_cpu_ms": {
+    "median": 14.700000000000001,
+    "min": 13.6,
+    "max": 16.4
+   },
+   "stw_ms": {
+    "median": 0.066,
+    "min": 0.032,
+    "max": 0.12
+   },
+   "live_mb": {
+    "median": 10,
+    "min": 10,
+    "max": 10
+   },
+   "interval_s": {
+    "median": 0.20400000000000018,
+    "min": 0.20300000000000007,
+    "max": 0.20500000000000007
+   },
+   "objects": 232901,
+   "heap_mb": 10.120269775390625,
+   "rss_mb": 13.25,
+   "fill": [
+    "35ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/a-green-100000.log",
+     "variant": "a",
+     "build": "green",
+     "mode": "forced",
+     "n": 100000,
+     "objects": 232901,
+     "heap_mb": 10.120269775390625,
+     "fill": "35ms",
+     "rss_mb": 13.25,
+     "gcs": [
+      {
+       "num": 5,
+       "at": 1.039,
+       "mark": 3.2,
+       "mark_cpu": 14.4,
+       "assist": 0,
+       "bg": 4.4,
+       "idle": 10,
+       "stw": 0.089,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 6,
+       "at": 1.243,
+       "mark": 3.6,
+       "mark_cpu": 16.4,
+       "assist": 0,
+       "bg": 5.4,
+       "idle": 11,
+       "stw": 0.033,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 7,
+       "at": 1.448,
+       "mark": 2.9,
+       "mark_cpu": 13.899999999999999,
+       "assist": 0,
+       "bg": 4.2,
+       "idle": 9.7,
+       "stw": 0.056,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.651,
+       "mark": 3.5,
+       "mark_cpu": 14.700000000000001,
+       "assist": 0,
+       "bg": 4.9,
+       "idle": 9.8,
+       "stw": 0.073,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 1.856,
+       "mark": 2.8,
+       "mark_cpu": 15.2,
+       "assist": 0,
+       "bg": 5.2,
+       "idle": 10,
+       "stw": 0.066,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 2.059,
+       "mark": 3.9,
+       "mark_cpu": 15.9,
+       "assist": 0,
+       "bg": 4.9,
+       "idle": 11,
+       "stw": 0.077,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 2.264,
+       "mark": 3.1,
+       "mark_cpu": 13.6,
+       "assist": 0,
+       "bg": 3.9,
+       "idle": 9.7,
+       "stw": 0.12,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 2.468,
+       "mark": 2.9,
+       "mark_cpu": 13.8,
+       "assist": 0,
+       "bg": 5.5,
+       "idle": 8.3,
+       "stw": 0.032,
+       "live": 10,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "a",
+   "build": "green",
+   "n": 300000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 7.9,
+    "min": 7.7,
+    "max": 8.5
+   },
+   "mark_cpu_ms": {
+    "median": 58,
+    "min": 56,
+    "max": 59
+   },
+   "stw_ms": {
+    "median": 0.084,
+    "min": 0.06,
+    "max": 0.11
+   },
+   "live_mb": {
+    "median": 33,
+    "min": 33,
+    "max": 33
+   },
+   "interval_s": {
+    "median": 0.20900000000000007,
+    "min": 0.20899999999999985,
+    "max": 0.20999999999999996
+   },
+   "objects": 733671,
+   "heap_mb": 33.853118896484375,
+   "rss_mb": 44.25,
+   "fill": [
+    "113ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/a-green-300000.log",
+     "variant": "a",
+     "build": "green",
+     "mode": "forced",
+     "n": 300000,
+     "objects": 733671,
+     "heap_mb": 33.853118896484375,
+     "fill": "113ms",
+     "rss_mb": 44.25,
+     "gcs": [
+      {
+       "num": 7,
+       "at": 1.123,
+       "mark": 8.2,
+       "mark_cpu": 57,
+       "assist": 0,
+       "bg": 15,
+       "idle": 42,
+       "stw": 0.039,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.332,
+       "mark": 8.3,
+       "mark_cpu": 58,
+       "assist": 0,
+       "bg": 15,
+       "idle": 43,
+       "stw": 0.079,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 1.542,
+       "mark": 8.1,
+       "mark_cpu": 58,
+       "assist": 0,
+       "bg": 15,
+       "idle": 43,
+       "stw": 0.06,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 1.751,
+       "mark": 7.7,
+       "mark_cpu": 58,
+       "assist": 0,
+       "bg": 15,
+       "idle": 43,
+       "stw": 0.084,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 1.96,
+       "mark": 7.7,
+       "mark_cpu": 56,
+       "assist": 0,
+       "bg": 14,
+       "idle": 42,
+       "stw": 0.1,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 2.17,
+       "mark": 8.5,
+       "mark_cpu": 59,
+       "assist": 0,
+       "bg": 14,
+       "idle": 45,
+       "stw": 0.091,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 2.38,
+       "mark": 7.8,
+       "mark_cpu": 57,
+       "assist": 0,
+       "bg": 15,
+       "idle": 42,
+       "stw": 0.071,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.589,
+       "mark": 7.9,
+       "mark_cpu": 58,
+       "assist": 0,
+       "bg": 15,
+       "idle": 43,
+       "stw": 0.11,
+       "live": 33,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "a",
+   "build": "green",
+   "n": 1000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 33,
+    "min": 32,
+    "max": 35
+   },
+   "mark_cpu_ms": {
+    "median": 262,
+    "min": 257,
+    "max": 275
+   },
+   "stw_ms": {
+    "median": 0.074,
+    "min": 0.021,
+    "max": 0.12
+   },
+   "live_mb": {
+    "median": 121,
+    "min": 121,
+    "max": 121
+   },
+   "interval_s": {
+    "median": 0.23699999999999988,
+    "min": 0.23599999999999977,
+    "max": 0.23899999999999988
+   },
+   "objects": 2486736,
+   "heap_mb": 121.81123352050781,
+   "rss_mb": 150.125,
+   "fill": [
+    "471ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/a-green-1000000.log",
+     "variant": "a",
+     "build": "green",
+     "mode": "forced",
+     "n": 1000000,
+     "objects": 2486736,
+     "heap_mb": 121.81123352050781,
+     "fill": "471ms",
+     "rss_mb": 150.125,
+     "gcs": [
+      {
+       "num": 10,
+       "at": 1.508,
+       "mark": 33,
+       "mark_cpu": 258,
+       "assist": 0,
+       "bg": 64,
+       "idle": 194,
+       "stw": 0.077,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 1.744,
+       "mark": 34,
+       "mark_cpu": 262,
+       "assist": 0,
+       "bg": 65,
+       "idle": 197,
+       "stw": 0.024,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 1.982,
+       "mark": 33,
+       "mark_cpu": 265,
+       "assist": 0,
+       "bg": 66,
+       "idle": 199,
+       "stw": 0.11,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 2.219,
+       "mark": 34,
+       "mark_cpu": 266,
+       "assist": 0,
+       "bg": 66,
+       "idle": 200,
+       "stw": 0.021,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.456,
+       "mark": 35,
+       "mark_cpu": 275,
+       "assist": 0,
+       "bg": 69,
+       "idle": 206,
+       "stw": 0.045,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.695,
+       "mark": 32,
+       "mark_cpu": 257,
+       "assist": 0,
+       "bg": 64,
+       "idle": 193,
+       "stw": 0.12,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 2.931,
+       "mark": 33,
+       "mark_cpu": 261,
+       "assist": 0,
+       "bg": 65,
+       "idle": 196,
+       "stw": 0.083,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 3.167,
+       "mark": 33,
+       "mark_cpu": 259,
+       "assist": 0,
+       "bg": 65,
+       "idle": 194,
+       "stw": 0.074,
+       "live": 121,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "a",
+   "build": "green",
+   "n": 3000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 107,
+    "min": 106,
+    "max": 114
+   },
+   "mark_cpu_ms": {
+    "median": 851,
+    "min": 843,
+    "max": 904
+   },
+   "stw_ms": {
+    "median": 0.079,
+    "min": 0.034,
+    "max": 0.094
+   },
+   "live_mb": {
+    "median": 312,
+    "min": 312,
+    "max": 312
+   },
+   "interval_s": {
+    "median": 0.3160000000000003,
+    "min": 0.31400000000000006,
+    "max": 0.3210000000000002
+   },
+   "objects": 7490845,
+   "heap_mb": 312.5710754394531,
+   "rss_mb": 350.234375,
+   "fill": [
+    "1.246s"
+   ],
+   "raw": [
+    {
+     "file": "scaling/a-green-3000000.log",
+     "variant": "a",
+     "build": "green",
+     "mode": "forced",
+     "n": 3000000,
+     "objects": 7490845,
+     "heap_mb": 312.5710754394531,
+     "fill": "1.246s",
+     "rss_mb": 350.234375,
+     "gcs": [
+      {
+       "num": 12,
+       "at": 2.362,
+       "mark": 108,
+       "mark_cpu": 856,
+       "assist": 0,
+       "bg": 214,
+       "idle": 642,
+       "stw": 0.016,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 2.679,
+       "mark": 106,
+       "mark_cpu": 846,
+       "assist": 0,
+       "bg": 212,
+       "idle": 634,
+       "stw": 0.034,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.993,
+       "mark": 107,
+       "mark_cpu": 851,
+       "assist": 0,
+       "bg": 214,
+       "idle": 637,
+       "stw": 0.094,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 3.309,
+       "mark": 107,
+       "mark_cpu": 854,
+       "assist": 0,
+       "bg": 213,
+       "idle": 641,
+       "stw": 0.079,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 3.624,
+       "mark": 107,
+       "mark_cpu": 849,
+       "assist": 0,
+       "bg": 212,
+       "idle": 637,
+       "stw": 0.089,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 3.94,
+       "mark": 114,
+       "mark_cpu": 904,
+       "assist": 0,
+       "bg": 227,
+       "idle": 677,
+       "stw": 0.089,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 4.261,
+       "mark": 108,
+       "mark_cpu": 866,
+       "assist": 0,
+       "bg": 216,
+       "idle": 650,
+       "stw": 0.076,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 4.578,
+       "mark": 106,
+       "mark_cpu": 843,
+       "assist": 0,
+       "bg": 211,
+       "idle": 632,
+       "stw": 0.077,
+       "live": 312,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "a",
+   "build": "green",
+   "n": 10000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 382,
+    "min": 369,
+    "max": 399
+   },
+   "mark_cpu_ms": {
+    "median": 3028,
+    "min": 2951,
+    "max": 3156
+   },
+   "stw_ms": {
+    "median": 0.082,
+    "min": 0.027,
+    "max": 0.12
+   },
+   "live_mb": {
+    "median": 1113,
+    "min": 1113,
+    "max": 1113
+   },
+   "interval_s": {
+    "median": 0.6089999999999991,
+    "min": 0.5940000000000012,
+    "max": 0.6269999999999989
+   },
+   "objects": 25015418,
+   "heap_mb": 1113.1913604736328,
+   "rss_mb": 1352.57421875,
+   "fill": [
+    "4.985s"
+   ],
+   "raw": [
+    {
+     "file": "scaling/a-green-10000000.log",
+     "variant": "a",
+     "build": "green",
+     "mode": "forced",
+     "n": 10000000,
+     "objects": 25015418,
+     "heap_mb": 1113.1913604736328,
+     "fill": "4.985s",
+     "rss_mb": 1352.57421875,
+     "gcs": [
+      {
+       "num": 14,
+       "at": 6.393,
+       "mark": 373,
+       "mark_cpu": 2974,
+       "assist": 0,
+       "bg": 745,
+       "idle": 2229,
+       "stw": 0.071,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 6.993,
+       "mark": 379,
+       "mark_cpu": 3028,
+       "assist": 0,
+       "bg": 758,
+       "idle": 2270,
+       "stw": 0.076,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 7.597,
+       "mark": 382,
+       "mark_cpu": 2960,
+       "assist": 0,
+       "bg": 752,
+       "idle": 2208,
+       "stw": 0.086,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 8.206,
+       "mark": 369,
+       "mark_cpu": 2951,
+       "assist": 0,
+       "bg": 738,
+       "idle": 2213,
+       "stw": 0.027,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 8.8,
+       "mark": 399,
+       "mark_cpu": 3156,
+       "assist": 0,
+       "bg": 790,
+       "idle": 2366,
+       "stw": 0.082,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 9.427,
+       "mark": 390,
+       "mark_cpu": 3032,
+       "assist": 0,
+       "bg": 773,
+       "idle": 2259,
+       "stw": 0.12,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 20,
+       "at": 10.041,
+       "mark": 388,
+       "mark_cpu": 3038,
+       "assist": 0,
+       "bg": 772,
+       "idle": 2266,
+       "stw": 0.092,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 21,
+       "at": 10.658,
+       "mark": 374,
+       "mark_cpu": 2993,
+       "assist": 0,
+       "bg": 749,
+       "idle": 2244,
+       "stw": 0.076,
+       "live": 1113,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "p",
+   "build": "green",
+   "n": 100000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 0.9,
+    "min": 0.89,
+    "max": 0.97
+   },
+   "mark_cpu_ms": {
+    "median": 5.2,
+    "min": 4.8,
+    "max": 5.5
+   },
+   "stw_ms": {
+    "median": 0.072,
+    "min": 0.031,
+    "max": 0.1
+   },
+   "live_mb": {
+    "median": 3,
+    "min": 3,
+    "max": 3
+   },
+   "interval_s": {
+    "median": 0.20100000000000007,
+    "min": 0.20100000000000007,
+    "max": 0.20199999999999996
+   },
+   "objects": 100469,
+   "heap_mb": 3.969635009765625,
+   "rss_mb": 7.3671875,
+   "fill": [
+    "11ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/p-green-100000.log",
+     "variant": "p",
+     "build": "green",
+     "mode": "forced",
+     "n": 100000,
+     "objects": 100469,
+     "heap_mb": 3.969635009765625,
+     "fill": "11ms",
+     "rss_mb": 7.3671875,
+     "gcs": [
+      {
+       "num": 4,
+       "at": 1.013,
+       "mark": 1,
+       "mark_cpu": 4.699999999999999,
+       "assist": 0,
+       "bg": 1.4,
+       "idle": 3.3,
+       "stw": 0.021,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 5,
+       "at": 1.214,
+       "mark": 0.89,
+       "mark_cpu": 5.4,
+       "assist": 0,
+       "bg": 1.5,
+       "idle": 3.9,
+       "stw": 0.075,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 6,
+       "at": 1.416,
+       "mark": 0.9,
+       "mark_cpu": 5.3,
+       "assist": 0,
+       "bg": 1.4,
+       "idle": 3.9,
+       "stw": 0.072,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 7,
+       "at": 1.617,
+       "mark": 0.92,
+       "mark_cpu": 4.8,
+       "assist": 0,
+       "bg": 1.5,
+       "idle": 3.3,
+       "stw": 0.083,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.819,
+       "mark": 0.97,
+       "mark_cpu": 5.2,
+       "assist": 0,
+       "bg": 1.5,
+       "idle": 3.7,
+       "stw": 0.1,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 2.02,
+       "mark": 0.9,
+       "mark_cpu": 5,
+       "assist": 0,
+       "bg": 1.5,
+       "idle": 3.5,
+       "stw": 0.046,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 2.221,
+       "mark": 0.94,
+       "mark_cpu": 5.2,
+       "assist": 0,
+       "bg": 1.7,
+       "idle": 3.5,
+       "stw": 0.031,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 2.423,
+       "mark": 0.9,
+       "mark_cpu": 5.5,
+       "assist": 0,
+       "bg": 1.5,
+       "idle": 4,
+       "stw": 0.034,
+       "live": 3,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "p",
+   "build": "green",
+   "n": 300000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 2,
+    "min": 1.9,
+    "max": 2.2
+   },
+   "mark_cpu_ms": {
+    "median": 13.9,
+    "min": 13,
+    "max": 14.7
+   },
+   "stw_ms": {
+    "median": 0.075,
+    "min": 0.024,
+    "max": 0.1
+   },
+   "live_mb": {
+    "median": 13,
+    "min": 13,
+    "max": 13
+   },
+   "interval_s": {
+    "median": 0.20299999999999985,
+    "min": 0.20200000000000018,
+    "max": 0.20300000000000007
+   },
+   "objects": 301236,
+   "heap_mb": 13.786636352539062,
+   "rss_mb": 19.25,
+   "fill": [
+    "43ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/p-green-300000.log",
+     "variant": "p",
+     "build": "green",
+     "mode": "forced",
+     "n": 300000,
+     "objects": 301236,
+     "heap_mb": 13.786636352539062,
+     "fill": "43ms",
+     "rss_mb": 19.25,
+     "gcs": [
+      {
+       "num": 7,
+       "at": 1.045,
+       "mark": 2.3,
+       "mark_cpu": 12.9,
+       "assist": 0,
+       "bg": 4.5,
+       "idle": 8.4,
+       "stw": 0.055,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.248,
+       "mark": 2.2,
+       "mark_cpu": 14.7,
+       "assist": 0,
+       "bg": 3.7,
+       "idle": 11,
+       "stw": 0.1,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 1.451,
+       "mark": 1.9,
+       "mark_cpu": 13.399999999999999,
+       "assist": 0,
+       "bg": 3.7,
+       "idle": 9.7,
+       "stw": 0.056,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 1.654,
+       "mark": 2,
+       "mark_cpu": 13.2,
+       "assist": 0,
+       "bg": 3.8,
+       "idle": 9.4,
+       "stw": 0.056,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 1.856,
+       "mark": 2,
+       "mark_cpu": 13.9,
+       "assist": 0,
+       "bg": 3.9,
+       "idle": 10,
+       "stw": 0.089,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 2.059,
+       "mark": 2,
+       "mark_cpu": 13,
+       "assist": 0,
+       "bg": 3.8,
+       "idle": 9.2,
+       "stw": 0.024,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 2.262,
+       "mark": 2.1,
+       "mark_cpu": 14,
+       "assist": 0,
+       "bg": 4,
+       "idle": 10,
+       "stw": 0.075,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.465,
+       "mark": 2.1,
+       "mark_cpu": 14,
+       "assist": 0,
+       "bg": 4,
+       "idle": 10,
+       "stw": 0.1,
+       "live": 13,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "p",
+   "build": "green",
+   "n": 1000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 7,
+    "min": 6.3,
+    "max": 8.7
+   },
+   "mark_cpu_ms": {
+    "median": 48,
+    "min": 47,
+    "max": 49
+   },
+   "stw_ms": {
+    "median": 0.063,
+    "min": 0.035,
+    "max": 0.1
+   },
+   "live_mb": {
+    "median": 51,
+    "min": 51,
+    "max": 51
+   },
+   "interval_s": {
+    "median": 0.20799999999999996,
+    "min": 0.20700000000000007,
+    "max": 0.20999999999999996
+   },
+   "objects": 1004298,
+   "heap_mb": 51.391807556152344,
+   "rss_mb": 64.5,
+   "fill": [
+    "185ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/p-green-1000000.log",
+     "variant": "p",
+     "build": "green",
+     "mode": "forced",
+     "n": 1000000,
+     "objects": 1004298,
+     "heap_mb": 51.391807556152344,
+     "fill": "185ms",
+     "rss_mb": 64.5,
+     "gcs": [
+      {
+       "num": 10,
+       "at": 1.194,
+       "mark": 6.6,
+       "mark_cpu": 47,
+       "assist": 0,
+       "bg": 12,
+       "idle": 35,
+       "stw": 0.043,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 1.401,
+       "mark": 6.7,
+       "mark_cpu": 47,
+       "assist": 0,
+       "bg": 12,
+       "idle": 35,
+       "stw": 0.096,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 1.609,
+       "mark": 6.8,
+       "mark_cpu": 47,
+       "assist": 0,
+       "bg": 12,
+       "idle": 35,
+       "stw": 0.074,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 1.817,
+       "mark": 6.3,
+       "mark_cpu": 47,
+       "assist": 0,
+       "bg": 12,
+       "idle": 35,
+       "stw": 0.035,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.024,
+       "mark": 7,
+       "mark_cpu": 49,
+       "assist": 0,
+       "bg": 13,
+       "idle": 36,
+       "stw": 0.063,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.233,
+       "mark": 7.1,
+       "mark_cpu": 48,
+       "assist": 0,
+       "bg": 13,
+       "idle": 35,
+       "stw": 0.1,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 2.441,
+       "mark": 8.7,
+       "mark_cpu": 48,
+       "assist": 0,
+       "bg": 16,
+       "idle": 32,
+       "stw": 0.049,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 2.651,
+       "mark": 7.2,
+       "mark_cpu": 48,
+       "assist": 0,
+       "bg": 14,
+       "idle": 34,
+       "stw": 0.045,
+       "live": 51,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "p",
+   "build": "green",
+   "n": 3000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 35,
+    "min": 34,
+    "max": 38
+   },
+   "mark_cpu_ms": {
+    "median": 261,
+    "min": 257,
+    "max": 277
+   },
+   "stw_ms": {
+    "median": 0.083,
+    "min": 0.031,
+    "max": 0.11
+   },
+   "live_mb": {
+    "median": 118,
+    "min": 118,
+    "max": 118
+   },
+   "interval_s": {
+    "median": 0.238,
+    "min": 0.23699999999999966,
+    "max": 0.2400000000000002
+   },
+   "objects": 3008404,
+   "heap_mb": 118.12135314941406,
+   "rss_mb": 142.375,
+   "fill": [
+    "563ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/p-green-3000000.log",
+     "variant": "p",
+     "build": "green",
+     "mode": "forced",
+     "n": 3000000,
+     "objects": 3008404,
+     "heap_mb": 118.12135314941406,
+     "fill": "563ms",
+     "rss_mb": 142.375,
+     "gcs": [
+      {
+       "num": 12,
+       "at": 1.6,
+       "mark": 37,
+       "mark_cpu": 258,
+       "assist": 0,
+       "bg": 71,
+       "idle": 187,
+       "stw": 0.035,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 1.84,
+       "mark": 34,
+       "mark_cpu": 257,
+       "assist": 0,
+       "bg": 67,
+       "idle": 190,
+       "stw": 0.1,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.077,
+       "mark": 35,
+       "mark_cpu": 260,
+       "assist": 0,
+       "bg": 68,
+       "idle": 192,
+       "stw": 0.076,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.315,
+       "mark": 37,
+       "mark_cpu": 265,
+       "assist": 0,
+       "bg": 74,
+       "idle": 191,
+       "stw": 0.032,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 2.555,
+       "mark": 35,
+       "mark_cpu": 258,
+       "assist": 0,
+       "bg": 68,
+       "idle": 190,
+       "stw": 0.11,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 2.792,
+       "mark": 34,
+       "mark_cpu": 261,
+       "assist": 0,
+       "bg": 68,
+       "idle": 193,
+       "stw": 0.083,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 3.03,
+       "mark": 38,
+       "mark_cpu": 267,
+       "assist": 0,
+       "bg": 74,
+       "idle": 193,
+       "stw": 0.031,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 3.27,
+       "mark": 36,
+       "mark_cpu": 277,
+       "assist": 0,
+       "bg": 72,
+       "idle": 205,
+       "stw": 0.11,
+       "live": 118,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "p",
+   "build": "green",
+   "n": 10000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 150,
+    "min": 146,
+    "max": 159
+   },
+   "mark_cpu_ms": {
+    "median": 1114,
+    "min": 1101,
+    "max": 1153
+   },
+   "stw_ms": {
+    "median": 0.077,
+    "min": 0.028,
+    "max": 0.1
+   },
+   "live_mb": {
+    "median": 441,
+    "min": 441,
+    "max": 441
+   },
+   "interval_s": {
+    "median": 0.3570000000000002,
+    "min": 0.35399999999999965,
+    "max": 0.367
+   },
+   "objects": 10032983,
+   "heap_mb": 441.40185546875,
+   "rss_mb": 547.25,
+   "fill": [
+    "2.41s"
+   ],
+   "raw": [
+    {
+     "file": "scaling/p-green-10000000.log",
+     "variant": "p",
+     "build": "green",
+     "mode": "forced",
+     "n": 10000000,
+     "objects": 10032983,
+     "heap_mb": 441.40185546875,
+     "fill": "2.41s",
+     "rss_mb": 547.25,
+     "gcs": [
+      {
+       "num": 15,
+       "at": 3.57,
+       "mark": 146,
+       "mark_cpu": 1104,
+       "assist": 0,
+       "bg": 284,
+       "idle": 820,
+       "stw": 0.016,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 3.924,
+       "mark": 146,
+       "mark_cpu": 1101,
+       "assist": 0,
+       "bg": 287,
+       "idle": 814,
+       "stw": 0.078,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 4.278,
+       "mark": 150,
+       "mark_cpu": 1153,
+       "assist": 0,
+       "bg": 294,
+       "idle": 859,
+       "stw": 0.087,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 4.635,
+       "mark": 148,
+       "mark_cpu": 1120,
+       "assist": 0,
+       "bg": 289,
+       "idle": 831,
+       "stw": 0.028,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 4.991,
+       "mark": 151,
+       "mark_cpu": 1101,
+       "assist": 0,
+       "bg": 295,
+       "idle": 806,
+       "stw": 0.036,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 20,
+       "at": 5.349,
+       "mark": 155,
+       "mark_cpu": 1113,
+       "assist": 0,
+       "bg": 304,
+       "idle": 809,
+       "stw": 0.077,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 21,
+       "at": 5.712,
+       "mark": 159,
+       "mark_cpu": 1132,
+       "assist": 0,
+       "bg": 313,
+       "idle": 819,
+       "stw": 0.1,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 22,
+       "at": 6.079,
+       "mark": 148,
+       "mark_cpu": 1114,
+       "assist": 0,
+       "bg": 292,
+       "idle": 822,
+       "stw": 0.044,
+       "live": 441,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b2",
+   "build": "green",
+   "n": 100000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 0.78,
+    "min": 0.69,
+    "max": 2.2
+   },
+   "mark_cpu_ms": {
+    "median": 3.8,
+    "min": 3.5999999999999996,
+    "max": 4.1
+   },
+   "stw_ms": {
+    "median": 0.037,
+    "min": 0.021,
+    "max": 0.079
+   },
+   "live_mb": {
+    "median": 5,
+    "min": 5,
+    "max": 5
+   },
+   "interval_s": {
+    "median": 0.20100000000000007,
+    "min": 0.20099999999999962,
+    "max": 0.2020000000000004
+   },
+   "objects": 32900,
+   "heap_mb": 5.6886138916015625,
+   "rss_mb": 8.75,
+   "fill": [
+    "18ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b2-green-100000.log",
+     "variant": "b2",
+     "build": "green",
+     "mode": "forced",
+     "n": 100000,
+     "objects": 32900,
+     "heap_mb": 5.6886138916015625,
+     "fill": "18ms",
+     "rss_mb": 8.75,
+     "gcs": [
+      {
+       "num": 5,
+       "at": 1.019,
+       "mark": 0.85,
+       "mark_cpu": 3.6,
+       "assist": 0,
+       "bg": 1.5,
+       "idle": 2.1,
+       "stw": 0.032,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 6,
+       "at": 1.22,
+       "mark": 1.1,
+       "mark_cpu": 4.1,
+       "assist": 0,
+       "bg": 2,
+       "idle": 2.1,
+       "stw": 0.074,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 7,
+       "at": 1.422,
+       "mark": 0.78,
+       "mark_cpu": 3.5999999999999996,
+       "assist": 0,
+       "bg": 1.2,
+       "idle": 2.4,
+       "stw": 0.028,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.623,
+       "mark": 0.69,
+       "mark_cpu": 3.7,
+       "assist": 0,
+       "bg": 1.2,
+       "idle": 2.5,
+       "stw": 0.021,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 1.824,
+       "mark": 0.85,
+       "mark_cpu": 4,
+       "assist": 0,
+       "bg": 1.5,
+       "idle": 2.5,
+       "stw": 0.075,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 2.026,
+       "mark": 2.2,
+       "mark_cpu": 3.8,
+       "assist": 0,
+       "bg": 1.5,
+       "idle": 2.3,
+       "stw": 0.037,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 2.228,
+       "mark": 0.75,
+       "mark_cpu": 3.8,
+       "assist": 0,
+       "bg": 1.2,
+       "idle": 2.6,
+       "stw": 0.079,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 2.429,
+       "mark": 0.73,
+       "mark_cpu": 4.1,
+       "assist": 0,
+       "bg": 1.1,
+       "idle": 3,
+       "stw": 0.029,
+       "live": 5,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b2",
+   "build": "green",
+   "n": 300000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 2,
+    "min": 1.9,
+    "max": 2.5
+   },
+   "mark_cpu_ms": {
+    "median": 13.1,
+    "min": 12.8,
+    "max": 14.1
+   },
+   "stw_ms": {
+    "median": 0.076,
+    "min": 0.03,
+    "max": 0.11
+   },
+   "live_mb": {
+    "median": 22,
+    "min": 22,
+    "max": 22
+   },
+   "interval_s": {
+    "median": 0.20299999999999985,
+    "min": 0.20200000000000018,
+    "max": 0.20300000000000007
+   },
+   "objects": 133670,
+   "heap_mb": 22.229782104492188,
+   "rss_mb": 29.5,
+   "fill": [
+    "75ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b2-green-300000.log",
+     "variant": "b2",
+     "build": "green",
+     "mode": "forced",
+     "n": 300000,
+     "objects": 133670,
+     "heap_mb": 22.229782104492188,
+     "fill": "75ms",
+     "rss_mb": 29.5,
+     "gcs": [
+      {
+       "num": 8,
+       "at": 1.077,
+       "mark": 2.1,
+       "mark_cpu": 12.5,
+       "assist": 0,
+       "bg": 3.8,
+       "idle": 8.7,
+       "stw": 0.069,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 1.28,
+       "mark": 2.2,
+       "mark_cpu": 14.1,
+       "assist": 0,
+       "bg": 4.1,
+       "idle": 10,
+       "stw": 0.09,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 1.483,
+       "mark": 2,
+       "mark_cpu": 13.399999999999999,
+       "assist": 0,
+       "bg": 3.7,
+       "idle": 9.7,
+       "stw": 0.11,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 1.686,
+       "mark": 2.4,
+       "mark_cpu": 12.8,
+       "assist": 0,
+       "bg": 4.5,
+       "idle": 8.3,
+       "stw": 0.056,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 1.889,
+       "mark": 1.9,
+       "mark_cpu": 13.3,
+       "assist": 0,
+       "bg": 3.7,
+       "idle": 9.6,
+       "stw": 0.067,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 2.091,
+       "mark": 2,
+       "mark_cpu": 13,
+       "assist": 0,
+       "bg": 3.8,
+       "idle": 9.2,
+       "stw": 0.085,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.294,
+       "mark": 2.5,
+       "mark_cpu": 12.899999999999999,
+       "assist": 0,
+       "bg": 4.7,
+       "idle": 8.2,
+       "stw": 0.03,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.497,
+       "mark": 1.9,
+       "mark_cpu": 13.1,
+       "assist": 0,
+       "bg": 3.5,
+       "idle": 9.6,
+       "stw": 0.076,
+       "live": 22,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b2",
+   "build": "green",
+   "n": 1000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 6.4,
+    "min": 6.3,
+    "max": 7.4
+   },
+   "mark_cpu_ms": {
+    "median": 45,
+    "min": 43,
+    "max": 47
+   },
+   "stw_ms": {
+    "median": 0.092,
+    "min": 0.071,
+    "max": 0.1
+   },
+   "live_mb": {
+    "median": 87,
+    "min": 87,
+    "max": 87
+   },
+   "interval_s": {
+    "median": 0.20799999999999996,
+    "min": 0.20699999999999985,
+    "max": 0.20900000000000007
+   },
+   "objects": 486737,
+   "heap_mb": 87.43478393554688,
+   "rss_mb": 101.875,
+   "fill": [
+    "350ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b2-green-1000000.log",
+     "variant": "b2",
+     "build": "green",
+     "mode": "forced",
+     "n": 1000000,
+     "objects": 486737,
+     "heap_mb": 87.43478393554688,
+     "fill": "350ms",
+     "rss_mb": 101.875,
+     "gcs": [
+      {
+       "num": 12,
+       "at": 1.36,
+       "mark": 6.7,
+       "mark_cpu": 45,
+       "assist": 0,
+       "bg": 12,
+       "idle": 33,
+       "stw": 0.052,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 1.568,
+       "mark": 6.8,
+       "mark_cpu": 46,
+       "assist": 0,
+       "bg": 12,
+       "idle": 34,
+       "stw": 0.074,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 1.775,
+       "mark": 7,
+       "mark_cpu": 43,
+       "assist": 0,
+       "bg": 13,
+       "idle": 30,
+       "stw": 0.071,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 1.984,
+       "mark": 6.4,
+       "mark_cpu": 44,
+       "assist": 0,
+       "bg": 11,
+       "idle": 33,
+       "stw": 0.1,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 2.191,
+       "mark": 6.3,
+       "mark_cpu": 45,
+       "assist": 0,
+       "bg": 12,
+       "idle": 33,
+       "stw": 0.071,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 2.399,
+       "mark": 6.3,
+       "mark_cpu": 46,
+       "assist": 0,
+       "bg": 12,
+       "idle": 34,
+       "stw": 0.1,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 2.606,
+       "mark": 7.4,
+       "mark_cpu": 47,
+       "assist": 0,
+       "bg": 14,
+       "idle": 33,
+       "stw": 0.1,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 2.815,
+       "mark": 6.3,
+       "mark_cpu": 45,
+       "assist": 0,
+       "bg": 12,
+       "idle": 33,
+       "stw": 0.092,
+       "live": 87,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b2",
+   "build": "green",
+   "n": 3000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 25,
+    "min": 25,
+    "max": 26
+   },
+   "mark_cpu_ms": {
+    "median": 191,
+    "min": 189,
+    "max": 194
+   },
+   "stw_ms": {
+    "median": 0.072,
+    "min": 0.026,
+    "max": 0.091
+   },
+   "live_mb": {
+    "median": 182,
+    "min": 182,
+    "max": 182
+   },
+   "interval_s": {
+    "median": 0.2280000000000002,
+    "min": 0.22699999999999987,
+    "max": 0.2290000000000001
+   },
+   "objects": 1490847,
+   "heap_mb": 182.97025299072266,
+   "rss_mb": 214.125,
+   "fill": [
+    "1.028s"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b2-green-3000000.log",
+     "variant": "b2",
+     "build": "green",
+     "mode": "forced",
+     "n": 3000000,
+     "objects": 1490847,
+     "heap_mb": 182.97025299072266,
+     "fill": "1.028s",
+     "rss_mb": 214.125,
+     "gcs": [
+      {
+       "num": 14,
+       "at": 2.055,
+       "mark": 25,
+       "mark_cpu": 189,
+       "assist": 0,
+       "bg": 49,
+       "idle": 140,
+       "stw": 0.026,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.282,
+       "mark": 25,
+       "mark_cpu": 192,
+       "assist": 0,
+       "bg": 50,
+       "idle": 142,
+       "stw": 0.091,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 2.51,
+       "mark": 26,
+       "mark_cpu": 191,
+       "assist": 0,
+       "bg": 51,
+       "idle": 140,
+       "stw": 0.026,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 2.738,
+       "mark": 26,
+       "mark_cpu": 193,
+       "assist": 0,
+       "bg": 48,
+       "idle": 145,
+       "stw": 0.072,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 2.967,
+       "mark": 25,
+       "mark_cpu": 191,
+       "assist": 0,
+       "bg": 49,
+       "idle": 142,
+       "stw": 0.028,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 3.194,
+       "mark": 25,
+       "mark_cpu": 189,
+       "assist": 0,
+       "bg": 49,
+       "idle": 140,
+       "stw": 0.077,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 20,
+       "at": 3.422,
+       "mark": 26,
+       "mark_cpu": 194,
+       "assist": 0,
+       "bg": 52,
+       "idle": 142,
+       "stw": 0.033,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 21,
+       "at": 3.651,
+       "mark": 25,
+       "mark_cpu": 190,
+       "assist": 0,
+       "bg": 49,
+       "idle": 141,
+       "stw": 0.074,
+       "live": 182,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b2",
+   "build": "green",
+   "n": 10000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 134,
+    "min": 128,
+    "max": 145
+   },
+   "mark_cpu_ms": {
+    "median": 1014,
+    "min": 992,
+    "max": 1059
+   },
+   "stw_ms": {
+    "median": 0.07,
+    "min": 0.024,
+    "max": 0.086
+   },
+   "live_mb": {
+    "median": 716,
+    "min": 716,
+    "max": 716
+   },
+   "interval_s": {
+    "median": 0.3410000000000002,
+    "min": 0.33399999999999963,
+    "max": 0.3520000000000003
+   },
+   "objects": 5015427,
+   "heap_mb": 716.8448257446289,
+   "rss_mb": 846.97265625,
+   "fill": [
+    "4.359s"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b2-green-10000000.log",
+     "variant": "b2",
+     "build": "green",
+     "mode": "forced",
+     "n": 10000000,
+     "objects": 5015427,
+     "heap_mb": 716.8448257446289,
+     "fill": "4.359s",
+     "rss_mb": 846.97265625,
+     "gcs": [
+      {
+       "num": 17,
+       "at": 5.498,
+       "mark": 135,
+       "mark_cpu": 1019,
+       "assist": 0,
+       "bg": 268,
+       "idle": 751,
+       "stw": 0.018,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 5.839,
+       "mark": 134,
+       "mark_cpu": 1006,
+       "assist": 0,
+       "bg": 266,
+       "idle": 740,
+       "stw": 0.078,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 6.18,
+       "mark": 132,
+       "mark_cpu": 1002,
+       "assist": 0,
+       "bg": 259,
+       "idle": 743,
+       "stw": 0.07,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 20,
+       "at": 6.519,
+       "mark": 141,
+       "mark_cpu": 1059,
+       "assist": 0,
+       "bg": 276,
+       "idle": 783,
+       "stw": 0.068,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 21,
+       "at": 6.867,
+       "mark": 144,
+       "mark_cpu": 1036,
+       "assist": 0,
+       "bg": 281,
+       "idle": 755,
+       "stw": 0.024,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 22,
+       "at": 7.218,
+       "mark": 145,
+       "mark_cpu": 1048,
+       "assist": 0,
+       "bg": 286,
+       "idle": 762,
+       "stw": 0.086,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 23,
+       "at": 7.57,
+       "mark": 128,
+       "mark_cpu": 992,
+       "assist": 0,
+       "bg": 254,
+       "idle": 738,
+       "stw": 0.07,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 24,
+       "at": 7.904,
+       "mark": 130,
+       "mark_cpu": 1014,
+       "assist": 0,
+       "bg": 259,
+       "idle": 755,
+       "stw": 0.072,
+       "live": 716,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b",
+   "build": "green",
+   "n": 100000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 0.13,
+    "min": 0.09,
+    "max": 0.23
+   },
+   "mark_cpu_ms": {
+    "median": 0.23,
+    "min": 0.133,
+    "max": 0.377
+   },
+   "stw_ms": {
+    "median": 0.047,
+    "min": 0.02,
+    "max": 0.082
+   },
+   "live_mb": {
+    "median": 3,
+    "min": 3,
+    "max": 3
+   },
+   "interval_s": {
+    "median": 0.20099999999999985,
+    "min": 0.19999999999999996,
+    "max": 0.20100000000000007
+   },
+   "objects": 452,
+   "heap_mb": 3.5067672729492188,
+   "rss_mb": 6.875,
+   "fill": [
+    "10ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b-green-100000.log",
+     "variant": "b",
+     "build": "green",
+     "mode": "forced",
+     "n": 100000,
+     "objects": 452,
+     "heap_mb": 3.5067672729492188,
+     "fill": "10ms",
+     "rss_mb": 6.875,
+     "gcs": [
+      {
+       "num": 4,
+       "at": 1.01,
+       "mark": 0.2,
+       "mark_cpu": 0.21000000000000002,
+       "assist": 0,
+       "bg": 0.1,
+       "idle": 0.11,
+       "stw": 0.021,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 5,
+       "at": 1.211,
+       "mark": 0.14,
+       "mark_cpu": 0.184,
+       "assist": 0,
+       "bg": 0.054,
+       "idle": 0.13,
+       "stw": 0.074,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 6,
+       "at": 1.411,
+       "mark": 0.23,
+       "mark_cpu": 0.27,
+       "assist": 0,
+       "bg": 0.14,
+       "idle": 0.13,
+       "stw": 0.033,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 7,
+       "at": 1.612,
+       "mark": 0.22,
+       "mark_cpu": 0.377,
+       "assist": 0,
+       "bg": 0.33,
+       "idle": 0.047,
+       "stw": 0.02,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.812,
+       "mark": 0.13,
+       "mark_cpu": 0.249,
+       "assist": 0,
+       "bg": 0.099,
+       "idle": 0.15,
+       "stw": 0.047,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 2.013,
+       "mark": 0.1,
+       "mark_cpu": 0.22,
+       "assist": 0,
+       "bg": 0.15,
+       "idle": 0.07,
+       "stw": 0.082,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 2.213,
+       "mark": 0.1,
+       "mark_cpu": 0.23,
+       "assist": 0,
+       "bg": 0.13,
+       "idle": 0.1,
+       "stw": 0.034,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 2.414,
+       "mark": 0.09,
+       "mark_cpu": 0.133,
+       "assist": 0,
+       "bg": 0.041,
+       "idle": 0.092,
+       "stw": 0.07,
+       "live": 3,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b",
+   "build": "green",
+   "n": 300000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 0.15,
+    "min": 0.11,
+    "max": 0.23
+   },
+   "mark_cpu_ms": {
+    "median": 0.283,
+    "min": 0.186,
+    "max": 0.47
+   },
+   "stw_ms": {
+    "median": 0.075,
+    "min": 0.031,
+    "max": 0.093
+   },
+   "live_mb": {
+    "median": 13,
+    "min": 13,
+    "max": 13
+   },
+   "interval_s": {
+    "median": 0.20099999999999985,
+    "min": 0.19999999999999996,
+    "max": 0.20100000000000007
+   },
+   "objects": 1228,
+   "heap_mb": 13.511688232421875,
+   "rss_mb": 20,
+   "fill": [
+    "41ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b-green-300000.log",
+     "variant": "b",
+     "build": "green",
+     "mode": "forced",
+     "n": 300000,
+     "objects": 1228,
+     "heap_mb": 13.511688232421875,
+     "fill": "41ms",
+     "rss_mb": 20,
+     "gcs": [
+      {
+       "num": 7,
+       "at": 1.042,
+       "mark": 0.14,
+       "mark_cpu": 0.26,
+       "assist": 0,
+       "bg": 0.14,
+       "idle": 0.12,
+       "stw": 0.046,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.242,
+       "mark": 0.18,
+       "mark_cpu": 0.28900000000000003,
+       "assist": 0,
+       "bg": 0.069,
+       "idle": 0.22,
+       "stw": 0.075,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 1.443,
+       "mark": 0.23,
+       "mark_cpu": 0.47,
+       "assist": 0,
+       "bg": 0.12,
+       "idle": 0.35,
+       "stw": 0.089,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 1.644,
+       "mark": 0.17,
+       "mark_cpu": 0.30000000000000004,
+       "assist": 0,
+       "bg": 0.13,
+       "idle": 0.17,
+       "stw": 0.032,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 1.844,
+       "mark": 0.11,
+       "mark_cpu": 0.197,
+       "assist": 0,
+       "bg": 0.087,
+       "idle": 0.11,
+       "stw": 0.063,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 2.045,
+       "mark": 0.13,
+       "mark_cpu": 0.186,
+       "assist": 0,
+       "bg": 0.099,
+       "idle": 0.087,
+       "stw": 0.084,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 2.245,
+       "mark": 0.15,
+       "mark_cpu": 0.22,
+       "assist": 0,
+       "bg": 0.11,
+       "idle": 0.11,
+       "stw": 0.093,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.446,
+       "mark": 0.13,
+       "mark_cpu": 0.283,
+       "assist": 0,
+       "bg": 0.043,
+       "idle": 0.24,
+       "stw": 0.031,
+       "live": 13,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b",
+   "build": "green",
+   "n": 1000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 0.26,
+    "min": 0.23,
+    "max": 0.38
+   },
+   "mark_cpu_ms": {
+    "median": 0.43,
+    "min": 0.35,
+    "max": 0.71
+   },
+   "stw_ms": {
+    "median": 0.038,
+    "min": 0.025,
+    "max": 0.12
+   },
+   "live_mb": {
+    "median": 53,
+    "min": 53,
+    "max": 53
+   },
+   "interval_s": {
+    "median": 0.20100000000000007,
+    "min": 0.19999999999999996,
+    "max": 0.20100000000000007
+   },
+   "objects": 4297,
+   "heap_mb": 53.409934997558594,
+   "rss_mb": 64.75,
+   "fill": [
+    "208ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b-green-1000000.log",
+     "variant": "b",
+     "build": "green",
+     "mode": "forced",
+     "n": 1000000,
+     "objects": 4297,
+     "heap_mb": 53.409934997558594,
+     "fill": "208ms",
+     "rss_mb": 64.75,
+     "gcs": [
+      {
+       "num": 11,
+       "at": 1.209,
+       "mark": 0.25,
+       "mark_cpu": 0.43,
+       "assist": 0,
+       "bg": 0.11,
+       "idle": 0.32,
+       "stw": 0.03,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 1.41,
+       "mark": 0.38,
+       "mark_cpu": 0.71,
+       "assist": 0,
+       "bg": 0.41,
+       "idle": 0.3,
+       "stw": 0.054,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 1.611,
+       "mark": 0.34,
+       "mark_cpu": 0.43,
+       "assist": 0,
+       "bg": 0.32,
+       "idle": 0.11,
+       "stw": 0.04,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 1.812,
+       "mark": 0.23,
+       "mark_cpu": 0.35,
+       "assist": 0,
+       "bg": 0.24,
+       "idle": 0.11,
+       "stw": 0.025,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.012,
+       "mark": 0.23,
+       "mark_cpu": 0.4,
+       "assist": 0,
+       "bg": 0.3,
+       "idle": 0.1,
+       "stw": 0.03,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 2.213,
+       "mark": 0.26,
+       "mark_cpu": 0.49,
+       "assist": 0,
+       "bg": 0.1,
+       "idle": 0.39,
+       "stw": 0.026,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 2.414,
+       "mark": 0.26,
+       "mark_cpu": 0.39,
+       "assist": 0,
+       "bg": 0.24,
+       "idle": 0.15,
+       "stw": 0.12,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 2.615,
+       "mark": 0.25,
+       "mark_cpu": 0.53,
+       "assist": 0,
+       "bg": 0.19,
+       "idle": 0.34,
+       "stw": 0.038,
+       "live": 53,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b",
+   "build": "green",
+   "n": 3000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 0.41,
+    "min": 0.34,
+    "max": 0.46
+   },
+   "mark_cpu_ms": {
+    "median": 0.54,
+    "min": 0.44,
+    "max": 0.65
+   },
+   "stw_ms": {
+    "median": 0.071,
+    "min": 0.02,
+    "max": 0.091
+   },
+   "live_mb": {
+    "median": 106,
+    "min": 106,
+    "max": 106
+   },
+   "interval_s": {
+    "median": 0.20100000000000007,
+    "min": 0.20099999999999985,
+    "max": 0.20199999999999996
+   },
+   "objects": 8396,
+   "heap_mb": 106.83517456054688,
+   "rss_mb": 144.5,
+   "fill": [
+    "727ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b-green-3000000.log",
+     "variant": "b",
+     "build": "green",
+     "mode": "forced",
+     "n": 3000000,
+     "objects": 8396,
+     "heap_mb": 106.83517456054688,
+     "fill": "727ms",
+     "rss_mb": 144.5,
+     "gcs": [
+      {
+       "num": 13,
+       "at": 1.729,
+       "mark": 0.35,
+       "mark_cpu": 0.54,
+       "assist": 0,
+       "bg": 0.16,
+       "idle": 0.38,
+       "stw": 0.047,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 1.93,
+       "mark": 0.34,
+       "mark_cpu": 0.44,
+       "assist": 0,
+       "bg": 0.32,
+       "idle": 0.12,
+       "stw": 0.073,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.131,
+       "mark": 0.36,
+       "mark_cpu": 0.487,
+       "assist": 0,
+       "bg": 0.39,
+       "idle": 0.097,
+       "stw": 0.02,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 2.332,
+       "mark": 0.37,
+       "mark_cpu": 0.576,
+       "assist": 0,
+       "bg": 0.096,
+       "idle": 0.48,
+       "stw": 0.091,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 2.533,
+       "mark": 0.46,
+       "mark_cpu": 0.65,
+       "assist": 0,
+       "bg": 0.39,
+       "idle": 0.26,
+       "stw": 0.031,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 2.735,
+       "mark": 0.42,
+       "mark_cpu": 0.51,
+       "assist": 0,
+       "bg": 0.39,
+       "idle": 0.12,
+       "stw": 0.071,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 2.936,
+       "mark": 0.43,
+       "mark_cpu": 0.64,
+       "assist": 0,
+       "bg": 0.12,
+       "idle": 0.52,
+       "stw": 0.087,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 20,
+       "at": 3.137,
+       "mark": 0.41,
+       "mark_cpu": 0.54,
+       "assist": 0,
+       "bg": 0.12,
+       "idle": 0.42,
+       "stw": 0.067,
+       "live": 106,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b",
+   "build": "green",
+   "n": 10000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 1.2,
+    "min": 1,
+    "max": 1.6
+   },
+   "mark_cpu_ms": {
+    "median": 1.37,
+    "min": 1.15,
+    "max": 1.8599999999999999
+   },
+   "stw_ms": {
+    "median": 0.056,
+    "min": 0.038,
+    "max": 0.091
+   },
+   "live_mb": {
+    "median": 426,
+    "min": 426,
+    "max": 426
+   },
+   "interval_s": {
+    "median": 0.20299999999999985,
+    "min": 0.20199999999999996,
+    "max": 0.2030000000000003
+   },
+   "objects": 32976,
+   "heap_mb": 426.8087844848633,
+   "rss_mb": 516.125,
+   "fill": [
+    "2.298s"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b-green-10000000.log",
+     "variant": "b",
+     "build": "green",
+     "mode": "forced",
+     "n": 10000000,
+     "objects": 32976,
+     "heap_mb": 426.8087844848633,
+     "fill": "2.298s",
+     "rss_mb": 516.125,
+     "gcs": [
+      {
+       "num": 16,
+       "at": 3.301,
+       "mark": 1.6,
+       "mark_cpu": 1.7600000000000002,
+       "assist": 0,
+       "bg": 1.1,
+       "idle": 0.66,
+       "stw": 0.025,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 3.504,
+       "mark": 1.2,
+       "mark_cpu": 1.3599999999999999,
+       "assist": 0,
+       "bg": 1.2,
+       "idle": 0.16,
+       "stw": 0.056,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 3.706,
+       "mark": 1.3,
+       "mark_cpu": 1.6,
+       "assist": 0,
+       "bg": 1.1,
+       "idle": 0.5,
+       "stw": 0.053,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 3.909,
+       "mark": 1,
+       "mark_cpu": 1.16,
+       "assist": 0,
+       "bg": 0.16,
+       "idle": 1,
+       "stw": 0.091,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 20,
+       "at": 4.112,
+       "mark": 1.6,
+       "mark_cpu": 1.8599999999999999,
+       "assist": 0,
+       "bg": 1.7,
+       "idle": 0.16,
+       "stw": 0.049,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 21,
+       "at": 4.315,
+       "mark": 1.6,
+       "mark_cpu": 1.63,
+       "assist": 0,
+       "bg": 1.5,
+       "idle": 0.13,
+       "stw": 0.038,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 22,
+       "at": 4.518,
+       "mark": 1,
+       "mark_cpu": 1.37,
+       "assist": 0,
+       "bg": 0.78,
+       "idle": 0.59,
+       "stw": 0.072,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 23,
+       "at": 4.721,
+       "mark": 1,
+       "mark_cpu": 1.15,
+       "assist": 0,
+       "bg": 1,
+       "idle": 0.15,
+       "stw": 0.086,
+       "live": 426,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "a",
+   "build": "nogreen",
+   "n": 100000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 5.2,
+    "min": 2.9,
+    "max": 23
+   },
+   "mark_cpu_ms": {
+    "median": 21.3,
+    "min": 17.6,
+    "max": 51
+   },
+   "stw_ms": {
+    "median": 0.072,
+    "min": 0.021,
+    "max": 0.95
+   },
+   "live_mb": {
+    "median": 10,
+    "min": 10,
+    "max": 10
+   },
+   "interval_s": {
+    "median": 0.20599999999999996,
+    "min": 0.20300000000000007,
+    "max": 0.22399999999999998
+   },
+   "objects": 232902,
+   "heap_mb": 10.089126586914062,
+   "rss_mb": 13.625,
+   "fill": [
+    "23ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/a-nogreen-100000.log",
+     "variant": "a",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 100000,
+     "objects": 232902,
+     "heap_mb": 10.089126586914062,
+     "fill": "23ms",
+     "rss_mb": 13.625,
+     "gcs": [
+      {
+       "num": 5,
+       "at": 1.027,
+       "mark": 2.5,
+       "mark_cpu": 15.8,
+       "assist": 0,
+       "bg": 4.8,
+       "idle": 11,
+       "stw": 0.017,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 6,
+       "at": 1.23,
+       "mark": 2.9,
+       "mark_cpu": 17.6,
+       "assist": 0,
+       "bg": 5.6,
+       "idle": 12,
+       "stw": 0.072,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 7,
+       "at": 1.433,
+       "mark": 5.9,
+       "mark_cpu": 21.3,
+       "assist": 0,
+       "bg": 9.3,
+       "idle": 12,
+       "stw": 0.95,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.645,
+       "mark": 23,
+       "mark_cpu": 51,
+       "assist": 0,
+       "bg": 34,
+       "idle": 17,
+       "stw": 0.28,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 1.869,
+       "mark": 10,
+       "mark_cpu": 44.7,
+       "assist": 0,
+       "bg": 9.7,
+       "idle": 35,
+       "stw": 0.05,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 2.089,
+       "mark": 4.7,
+       "mark_cpu": 18.6,
+       "assist": 0,
+       "bg": 8.6,
+       "idle": 10,
+       "stw": 0.03,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 2.295,
+       "mark": 5.2,
+       "mark_cpu": 17.6,
+       "assist": 0,
+       "bg": 10,
+       "idle": 7.6,
+       "stw": 0.087,
+       "live": 10,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 2.5,
+       "mark": 4.2,
+       "mark_cpu": 25.3,
+       "assist": 0,
+       "bg": 8.3,
+       "idle": 17,
+       "stw": 0.021,
+       "live": 10,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "a",
+   "build": "nogreen",
+   "n": 300000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 14,
+    "min": 7.2,
+    "max": 27
+   },
+   "mark_cpu_ms": {
+    "median": 54,
+    "min": 37.16,
+    "max": 67
+   },
+   "stw_ms": {
+    "median": 0.076,
+    "min": 0.063,
+    "max": 0.089
+   },
+   "live_mb": {
+    "median": 33,
+    "min": 33,
+    "max": 33
+   },
+   "interval_s": {
+    "median": 0.21199999999999974,
+    "min": 0.20799999999999974,
+    "max": 0.2290000000000001
+   },
+   "objects": 733671,
+   "heap_mb": 33.82177734375,
+   "rss_mb": 43.25,
+   "fill": [
+    "148ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/a-nogreen-300000.log",
+     "variant": "a",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 300000,
+     "objects": 733671,
+     "heap_mb": 33.82177734375,
+     "fill": "148ms",
+     "rss_mb": 43.25,
+     "gcs": [
+      {
+       "num": 7,
+       "at": 1.171,
+       "mark": 9.9,
+       "mark_cpu": 73,
+       "assist": 0,
+       "bg": 19,
+       "idle": 54,
+       "stw": 0.027,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.382,
+       "mark": 26,
+       "mark_cpu": 52.18,
+       "assist": 0,
+       "bg": 52,
+       "idle": 0.18,
+       "stw": 0.087,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 1.61,
+       "mark": 7.2,
+       "mark_cpu": 54,
+       "assist": 0,
+       "bg": 13,
+       "idle": 41,
+       "stw": 0.069,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 1.818,
+       "mark": 27,
+       "mark_cpu": 63,
+       "assist": 0,
+       "bg": 34,
+       "idle": 29,
+       "stw": 0.063,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 2.047,
+       "mark": 10,
+       "mark_cpu": 67,
+       "assist": 0,
+       "bg": 20,
+       "idle": 47,
+       "stw": 0.076,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 2.259,
+       "mark": 14,
+       "mark_cpu": 42,
+       "assist": 0,
+       "bg": 17,
+       "idle": 25,
+       "stw": 0.083,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 2.475,
+       "mark": 7.7,
+       "mark_cpu": 59,
+       "assist": 0,
+       "bg": 15,
+       "idle": 44,
+       "stw": 0.069,
+       "live": 33,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.683,
+       "mark": 19,
+       "mark_cpu": 37.16,
+       "assist": 0,
+       "bg": 37,
+       "idle": 0.16,
+       "stw": 0.089,
+       "live": 33,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "a",
+   "build": "nogreen",
+   "n": 1000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 31,
+    "min": 28,
+    "max": 168
+   },
+   "mark_cpu_ms": {
+    "median": 231,
+    "min": 168.14,
+    "max": 361
+   },
+   "stw_ms": {
+    "median": 0.031,
+    "min": 0.025,
+    "max": 0.072
+   },
+   "live_mb": {
+    "median": 121,
+    "min": 121,
+    "max": 121
+   },
+   "interval_s": {
+    "median": 0.23899999999999988,
+    "min": 0.2320000000000002,
+    "max": 0.37200000000000033
+   },
+   "objects": 2486741,
+   "heap_mb": 121.7801513671875,
+   "rss_mb": 139.875,
+   "fill": [
+    "743ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/a-nogreen-1000000.log",
+     "variant": "a",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 1000000,
+     "objects": 2486741,
+     "heap_mb": 121.7801513671875,
+     "fill": "743ms",
+     "rss_mb": 139.875,
+     "gcs": [
+      {
+       "num": 10,
+       "at": 1.789,
+       "mark": 38,
+       "mark_cpu": 294,
+       "assist": 0,
+       "bg": 73,
+       "idle": 221,
+       "stw": 0.025,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 2.03,
+       "mark": 30,
+       "mark_cpu": 231,
+       "assist": 0,
+       "bg": 60,
+       "idle": 171,
+       "stw": 0.03,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 2.263,
+       "mark": 36,
+       "mark_cpu": 270,
+       "assist": 0,
+       "bg": 73,
+       "idle": 197,
+       "stw": 0.031,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 2.502,
+       "mark": 30,
+       "mark_cpu": 229,
+       "assist": 0,
+       "bg": 58,
+       "idle": 171,
+       "stw": 0.03,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.734,
+       "mark": 48,
+       "mark_cpu": 361,
+       "assist": 0,
+       "bg": 96,
+       "idle": 265,
+       "stw": 0.072,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.985,
+       "mark": 31,
+       "mark_cpu": 244,
+       "assist": 0,
+       "bg": 62,
+       "idle": 182,
+       "stw": 0.042,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 3.219,
+       "mark": 168,
+       "mark_cpu": 168.14,
+       "assist": 0,
+       "bg": 168,
+       "idle": 0.14,
+       "stw": 0.055,
+       "live": 121,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 3.591,
+       "mark": 28,
+       "mark_cpu": 220,
+       "assist": 0,
+       "bg": 56,
+       "idle": 164,
+       "stw": 0.025,
+       "live": 121,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "a",
+   "build": "nogreen",
+   "n": 3000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 78,
+    "min": 75,
+    "max": 82
+   },
+   "mark_cpu_ms": {
+    "median": 627,
+    "min": 604,
+    "max": 655
+   },
+   "stw_ms": {
+    "median": 0.093,
+    "min": 0.056,
+    "max": 0.11
+   },
+   "live_mb": {
+    "median": 312,
+    "min": 312,
+    "max": 312
+   },
+   "interval_s": {
+    "median": 0.2879999999999998,
+    "min": 0.28100000000000014,
+    "max": 0.28900000000000015
+   },
+   "objects": 7490842,
+   "heap_mb": 312.5395050048828,
+   "rss_mb": 344.4921875,
+   "fill": [
+    "1.567s"
+   ],
+   "raw": [
+    {
+     "file": "scaling/a-nogreen-3000000.log",
+     "variant": "a",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 3000000,
+     "objects": 7490842,
+     "heap_mb": 312.5395050048828,
+     "fill": "1.567s",
+     "rss_mb": 344.4921875,
+     "gcs": [
+      {
+       "num": 12,
+       "at": 2.66,
+       "mark": 80,
+       "mark_cpu": 638,
+       "assist": 0,
+       "bg": 160,
+       "idle": 478,
+       "stw": 0.03,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 2.948,
+       "mark": 82,
+       "mark_cpu": 648,
+       "assist": 0,
+       "bg": 163,
+       "idle": 485,
+       "stw": 0.056,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 3.237,
+       "mark": 82,
+       "mark_cpu": 655,
+       "assist": 0,
+       "bg": 164,
+       "idle": 491,
+       "stw": 0.1,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 3.526,
+       "mark": 75,
+       "mark_cpu": 604,
+       "assist": 0,
+       "bg": 151,
+       "idle": 453,
+       "stw": 0.11,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 3.807,
+       "mark": 78,
+       "mark_cpu": 627,
+       "assist": 0,
+       "bg": 157,
+       "idle": 470,
+       "stw": 0.078,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 4.092,
+       "mark": 80,
+       "mark_cpu": 636,
+       "assist": 0,
+       "bg": 160,
+       "idle": 476,
+       "stw": 0.093,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 4.38,
+       "mark": 77,
+       "mark_cpu": 620,
+       "assist": 0,
+       "bg": 155,
+       "idle": 465,
+       "stw": 0.084,
+       "live": 312,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 4.664,
+       "mark": 77,
+       "mark_cpu": 615,
+       "assist": 0,
+       "bg": 154,
+       "idle": 461,
+       "stw": 0.11,
+       "live": 312,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "a",
+   "build": "nogreen",
+   "n": 10000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 482,
+    "min": 481,
+    "max": 2606
+   },
+   "mark_cpu_ms": {
+    "median": 3846,
+    "min": 2584.19,
+    "max": 5077
+   },
+   "stw_ms": {
+    "median": 0.078,
+    "min": 0.036,
+    "max": 0.12
+   },
+   "live_mb": {
+    "median": 1113,
+    "min": 1113,
+    "max": 1113
+   },
+   "interval_s": {
+    "median": 0.7029999999999994,
+    "min": 0.7010000000000005,
+    "max": 2.825000000000001
+   },
+   "objects": 25015421,
+   "heap_mb": 1113.1602478027344,
+   "rss_mb": 1221.20703125,
+   "fill": [
+    "5.083s"
+   ],
+   "raw": [
+    {
+     "file": "scaling/a-nogreen-10000000.log",
+     "variant": "a",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 10000000,
+     "objects": 25015421,
+     "heap_mb": 1113.1602478027344,
+     "fill": "5.083s",
+     "rss_mb": 1221.20703125,
+     "gcs": [
+      {
+       "num": 15,
+       "at": 6.592,
+       "mark": 482,
+       "mark_cpu": 3711,
+       "assist": 0,
+       "bg": 923,
+       "idle": 2788,
+       "stw": 0.045,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 7.293,
+       "mark": 2584,
+       "mark_cpu": 2584.19,
+       "assist": 0,
+       "bg": 2584,
+       "idle": 0.19,
+       "stw": 0.097,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 10.097,
+       "mark": 654,
+       "mark_cpu": 5077,
+       "assist": 0,
+       "bg": 1267,
+       "idle": 3810,
+       "stw": 0.056,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 10.972,
+       "mark": 2606,
+       "mark_cpu": 2606.14,
+       "assist": 0,
+       "bg": 2606,
+       "idle": 0.14,
+       "stw": 0.036,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 13.797,
+       "mark": 481,
+       "mark_cpu": 3848,
+       "assist": 0,
+       "bg": 962,
+       "idle": 2886,
+       "stw": 0.12,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 20,
+       "at": 14.5,
+       "mark": 481,
+       "mark_cpu": 3846,
+       "assist": 0,
+       "bg": 962,
+       "idle": 2884,
+       "stw": 0.076,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 21,
+       "at": 15.202,
+       "mark": 482,
+       "mark_cpu": 3840,
+       "assist": 0,
+       "bg": 963,
+       "idle": 2877,
+       "stw": 0.078,
+       "live": 1113,
+       "by_timer": false
+      },
+      {
+       "num": 22,
+       "at": 15.904,
+       "mark": 481,
+       "mark_cpu": 3847,
+       "assist": 0,
+       "bg": 962,
+       "idle": 2885,
+       "stw": 0.079,
+       "live": 1113,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "p",
+   "build": "nogreen",
+   "n": 100000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 1,
+    "min": 0.95,
+    "max": 2.1
+   },
+   "mark_cpu_ms": {
+    "median": 5.5,
+    "min": 2.13,
+    "max": 6
+   },
+   "stw_ms": {
+    "median": 0.089,
+    "min": 0.028,
+    "max": 0.1
+   },
+   "live_mb": {
+    "median": 3,
+    "min": 3,
+    "max": 3
+   },
+   "interval_s": {
+    "median": 0.20199999999999996,
+    "min": 0.20100000000000007,
+    "max": 0.20300000000000007
+   },
+   "objects": 100469,
+   "heap_mb": 3.938385009765625,
+   "rss_mb": 7.25,
+   "fill": [
+    "12ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/p-nogreen-100000.log",
+     "variant": "p",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 100000,
+     "objects": 100469,
+     "heap_mb": 3.938385009765625,
+     "fill": "12ms",
+     "rss_mb": 7.25,
+     "gcs": [
+      {
+       "num": 4,
+       "at": 1.013,
+       "mark": 1.8,
+       "mark_cpu": 4.8,
+       "assist": 0,
+       "bg": 3.5,
+       "idle": 1.3,
+       "stw": 0.023,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 5,
+       "at": 1.216,
+       "mark": 0.98,
+       "mark_cpu": 5.8,
+       "assist": 0,
+       "bg": 1.8,
+       "idle": 4,
+       "stw": 0.098,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 6,
+       "at": 1.418,
+       "mark": 2.1,
+       "mark_cpu": 4.4,
+       "assist": 0,
+       "bg": 2.3,
+       "idle": 2.1,
+       "stw": 0.089,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 7,
+       "at": 1.62,
+       "mark": 1.2,
+       "mark_cpu": 5.7,
+       "assist": 0,
+       "bg": 2.1,
+       "idle": 3.6,
+       "stw": 0.1,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.822,
+       "mark": 1,
+       "mark_cpu": 5.5,
+       "assist": 0,
+       "bg": 1.8,
+       "idle": 3.7,
+       "stw": 0.028,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 2.023,
+       "mark": 2,
+       "mark_cpu": 2.13,
+       "assist": 0,
+       "bg": 0.13,
+       "idle": 2,
+       "stw": 0.033,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 2.226,
+       "mark": 1,
+       "mark_cpu": 5.4,
+       "assist": 0,
+       "bg": 1.9,
+       "idle": 3.5,
+       "stw": 0.089,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 2.428,
+       "mark": 0.95,
+       "mark_cpu": 6,
+       "assist": 0,
+       "bg": 1.7,
+       "idle": 4.3,
+       "stw": 0.075,
+       "live": 3,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "p",
+   "build": "nogreen",
+   "n": 300000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 2.6,
+    "min": 2.4,
+    "max": 5.2
+   },
+   "mark_cpu_ms": {
+    "median": 17.9,
+    "min": 10.2,
+    "max": 18.8
+   },
+   "stw_ms": {
+    "median": 0.071,
+    "min": 0.02,
+    "max": 0.1
+   },
+   "live_mb": {
+    "median": 13,
+    "min": 13,
+    "max": 13
+   },
+   "interval_s": {
+    "median": 0.20300000000000007,
+    "min": 0.20299999999999985,
+    "max": 0.20399999999999996
+   },
+   "objects": 301237,
+   "heap_mb": 13.755401611328125,
+   "rss_mb": 19.375,
+   "fill": [
+    "52ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/p-nogreen-300000.log",
+     "variant": "p",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 300000,
+     "objects": 301237,
+     "heap_mb": 13.755401611328125,
+     "fill": "52ms",
+     "rss_mb": 19.375,
+     "gcs": [
+      {
+       "num": 6,
+       "at": 1.059,
+       "mark": 2.6,
+       "mark_cpu": 17,
+       "assist": 0,
+       "bg": 5,
+       "idle": 12,
+       "stw": 0.021,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 7,
+       "at": 1.262,
+       "mark": 2.7,
+       "mark_cpu": 17.2,
+       "assist": 0,
+       "bg": 5.2,
+       "idle": 12,
+       "stw": 0.02,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.465,
+       "mark": 2.6,
+       "mark_cpu": 18,
+       "assist": 0,
+       "bg": 5,
+       "idle": 13,
+       "stw": 0.072,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 1.669,
+       "mark": 2.4,
+       "mark_cpu": 18.8,
+       "assist": 0,
+       "bg": 4.8,
+       "idle": 14,
+       "stw": 0.026,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 1.872,
+       "mark": 2.8,
+       "mark_cpu": 17.4,
+       "assist": 0,
+       "bg": 5.4,
+       "idle": 12,
+       "stw": 0.059,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 2.075,
+       "mark": 2.5,
+       "mark_cpu": 17.9,
+       "assist": 0,
+       "bg": 4.9,
+       "idle": 13,
+       "stw": 0.071,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 2.278,
+       "mark": 2.6,
+       "mark_cpu": 18.8,
+       "assist": 0,
+       "bg": 4.8,
+       "idle": 14,
+       "stw": 0.1,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 2.481,
+       "mark": 5.2,
+       "mark_cpu": 10.2,
+       "assist": 0,
+       "bg": 5.1,
+       "idle": 5.1,
+       "stw": 0.077,
+       "live": 13,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "p",
+   "build": "nogreen",
+   "n": 1000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 12,
+    "min": 8.9,
+    "max": 32
+   },
+   "mark_cpu_ms": {
+    "median": 69,
+    "min": 30.16,
+    "max": 76
+   },
+   "stw_ms": {
+    "median": 0.067,
+    "min": 0.027,
+    "max": 0.1
+   },
+   "live_mb": {
+    "median": 51,
+    "min": 51,
+    "max": 51
+   },
+   "interval_s": {
+    "median": 0.2110000000000003,
+    "min": 0.20999999999999996,
+    "max": 0.23199999999999976
+   },
+   "objects": 1004309,
+   "heap_mb": 51.478973388671875,
+   "rss_mb": 62.125,
+   "fill": [
+    "189ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/p-nogreen-1000000.log",
+     "variant": "p",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 1000000,
+     "objects": 1004309,
+     "heap_mb": 51.478973388671875,
+     "fill": "189ms",
+     "rss_mb": 62.125,
+     "gcs": [
+      {
+       "num": 10,
+       "at": 1.21,
+       "mark": 9.4,
+       "mark_cpu": 68,
+       "assist": 0,
+       "bg": 18,
+       "idle": 50,
+       "stw": 0.032,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 1.42,
+       "mark": 8.9,
+       "mark_cpu": 69,
+       "assist": 0,
+       "bg": 17,
+       "idle": 52,
+       "stw": 0.094,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 1.63,
+       "mark": 19,
+       "mark_cpu": 45,
+       "assist": 0,
+       "bg": 20,
+       "idle": 25,
+       "stw": 0.067,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 1.85,
+       "mark": 30,
+       "mark_cpu": 30.16,
+       "assist": 0,
+       "bg": 30,
+       "idle": 0.16,
+       "stw": 0.1,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.082,
+       "mark": 9.1,
+       "mark_cpu": 71,
+       "assist": 0,
+       "bg": 18,
+       "idle": 53,
+       "stw": 0.041,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.292,
+       "mark": 10,
+       "mark_cpu": 76,
+       "assist": 0,
+       "bg": 20,
+       "idle": 56,
+       "stw": 0.098,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 2.503,
+       "mark": 12,
+       "mark_cpu": 72,
+       "assist": 0,
+       "bg": 19,
+       "idle": 53,
+       "stw": 0.027,
+       "live": 51,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 2.717,
+       "mark": 32,
+       "mark_cpu": 32.16,
+       "assist": 0,
+       "bg": 32,
+       "idle": 0.16,
+       "stw": 0.033,
+       "live": 51,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "p",
+   "build": "nogreen",
+   "n": 3000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 31,
+    "min": 28,
+    "max": 85
+   },
+   "mark_cpu_ms": {
+    "median": 229,
+    "min": 166.12,
+    "max": 371
+   },
+   "stw_ms": {
+    "median": 0.031,
+    "min": 0.027,
+    "max": 0.088
+   },
+   "live_mb": {
+    "median": 118,
+    "min": 118,
+    "max": 118
+   },
+   "interval_s": {
+    "median": 0.23299999999999965,
+    "min": 0.22999999999999998,
+    "max": 0.2879999999999998
+   },
+   "objects": 3008405,
+   "heap_mb": 118.09011840820312,
+   "rss_mb": 148.125,
+   "fill": [
+    "616ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/p-nogreen-3000000.log",
+     "variant": "p",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 3000000,
+     "objects": 3008405,
+     "heap_mb": 118.09011840820312,
+     "fill": "616ms",
+     "rss_mb": 148.125,
+     "gcs": [
+      {
+       "num": 12,
+       "at": 1.65,
+       "mark": 27,
+       "mark_cpu": 214,
+       "assist": 0,
+       "bg": 53,
+       "idle": 161,
+       "stw": 0.082,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 1.88,
+       "mark": 29,
+       "mark_cpu": 229,
+       "assist": 0,
+       "bg": 58,
+       "idle": 171,
+       "stw": 0.033,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.111,
+       "mark": 53,
+       "mark_cpu": 371,
+       "assist": 0,
+       "bg": 102,
+       "idle": 269,
+       "stw": 0.027,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.366,
+       "mark": 45,
+       "mark_cpu": 324,
+       "assist": 0,
+       "bg": 86,
+       "idle": 238,
+       "stw": 0.059,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 2.615,
+       "mark": 31,
+       "mark_cpu": 245,
+       "assist": 0,
+       "bg": 62,
+       "idle": 183,
+       "stw": 0.031,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 2.848,
+       "mark": 29,
+       "mark_cpu": 222,
+       "assist": 0,
+       "bg": 58,
+       "idle": 164,
+       "stw": 0.088,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 3.08,
+       "mark": 85,
+       "mark_cpu": 166.12,
+       "assist": 0,
+       "bg": 166,
+       "idle": 0.12,
+       "stw": 0.028,
+       "live": 118,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 3.368,
+       "mark": 28,
+       "mark_cpu": 223,
+       "assist": 0,
+       "bg": 56,
+       "idle": 167,
+       "stw": 0.031,
+       "live": 118,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "p",
+   "build": "nogreen",
+   "n": 10000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 102,
+    "min": 99,
+    "max": 413
+   },
+   "mark_cpu_ms": {
+    "median": 797,
+    "min": 403.14,
+    "max": 812
+   },
+   "stw_ms": {
+    "median": 0.065,
+    "min": 0.033,
+    "max": 0.1
+   },
+   "live_mb": {
+    "median": 441,
+    "min": 441,
+    "max": 441
+   },
+   "interval_s": {
+    "median": 0.3080000000000007,
+    "min": 0.3049999999999997,
+    "max": 0.6190000000000002
+   },
+   "objects": 10032982,
+   "heap_mb": 441.37049865722656,
+   "rss_mb": 504.25,
+   "fill": [
+    "2.216s"
+   ],
+   "raw": [
+    {
+     "file": "scaling/p-nogreen-10000000.log",
+     "variant": "p",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 10000000,
+     "objects": 10032982,
+     "heap_mb": 441.37049865722656,
+     "fill": "2.216s",
+     "rss_mb": 504.25,
+     "gcs": [
+      {
+       "num": 15,
+       "at": 3.323,
+       "mark": 413,
+       "mark_cpu": 413.11,
+       "assist": 0,
+       "bg": 413,
+       "idle": 0.11,
+       "stw": 0.066,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 3.942,
+       "mark": 403,
+       "mark_cpu": 403.14,
+       "assist": 0,
+       "bg": 403,
+       "idle": 0.14,
+       "stw": 0.035,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 4.552,
+       "mark": 102,
+       "mark_cpu": 811,
+       "assist": 0,
+       "bg": 203,
+       "idle": 608,
+       "stw": 0.1,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 4.86,
+       "mark": 100,
+       "mark_cpu": 797,
+       "assist": 0,
+       "bg": 199,
+       "idle": 598,
+       "stw": 0.099,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 5.166,
+       "mark": 99,
+       "mark_cpu": 791,
+       "assist": 0,
+       "bg": 198,
+       "idle": 593,
+       "stw": 0.065,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 20,
+       "at": 5.471,
+       "mark": 101,
+       "mark_cpu": 802,
+       "assist": 0,
+       "bg": 201,
+       "idle": 601,
+       "stw": 0.033,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 21,
+       "at": 5.778,
+       "mark": 102,
+       "mark_cpu": 812,
+       "assist": 0,
+       "bg": 204,
+       "idle": 608,
+       "stw": 0.042,
+       "live": 441,
+       "by_timer": false
+      },
+      {
+       "num": 22,
+       "at": 6.087,
+       "mark": 413,
+       "mark_cpu": 413.18,
+       "assist": 0,
+       "bg": 413,
+       "idle": 0.18,
+       "stw": 0.085,
+       "live": 441,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b2",
+   "build": "nogreen",
+   "n": 100000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 1.1,
+    "min": 0.84,
+    "max": 2.7
+   },
+   "mark_cpu_ms": {
+    "median": 3.9,
+    "min": 2.8819999999999997,
+    "max": 4.5
+   },
+   "stw_ms": {
+    "median": 0.036,
+    "min": 0.03,
+    "max": 0.14
+   },
+   "live_mb": {
+    "median": 5,
+    "min": 5,
+    "max": 5
+   },
+   "interval_s": {
+    "median": 0.20199999999999996,
+    "min": 0.20100000000000007,
+    "max": 0.20299999999999985
+   },
+   "objects": 32901,
+   "heap_mb": 5.657379150390625,
+   "rss_mb": 8.875,
+   "fill": [
+    "17ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b2-nogreen-100000.log",
+     "variant": "b2",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 100000,
+     "objects": 32901,
+     "heap_mb": 5.657379150390625,
+     "fill": "17ms",
+     "rss_mb": 8.875,
+     "gcs": [
+      {
+       "num": 5,
+       "at": 1.019,
+       "mark": 1,
+       "mark_cpu": 3.8,
+       "assist": 0,
+       "bg": 1.9,
+       "idle": 1.9,
+       "stw": 0.044,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 6,
+       "at": 1.22,
+       "mark": 0.92,
+       "mark_cpu": 4.5,
+       "assist": 0,
+       "bg": 1.5,
+       "idle": 3,
+       "stw": 0.034,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 7,
+       "at": 1.422,
+       "mark": 0.84,
+       "mark_cpu": 4,
+       "assist": 0,
+       "bg": 1.4,
+       "idle": 2.6,
+       "stw": 0.036,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.623,
+       "mark": 1.1,
+       "mark_cpu": 3.9,
+       "assist": 0,
+       "bg": 1.9,
+       "idle": 2,
+       "stw": 0.034,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 1.825,
+       "mark": 1.3,
+       "mark_cpu": 4.4,
+       "assist": 0,
+       "bg": 2.5,
+       "idle": 1.9,
+       "stw": 0.14,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 2.027,
+       "mark": 1.7,
+       "mark_cpu": 3.28,
+       "assist": 0,
+       "bg": 0.88,
+       "idle": 2.4,
+       "stw": 0.096,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 2.229,
+       "mark": 2.7,
+       "mark_cpu": 2.8819999999999997,
+       "assist": 0,
+       "bg": 2.8,
+       "idle": 0.082,
+       "stw": 0.03,
+       "live": 5,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 2.432,
+       "mark": 1.1,
+       "mark_cpu": 3.3000000000000003,
+       "assist": 0,
+       "bg": 2.2,
+       "idle": 1.1,
+       "stw": 0.079,
+       "live": 5,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b2",
+   "build": "nogreen",
+   "n": 300000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 2.2,
+    "min": 2,
+    "max": 8.2
+   },
+   "mark_cpu_ms": {
+    "median": 14.2,
+    "min": 8.29,
+    "max": 15
+   },
+   "stw_ms": {
+    "median": 0.076,
+    "min": 0.031,
+    "max": 0.11
+   },
+   "live_mb": {
+    "median": 22,
+    "min": 22,
+    "max": 22
+   },
+   "interval_s": {
+    "median": 0.20300000000000007,
+    "min": 0.20199999999999996,
+    "max": 0.20900000000000007
+   },
+   "objects": 133670,
+   "heap_mb": 22.198532104492188,
+   "rss_mb": 28.625,
+   "fill": [
+    "135ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b2-nogreen-300000.log",
+     "variant": "b2",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 300000,
+     "objects": 133670,
+     "heap_mb": 22.198532104492188,
+     "fill": "135ms",
+     "rss_mb": 28.625,
+     "gcs": [
+      {
+       "num": 8,
+       "at": 1.138,
+       "mark": 3.6,
+       "mark_cpu": 11.7,
+       "assist": 0,
+       "bg": 1.7,
+       "idle": 10,
+       "stw": 0.067,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 1.343,
+       "mark": 2.6,
+       "mark_cpu": 13.7,
+       "assist": 0,
+       "bg": 4.2,
+       "idle": 9.5,
+       "stw": 0.067,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 1.546,
+       "mark": 2.3,
+       "mark_cpu": 14.2,
+       "assist": 0,
+       "bg": 4.2,
+       "idle": 10,
+       "stw": 0.076,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 1.749,
+       "mark": 2.1,
+       "mark_cpu": 15,
+       "assist": 0,
+       "bg": 4,
+       "idle": 11,
+       "stw": 0.11,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 1.952,
+       "mark": 2,
+       "mark_cpu": 15,
+       "assist": 0,
+       "bg": 4,
+       "idle": 11,
+       "stw": 0.031,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 2.154,
+       "mark": 8.2,
+       "mark_cpu": 8.29,
+       "assist": 0,
+       "bg": 0.09,
+       "idle": 8.2,
+       "stw": 0.08,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.363,
+       "mark": 2.1,
+       "mark_cpu": 14,
+       "assist": 0,
+       "bg": 4,
+       "idle": 10,
+       "stw": 0.031,
+       "live": 22,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.566,
+       "mark": 2.2,
+       "mark_cpu": 14.3,
+       "assist": 0,
+       "bg": 4.3,
+       "idle": 10,
+       "stw": 0.085,
+       "live": 22,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b2",
+   "build": "nogreen",
+   "n": 1000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 7.7,
+    "min": 7.3,
+    "max": 22
+   },
+   "mark_cpu_ms": {
+    "median": 57,
+    "min": 36.6,
+    "max": 62
+   },
+   "stw_ms": {
+    "median": 0.073,
+    "min": 0.022,
+    "max": 0.11
+   },
+   "live_mb": {
+    "median": 87,
+    "min": 87,
+    "max": 87
+   },
+   "interval_s": {
+    "median": 0.20900000000000007,
+    "min": 0.20799999999999996,
+    "max": 0.20999999999999996
+   },
+   "objects": 486732,
+   "heap_mb": 87.36439514160156,
+   "rss_mb": 104,
+   "fill": [
+    "356ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b2-nogreen-1000000.log",
+     "variant": "b2",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 1000000,
+     "objects": 486732,
+     "heap_mb": 87.36439514160156,
+     "fill": "356ms",
+     "rss_mb": 104,
+     "gcs": [
+      {
+       "num": 12,
+       "at": 1.379,
+       "mark": 7.5,
+       "mark_cpu": 57,
+       "assist": 0,
+       "bg": 14,
+       "idle": 43,
+       "stw": 0.03,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 1.588,
+       "mark": 7.6,
+       "mark_cpu": 57,
+       "assist": 0,
+       "bg": 14,
+       "idle": 43,
+       "stw": 0.049,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 1.797,
+       "mark": 7.8,
+       "mark_cpu": 59,
+       "assist": 0,
+       "bg": 15,
+       "idle": 44,
+       "stw": 0.073,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.005,
+       "mark": 8.9,
+       "mark_cpu": 62,
+       "assist": 0,
+       "bg": 16,
+       "idle": 46,
+       "stw": 0.07,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 2.215,
+       "mark": 7.5,
+       "mark_cpu": 56,
+       "assist": 0,
+       "bg": 14,
+       "idle": 42,
+       "stw": 0.1,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 2.424,
+       "mark": 7.3,
+       "mark_cpu": 56,
+       "assist": 0,
+       "bg": 14,
+       "idle": 42,
+       "stw": 0.11,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 2.633,
+       "mark": 7.7,
+       "mark_cpu": 59,
+       "assist": 0,
+       "bg": 15,
+       "idle": 44,
+       "stw": 0.022,
+       "live": 87,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 2.842,
+       "mark": 22,
+       "mark_cpu": 36.6,
+       "assist": 0,
+       "bg": 4.6,
+       "idle": 32,
+       "stw": 0.079,
+       "live": 87,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b2",
+   "build": "nogreen",
+   "n": 3000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 22,
+    "min": 22,
+    "max": 102
+   },
+   "mark_cpu_ms": {
+    "median": 178,
+    "min": 102.13,
+    "max": 180
+   },
+   "stw_ms": {
+    "median": 0.075,
+    "min": 0.029,
+    "max": 0.1
+   },
+   "live_mb": {
+    "median": 182,
+    "min": 182,
+    "max": 182
+   },
+   "interval_s": {
+    "median": 0.2250000000000001,
+    "min": 0.22399999999999975,
+    "max": 0.22599999999999998
+   },
+   "objects": 1490840,
+   "heap_mb": 182.9339141845703,
+   "rss_mb": 208.625,
+   "fill": [
+    "969ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b2-nogreen-3000000.log",
+     "variant": "b2",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 3000000,
+     "objects": 1490840,
+     "heap_mb": 182.9339141845703,
+     "fill": "969ms",
+     "rss_mb": 208.625,
+     "gcs": [
+      {
+       "num": 14,
+       "at": 1.995,
+       "mark": 22,
+       "mark_cpu": 178,
+       "assist": 0,
+       "bg": 45,
+       "idle": 133,
+       "stw": 0.091,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.221,
+       "mark": 22,
+       "mark_cpu": 179,
+       "assist": 0,
+       "bg": 45,
+       "idle": 134,
+       "stw": 0.097,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 2.445,
+       "mark": 22,
+       "mark_cpu": 179,
+       "assist": 0,
+       "bg": 45,
+       "idle": 134,
+       "stw": 0.1,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 2.67,
+       "mark": 23,
+       "mark_cpu": 178,
+       "assist": 0,
+       "bg": 45,
+       "idle": 133,
+       "stw": 0.1,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 2.895,
+       "mark": 22,
+       "mark_cpu": 177,
+       "assist": 0,
+       "bg": 44,
+       "idle": 133,
+       "stw": 0.075,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 3.12,
+       "mark": 22,
+       "mark_cpu": 176,
+       "assist": 0,
+       "bg": 44,
+       "idle": 132,
+       "stw": 0.063,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 20,
+       "at": 3.344,
+       "mark": 23,
+       "mark_cpu": 180,
+       "assist": 0,
+       "bg": 45,
+       "idle": 135,
+       "stw": 0.029,
+       "live": 182,
+       "by_timer": false
+      },
+      {
+       "num": 21,
+       "at": 3.569,
+       "mark": 102,
+       "mark_cpu": 102.13,
+       "assist": 0,
+       "bg": 102,
+       "idle": 0.13,
+       "stw": 0.074,
+       "live": 182,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b2",
+   "build": "nogreen",
+   "n": 10000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 87,
+    "min": 86,
+    "max": 578
+   },
+   "mark_cpu_ms": {
+    "median": 688,
+    "min": 578.22,
+    "max": 703
+   },
+   "stw_ms": {
+    "median": 0.072,
+    "min": 0.036,
+    "max": 0.089
+   },
+   "live_mb": {
+    "median": 716,
+    "min": 716,
+    "max": 716
+   },
+   "interval_s": {
+    "median": 0.29300000000000015,
+    "min": 0.2919999999999998,
+    "max": 0.6339999999999995
+   },
+   "objects": 5015419,
+   "heap_mb": 716.8084716796875,
+   "rss_mb": 801.359375,
+   "fill": [
+    "4.093s"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b2-nogreen-10000000.log",
+     "variant": "b2",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 10000000,
+     "objects": 5015419,
+     "heap_mb": 716.8084716796875,
+     "fill": "4.093s",
+     "rss_mb": 801.359375,
+     "gcs": [
+      {
+       "num": 17,
+       "at": 5.535,
+       "mark": 427,
+       "mark_cpu": 427.17,
+       "assist": 0,
+       "bg": 427,
+       "idle": 0.17,
+       "stw": 0.043,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 6.169,
+       "mark": 87,
+       "mark_cpu": 682,
+       "assist": 0,
+       "bg": 173,
+       "idle": 509,
+       "stw": 0.036,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 6.461,
+       "mark": 88,
+       "mark_cpu": 703,
+       "assist": 0,
+       "bg": 176,
+       "idle": 527,
+       "stw": 0.074,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 20,
+       "at": 6.755,
+       "mark": 89,
+       "mark_cpu": 703,
+       "assist": 0,
+       "bg": 177,
+       "idle": 526,
+       "stw": 0.069,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 21,
+       "at": 7.05,
+       "mark": 87,
+       "mark_cpu": 689,
+       "assist": 0,
+       "bg": 172,
+       "idle": 517,
+       "stw": 0.045,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 22,
+       "at": 7.343,
+       "mark": 86,
+       "mark_cpu": 688,
+       "assist": 0,
+       "bg": 172,
+       "idle": 516,
+       "stw": 0.089,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 23,
+       "at": 7.635,
+       "mark": 86,
+       "mark_cpu": 687,
+       "assist": 0,
+       "bg": 172,
+       "idle": 515,
+       "stw": 0.072,
+       "live": 716,
+       "by_timer": false
+      },
+      {
+       "num": 24,
+       "at": 7.927,
+       "mark": 578,
+       "mark_cpu": 578.22,
+       "assist": 0,
+       "bg": 578,
+       "idle": 0.22,
+       "stw": 0.075,
+       "live": 716,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b",
+   "build": "nogreen",
+   "n": 100000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 0.13,
+    "min": 0.12,
+    "max": 0.24
+   },
+   "mark_cpu_ms": {
+    "median": 0.26,
+    "min": 0.125,
+    "max": 0.38
+   },
+   "stw_ms": {
+    "median": 0.07,
+    "min": 0.031,
+    "max": 0.1
+   },
+   "live_mb": {
+    "median": 3,
+    "min": 3,
+    "max": 3
+   },
+   "interval_s": {
+    "median": 0.20100000000000007,
+    "min": 0.19999999999999973,
+    "max": 0.20100000000000007
+   },
+   "objects": 459,
+   "heap_mb": 3.4806976318359375,
+   "rss_mb": 6.875,
+   "fill": [
+    "11ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b-nogreen-100000.log",
+     "variant": "b",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 100000,
+     "objects": 459,
+     "heap_mb": 3.4806976318359375,
+     "fill": "11ms",
+     "rss_mb": 6.875,
+     "gcs": [
+      {
+       "num": 4,
+       "at": 1.012,
+       "mark": 0.13,
+       "mark_cpu": 0.28,
+       "assist": 0,
+       "bg": 0.15,
+       "idle": 0.13,
+       "stw": 0.017,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 5,
+       "at": 1.213,
+       "mark": 0.24,
+       "mark_cpu": 0.25,
+       "assist": 0,
+       "bg": 0.15,
+       "idle": 0.1,
+       "stw": 0.055,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 6,
+       "at": 1.413,
+       "mark": 0.12,
+       "mark_cpu": 0.125,
+       "assist": 0,
+       "bg": 0.052,
+       "idle": 0.073,
+       "stw": 0.056,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 7,
+       "at": 1.614,
+       "mark": 0.13,
+       "mark_cpu": 0.26,
+       "assist": 0,
+       "bg": 0.1,
+       "idle": 0.16,
+       "stw": 0.1,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.814,
+       "mark": 0.13,
+       "mark_cpu": 0.35,
+       "assist": 0,
+       "bg": 0.15,
+       "idle": 0.2,
+       "stw": 0.07,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 2.015,
+       "mark": 0.12,
+       "mark_cpu": 0.31,
+       "assist": 0,
+       "bg": 0.1,
+       "idle": 0.21,
+       "stw": 0.074,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 2.215,
+       "mark": 0.15,
+       "mark_cpu": 0.38,
+       "assist": 0,
+       "bg": 0.17,
+       "idle": 0.21,
+       "stw": 0.031,
+       "live": 3,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 2.416,
+       "mark": 0.18,
+       "mark_cpu": 0.22999999999999998,
+       "assist": 0,
+       "bg": 0.12,
+       "idle": 0.11,
+       "stw": 0.094,
+       "live": 3,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b",
+   "build": "nogreen",
+   "n": 300000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 0.15,
+    "min": 0.13,
+    "max": 0.31
+   },
+   "mark_cpu_ms": {
+    "median": 0.3,
+    "min": 0.22999999999999998,
+    "max": 0.35
+   },
+   "stw_ms": {
+    "median": 0.07,
+    "min": 0.05,
+    "max": 0.084
+   },
+   "live_mb": {
+    "median": 13,
+    "min": 13,
+    "max": 13
+   },
+   "interval_s": {
+    "median": 0.20099999999999985,
+    "min": 0.19999999999999996,
+    "max": 0.20100000000000007
+   },
+   "objects": 1235,
+   "heap_mb": 13.485618591308594,
+   "rss_mb": 19.875,
+   "fill": [
+    "40ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b-nogreen-300000.log",
+     "variant": "b",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 300000,
+     "objects": 1235,
+     "heap_mb": 13.485618591308594,
+     "fill": "40ms",
+     "rss_mb": 19.875,
+     "gcs": [
+      {
+       "num": 7,
+       "at": 1.04,
+       "mark": 0.15,
+       "mark_cpu": 0.32,
+       "assist": 0,
+       "bg": 0.19,
+       "idle": 0.13,
+       "stw": 0.051,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 8,
+       "at": 1.241,
+       "mark": 0.15,
+       "mark_cpu": 0.27,
+       "assist": 0,
+       "bg": 0.17,
+       "idle": 0.1,
+       "stw": 0.084,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 9,
+       "at": 1.442,
+       "mark": 0.13,
+       "mark_cpu": 0.30000000000000004,
+       "assist": 0,
+       "bg": 0.14,
+       "idle": 0.16,
+       "stw": 0.062,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 10,
+       "at": 1.642,
+       "mark": 0.2,
+       "mark_cpu": 0.28,
+       "assist": 0,
+       "bg": 0.13,
+       "idle": 0.15,
+       "stw": 0.076,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 11,
+       "at": 1.843,
+       "mark": 0.18,
+       "mark_cpu": 0.3,
+       "assist": 0,
+       "bg": 0.18,
+       "idle": 0.12,
+       "stw": 0.07,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 2.044,
+       "mark": 0.31,
+       "mark_cpu": 0.35,
+       "assist": 0,
+       "bg": 0.12,
+       "idle": 0.23,
+       "stw": 0.07,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 2.244,
+       "mark": 0.14,
+       "mark_cpu": 0.32999999999999996,
+       "assist": 0,
+       "bg": 0.15,
+       "idle": 0.18,
+       "stw": 0.05,
+       "live": 13,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 2.445,
+       "mark": 0.15,
+       "mark_cpu": 0.22999999999999998,
+       "assist": 0,
+       "bg": 0.12,
+       "idle": 0.11,
+       "stw": 0.074,
+       "live": 13,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b",
+   "build": "nogreen",
+   "n": 1000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 0.28,
+    "min": 0.17,
+    "max": 0.42
+   },
+   "mark_cpu_ms": {
+    "median": 0.5900000000000001,
+    "min": 0.45,
+    "max": 0.7
+   },
+   "stw_ms": {
+    "median": 0.072,
+    "min": 0.031,
+    "max": 0.1
+   },
+   "live_mb": {
+    "median": 53,
+    "min": 53,
+    "max": 53
+   },
+   "interval_s": {
+    "median": 0.20100000000000007,
+    "min": 0.20000000000000018,
+    "max": 0.20100000000000007
+   },
+   "objects": 4306,
+   "heap_mb": 53.38398742675781,
+   "rss_mb": 63.875,
+   "fill": [
+    "178ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b-nogreen-1000000.log",
+     "variant": "b",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 1000000,
+     "objects": 4306,
+     "heap_mb": 53.38398742675781,
+     "fill": "178ms",
+     "rss_mb": 63.875,
+     "gcs": [
+      {
+       "num": 11,
+       "at": 1.178,
+       "mark": 0.16,
+       "mark_cpu": 0.54,
+       "assist": 0,
+       "bg": 0.25,
+       "idle": 0.29,
+       "stw": 0.063,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 12,
+       "at": 1.379,
+       "mark": 0.35,
+       "mark_cpu": 0.535,
+       "assist": 0,
+       "bg": 0.075,
+       "idle": 0.46,
+       "stw": 0.069,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 13,
+       "at": 1.58,
+       "mark": 0.42,
+       "mark_cpu": 0.7,
+       "assist": 0,
+       "bg": 0.38,
+       "idle": 0.32,
+       "stw": 0.072,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 1.781,
+       "mark": 0.21,
+       "mark_cpu": 0.56,
+       "assist": 0,
+       "bg": 0.27,
+       "idle": 0.29,
+       "stw": 0.031,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 1.982,
+       "mark": 0.18,
+       "mark_cpu": 0.5900000000000001,
+       "assist": 0,
+       "bg": 0.27,
+       "idle": 0.32,
+       "stw": 0.077,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 2.183,
+       "mark": 0.32,
+       "mark_cpu": 0.45,
+       "assist": 0,
+       "bg": 0.31,
+       "idle": 0.14,
+       "stw": 0.1,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 2.384,
+       "mark": 0.17,
+       "mark_cpu": 0.61,
+       "assist": 0,
+       "bg": 0.24,
+       "idle": 0.37,
+       "stw": 0.075,
+       "live": 53,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 2.584,
+       "mark": 0.28,
+       "mark_cpu": 0.64,
+       "assist": 0,
+       "bg": 0.42,
+       "idle": 0.22,
+       "stw": 0.031,
+       "live": 53,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b",
+   "build": "nogreen",
+   "n": 3000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 0.39,
+    "min": 0.25,
+    "max": 0.58
+   },
+   "mark_cpu_ms": {
+    "median": 0.846,
+    "min": 0.5559999999999999,
+    "max": 1.15
+   },
+   "stw_ms": {
+    "median": 0.031,
+    "min": 0.021,
+    "max": 0.22
+   },
+   "live_mb": {
+    "median": 106,
+    "min": 106,
+    "max": 106
+   },
+   "interval_s": {
+    "median": 0.20100000000000007,
+    "min": 0.20100000000000007,
+    "max": 0.20699999999999985
+   },
+   "objects": 8410,
+   "heap_mb": 106.81428527832031,
+   "rss_mb": 137.375,
+   "fill": [
+    "624ms"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b-nogreen-3000000.log",
+     "variant": "b",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 3000000,
+     "objects": 8410,
+     "heap_mb": 106.81428527832031,
+     "fill": "624ms",
+     "rss_mb": 137.375,
+     "gcs": [
+      {
+       "num": 13,
+       "at": 1.625,
+       "mark": 0.23,
+       "mark_cpu": 0.84,
+       "assist": 0,
+       "bg": 0.43,
+       "idle": 0.41,
+       "stw": 0.043,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 14,
+       "at": 1.826,
+       "mark": 0.4,
+       "mark_cpu": 0.846,
+       "assist": 0,
+       "bg": 0.83,
+       "idle": 0.016,
+       "stw": 0.17,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 15,
+       "at": 2.033,
+       "mark": 0.32,
+       "mark_cpu": 1.15,
+       "assist": 0,
+       "bg": 0.49,
+       "idle": 0.66,
+       "stw": 0.022,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 16,
+       "at": 2.234,
+       "mark": 0.45,
+       "mark_cpu": 0.5559999999999999,
+       "assist": 0,
+       "bg": 0.086,
+       "idle": 0.47,
+       "stw": 0.071,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 2.435,
+       "mark": 0.25,
+       "mark_cpu": 0.94,
+       "assist": 0,
+       "bg": 0.29,
+       "idle": 0.65,
+       "stw": 0.021,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 2.636,
+       "mark": 0.39,
+       "mark_cpu": 0.96,
+       "assist": 0,
+       "bg": 0.7,
+       "idle": 0.26,
+       "stw": 0.22,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 2.838,
+       "mark": 0.58,
+       "mark_cpu": 0.646,
+       "assist": 0,
+       "bg": 0.056,
+       "idle": 0.59,
+       "stw": 0.031,
+       "live": 106,
+       "by_timer": false
+      },
+      {
+       "num": 20,
+       "at": 3.039,
+       "mark": 0.32,
+       "mark_cpu": 0.77,
+       "assist": 0,
+       "bg": 0.49,
+       "idle": 0.28,
+       "stw": 0.031,
+       "live": 106,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "forced",
+   "variant": "b",
+   "build": "nogreen",
+   "n": 10000000,
+   "runs": 1,
+   "gcs": 7,
+   "all_by_timer": false,
+   "mark_clock_ms": {
+    "median": 0.75,
+    "min": 0.66,
+    "max": 3.5
+   },
+   "mark_cpu_ms": {
+    "median": 3.1,
+    "min": 2.9,
+    "max": 3.7
+   },
+   "stw_ms": {
+    "median": 0.06,
+    "min": 0.031,
+    "max": 0.082
+   },
+   "live_mb": {
+    "median": 426,
+    "min": 426,
+    "max": 426
+   },
+   "interval_s": {
+    "median": 0.20199999999999996,
+    "min": 0.20199999999999996,
+    "max": 0.20500000000000007
+   },
+   "objects": 32981,
+   "heap_mb": 426.77806854248047,
+   "rss_mb": 523.375,
+   "fill": [
+    "3.129s"
+   ],
+   "raw": [
+    {
+     "file": "scaling/b-nogreen-10000000.log",
+     "variant": "b",
+     "build": "nogreen",
+     "mode": "forced",
+     "n": 10000000,
+     "objects": 32981,
+     "heap_mb": 426.77806854248047,
+     "fill": "3.129s",
+     "rss_mb": 523.375,
+     "gcs": [
+      {
+       "num": 16,
+       "at": 4.132,
+       "mark": 1.1,
+       "mark_cpu": 3.1,
+       "assist": 0,
+       "bg": 1.5,
+       "idle": 1.6,
+       "stw": 0.021,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 17,
+       "at": 4.335,
+       "mark": 0.75,
+       "mark_cpu": 3.1,
+       "assist": 0,
+       "bg": 1.3,
+       "idle": 1.8,
+       "stw": 0.082,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 18,
+       "at": 4.537,
+       "mark": 0.66,
+       "mark_cpu": 3.2,
+       "assist": 0,
+       "bg": 1,
+       "idle": 2.2,
+       "stw": 0.046,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 19,
+       "at": 4.739,
+       "mark": 3.5,
+       "mark_cpu": 2.96,
+       "assist": 0,
+       "bg": 0.76,
+       "idle": 2.2,
+       "stw": 0.034,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 20,
+       "at": 4.944,
+       "mark": 0.69,
+       "mark_cpu": 2.9,
+       "assist": 0,
+       "bg": 1.2,
+       "idle": 1.7,
+       "stw": 0.06,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 21,
+       "at": 5.146,
+       "mark": 0.79,
+       "mark_cpu": 3.12,
+       "assist": 0,
+       "bg": 0.72,
+       "idle": 2.4,
+       "stw": 0.031,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 22,
+       "at": 5.349,
+       "mark": 0.74,
+       "mark_cpu": 3,
+       "assist": 0,
+       "bg": 1.2,
+       "idle": 1.8,
+       "stw": 0.081,
+       "live": 426,
+       "by_timer": false
+      },
+      {
+       "num": 23,
+       "at": 5.551,
+       "mark": 0.83,
+       "mark_cpu": 3.7,
+       "assist": 0,
+       "bg": 1.2,
+       "idle": 2.5,
+       "stw": 0.068,
+       "live": 426,
+       "by_timer": false
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "env": "Model name:                              Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz\nnproc: 8\n               total        used        free      shared  buff/cache   available\nMem:            31Gi       6,8Gi        17Gi       309Mi       7,9Gi        24Gi\nLinux 6.8.0-142-generic\ngo version go1.27.1 linux/amd64\nlinux\namd64\nv1\nнативный Linux\n"
+}
