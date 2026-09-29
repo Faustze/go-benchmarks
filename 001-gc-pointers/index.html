@@ -156,7 +156,7 @@ footer pre { margin: 0; font: 400 12px/1.5 var(--font-mono); white-space: pre-wr
     <div class="head">
       <div>
         <h2>Сборщик считает объекты</h2>
-        <p class="note">Те же 20 прогонов, две оси X. Плоская map на 426 MB размечается за миллисекунду, кэш на указателях того же объёма за секунду. По числу объектов в куче все четыре варианта ложатся на одну линию: около 100–200 ns CPU на объект.</p>
+        <p class="note">Те же 20 прогонов, две оси X. Плоская map на 426 MB размечается за миллисекунду, кэш на указателях того же объёма за секунду. По числу объектов в куче все четыре варианта ложатся на одну линию: от 80 до 200 ns CPU на объект в зависимости от варианта и режима.</p>
       </div>
     </div>
     <div class="two">
@@ -204,7 +204,9 @@ footer pre { margin: 0; font: 400 12px/1.5 var(--font-mono); white-space: pre-wr
     <div class="head">
       <div>
         <h2>Что делать с большим кэшем</h2>
-        <p class="note">Способы по возрастанию усилий. Первые два закрывают большинство случаев.</p>
+        <p class="note">Касается только того, что живёт долго и в миллионах экземпляров: кэши, индексы, in-memory репозитории. Временные объекты на запрос к моменту сборки уже мёртвые, сборщик их не обходит, они влияют только на то, как часто сборка приходит.</p>
+        <p class="note"><b>Правило на пальцах:</b> цена разметки равна числу живых объектов, умноженному на задержку памяти. На i7-6700 вышло около 100 ns CPU на объект (от 80 до 200 в зависимости от варианта и режима). На другом железе число будет другим, но порядок сохранится: это задержка оперативной памяти, у современных серверов она одного порядка. Миллион долгоживущих объектов стоит порядка 100 ms CPU на каждую сборку, и по таймеру сборка придёт даже в полном простое.</p>
+        <p class="note">Способы ниже идут по возрастанию усилий. Первые два закрывают большинство случаев.</p>
       </div>
     </div>
     <ol class="fixes">
@@ -233,12 +235,12 @@ footer pre { margin: 0; font: 400 12px/1.5 var(--font-mono); white-space: pre-wr
 <script>
 const ORDER = ["a", "p", "b2", "b"];
 const NAME = {
-  a: "A · LRU map[string]*entry",
-  p: "P · map[uint64]*ReadState",
-  b2: "B2 · map[string]ReadState",
-  b: "B · map[uint64]ReadState",
+  a: "A · LRU как у discord",
+  p: "P · map указателей",
+  b2: "B2 · строковый ключ",
+  b: "B · плоская map",
 };
-const PTRS = { a: "6 указателей, 3 объекта на запись", p: "1 указатель, 1 объект", b2: "1 указатель, ключ-строка", b: "0 указателей" };
+const PTRS = { a: "map[string]*entry, 6 указателей и 3 объекта на запись", p: "map[uint64]*ReadState, 1 указатель", b2: "map[string]ReadState, 1 указатель в ключе", b: "map[uint64]ReadState, 0 указателей" };
 const COLOR = v => `var(--s-${v})`;
 const NS = "http://www.w3.org/2000/svg";
 
@@ -326,7 +328,7 @@ function legend(id, items) {
 // ---------- data ----------
 let DATA = null;
 const cfg = (mode, v, build, n) => DATA.configs.find(c => c.mode === mode && c.variant === v && c.build === build && (!n || c.n === n));
-const tipHtml = c => `<b>${NAME[c.variant]}</b><br>${c.build === "green" ? "Green Tea" : "без Green Tea"} · ${fmtCount(c.n)} записей<br>
+const tipHtml = c => `<b>${NAME[c.variant]}</b><br><span class="mono">${PTRS[c.variant]}</span><br>${c.build === "green" ? "Green Tea" : "без Green Tea"} · ${fmtCount(c.n)} записей<br>
   mark CPU: <span class="mono">${fmtMs(c.mark_cpu_ms.median)}</span> (${fmtMs(c.mark_cpu_ms.min)}…${fmtMs(c.mark_cpu_ms.max)})<br>
   mark по часам: <span class="mono">${fmtMs(c.mark_clock_ms.median)}</span><br>
   объектов в куче: <span class="mono">${fmtCount(c.objects)}</span> · хип ${fmtNum(c.live_mb.median, 0)} MB`;
@@ -494,7 +496,7 @@ function renderGreen() {
   axes(f, () => 0, sy, { xTicks: [], yTicks: sy.ticks(), xFmt: String, yFmt: v => fmtNum(v, 1), yTitle: "mark, ms" });
   groups.forEach(([v, label, k, g, n], i) => {
     const cx = f.x0 + band * i + band / 2;
-    el("text", { x: cx, y: f.y0 + 20, "text-anchor": "middle", class: "lab-2" }, f.svg).textContent = `${NAME[v].split(" · ")[0]}, ${label}`;
+    el("text", { x: cx, y: f.y0 + 20, "text-anchor": "middle", class: "lab-2" }, f.svg).textContent = `${NAME[v].split(" · ")[f.W > 620 ? 1 : 0]}, ${label}`;
     [g, n].forEach((c, j) => {
       const st = c[k], x = cx + (j ? 16 : -16), col = COLOR(v);
       el("line", { x1: x, x2: x, y1: sy(st.min), y2: sy(st.max), style: `stroke:${col};stroke-width:3;stroke-linecap:round;opacity:${j ? .55 : 1}` }, f.svg);
