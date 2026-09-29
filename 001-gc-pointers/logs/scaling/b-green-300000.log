@@ -1,0 +1,16 @@
+gc 1 @0.005s 2%: 0.10+0.26+0.018 ms clock, 0.81+0/0.34/0.068+0.14 ms cpu, 3->3->1 MB, 4 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 2 @0.008s 2%: 0.022+0.24+0.039 ms clock, 0.18+0.039/0.13/0.048+0.31 ms cpu, 3->3->2 MB, 4 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 3 @0.014s 2%: 0.019+0.30+0.13 ms clock, 0.15+0.023/0.11/0.037+1.1 ms cpu, 5->5->4 MB, 5 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 4 @0.018s 2%: 0.015+0.18+0.022 ms clock, 0.12+0.014/0.11/0.10+0.17 ms cpu, 8->8->6 MB, 9 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 5 @0.029s 1%: 0.022+0.18+0.059 ms clock, 0.17+0.020/0.10/0.053+0.47 ms cpu, 13->13->9 MB, 13 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 6 @0.041s 1%: 0.020+0.13+0.002 ms clock, 0.16+0/0.11/0.13+0.022 ms cpu, 17->17->13 MB, 19 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+=== FILLED variant=b n=300000 mode=forced fill=41ms idle=11m0s objects=1228 heap=14168032 ===
+gc 7 @1.042s 0%: 0.046+0.14+0.003 ms clock, 0.37+0/0.14/0.12+0.030 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 8 @1.242s 0%: 0.075+0.18+0.003 ms clock, 0.60+0/0.069/0.22+0.024 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 9 @1.443s 0%: 0.089+0.23+0.003 ms clock, 0.71+0/0.12/0.35+0.028 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 10 @1.644s 0%: 0.032+0.17+0.003 ms clock, 0.26+0/0.13/0.17+0.031 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 11 @1.844s 0%: 0.063+0.11+0.003 ms clock, 0.50+0/0.087/0.11+0.024 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 12 @2.045s 0%: 0.084+0.13+0.004 ms clock, 0.67+0/0.099/0.087+0.036 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 13 @2.245s 0%: 0.093+0.15+0.003 ms clock, 0.74+0/0.11/0.11+0.031 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 14 @2.446s 0%: 0.031+0.13+0.003 ms clock, 0.25+0/0.043/0.24+0.027 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+=== END len=300000 last.LastReadID=299999 ===

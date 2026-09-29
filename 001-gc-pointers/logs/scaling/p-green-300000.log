@@ -1,0 +1,16 @@
+gc 1 @0.005s 3%: 0.043+0.91+0.029 ms clock, 0.34+0/1.2/1.4+0.23 ms cpu, 3->4->2 MB, 4 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 2 @0.008s 3%: 0.009+0.75+0.013 ms clock, 0.072+0.043/1.2/2.3+0.10 ms cpu, 4->4->3 MB, 4 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 3 @0.014s 4%: 0.012+1.1+0.028 ms clock, 0.10+0/1.8/3.9+0.22 ms cpu, 6->6->5 MB, 7 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 4 @0.025s 3%: 0.016+1.9+0.013 ms clock, 0.13+0/3.4/6.3+0.10 ms cpu, 9->10->8 MB, 11 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 5 @0.035s 4%: 0.017+1.8+0.032 ms clock, 0.13+0.061/3.3/7.9+0.25 ms cpu, 15->16->12 MB, 17 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 6 @0.043s 4%: 0.018+1.9+0.004 ms clock, 0.14+0/3.6/9.5+0.032 ms cpu, 14->14->13 MB, 25 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+=== FILLED variant=p n=300000 mode=forced fill=43ms idle=11m0s objects=301236 heap=14456336 ===
+gc 7 @1.045s 0%: 0.055+2.3+0.003 ms clock, 0.44+0/4.5/8.4+0.027 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 8 @1.248s 0%: 0.10+2.2+0.016 ms clock, 0.86+0/3.7/11+0.13 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 9 @1.451s 0%: 0.056+1.9+0.015 ms clock, 0.45+0/3.7/9.7+0.12 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 10 @1.654s 0%: 0.056+2.0+0.003 ms clock, 0.45+0/3.8/9.4+0.029 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 11 @1.856s 0%: 0.089+2.0+0.003 ms clock, 0.71+0/3.9/10+0.028 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 12 @2.059s 0%: 0.024+2.0+0.002 ms clock, 0.19+0/3.8/9.2+0.023 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 13 @2.262s 0%: 0.075+2.1+0.004 ms clock, 0.60+0/4.0/10+0.035 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 14 @2.465s 0%: 0.10+2.1+0.003 ms clock, 0.87+0/4.0/10+0.025 ms cpu, 13->13->13 MB, 27 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+=== END len=300000 last.LastReadID=299999 ===
