@@ -176,26 +176,25 @@ func drawAll(cs []Config) error {
 	return nil
 }
 
-// 01: одна сборка на 10 млн записей, CPU разметки по вариантам
+// 01: одна сборка по таймеру на 10 млн записей, mark по часам по вариантам
 func drawHero(cs []Config) error {
-	const n = 10_000_000
-	p := newPlot("Сколько CPU стоит одна разметка кэша на 10 млн записей", "mark CPU, ms (assist + фон + idle)", "")
+	p := newPlot("Одна сборка по таймеру, 10 млн записей: сколько длится mark", "mark по часам, ms (медиана)", "")
 	var labels []string
 	for i := len(order) - 1; i >= 0; i-- { // A сверху
 		v := order[i]
-		c := find(cs, "forced", v, "green", n)
-		if c == nil {
+		c := find(cs, "timer", v, "green", 0)
+		if c == nil || c.GCs == 0 {
 			return nil
 		}
 		pos := float64(len(labels))
 		labels = append(labels, names[v])
-		b, _ := plotter.NewBarChart(plotter.Values{c.MarkCPU.Median}, vg.Points(22))
+		b, _ := plotter.NewBarChart(plotter.Values{c.MarkClock.Median}, vg.Points(22))
 		b.Horizontal, b.XMin = true, pos
 		b.Color, b.LineStyle.Width = colors[v], 0
 		p.Add(b)
 		lb, _ := plotter.NewLabels(plotter.XYLabels{
-			XYs:    plotter.XYs{{X: c.MarkCPU.Median, Y: pos}},
-			Labels: []string{fmt.Sprintf("  %s · %s объектов", ms(c.MarkCPU.Median), human(float64(c.Objects)))},
+			XYs:    plotter.XYs{{X: c.MarkClock.Median, Y: pos}},
+			Labels: []string{fmt.Sprintf("  %s · %s объектов", ms(c.MarkClock.Median), human(float64(c.Objects)))},
 		})
 		lb.TextStyle[0].Color = ink
 		lb.TextStyle[0].YAlign = draw.YCenter
