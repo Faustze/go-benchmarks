@@ -5,23 +5,23 @@
    "variant": "a",
    "build": "green",
    "n": 10000000,
-   "runs": 1,
-   "gcs": 4,
+   "runs": 3,
+   "gcs": 12,
    "all_by_timer": true,
    "mark_clock_ms": {
-    "median": 1154,
-    "min": 1014,
+    "median": 974,
+    "min": 852,
     "max": 1297
    },
    "mark_cpu_ms": {
-    "median": 2307,
-    "min": 2027,
+    "median": 1949,
+    "min": 1704,
     "max": 2594
    },
    "stw_ms": {
-    "median": 0.037,
+    "median": 0.041,
     "min": 0.032,
-    "max": 0.046
+    "max": 0.058
    },
    "live_mb": {
     "median": 1113,
@@ -29,15 +29,17 @@
     "max": 1113
    },
    "interval_s": {
-    "median": 121.05199999999999,
-    "min": 120.95599999999999,
-    "max": 121.34100000000007
+    "median": 121.01999999999998,
+    "min": 120.887,
+    "max": 122.227
    },
-   "objects": 25015419,
+   "objects": 25015425,
    "heap_mb": 1113.1911926269531,
-   "rss_mb": 1328.82421875,
+   "rss_mb": 1378.2890625,
    "fill": [
-    "6.167s"
+    "6.167s",
+    "6.147s",
+    "4.892s"
    ],
    "raw": [
     {
@@ -112,6 +114,382 @@
        "by_timer": true
       }
      ]
+    },
+    {
+     "file": "timer/a-green-2.log",
+     "variant": "a",
+     "build": "green",
+     "mode": "timer",
+     "n": 10000000,
+     "objects": 25015425,
+     "heap_mb": 1113.1911926269531,
+     "fill": "6.147s",
+     "rss_mb": 1378.2890625,
+     "gcs": [
+      {
+       "num": 15,
+       "at": 128.984,
+       "mark": 1001,
+       "mark_cpu": 2002,
+       "assist": 0,
+       "bg": 2002,
+       "idle": 0,
+       "stw": 0.047,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 16,
+       "at": 250.034,
+       "mark": 1066,
+       "mark_cpu": 2132,
+       "assist": 0,
+       "bg": 2132,
+       "idle": 0,
+       "stw": 0.037,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 17,
+       "at": 371.137,
+       "mark": 974,
+       "mark_cpu": 1949,
+       "assist": 0,
+       "bg": 1949,
+       "idle": 0,
+       "stw": 0.034,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 18,
+       "at": 492.157,
+       "mark": 957,
+       "mark_cpu": 1914,
+       "assist": 0,
+       "bg": 1914,
+       "idle": 0,
+       "stw": 0.048,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 19,
+       "at": 613.156,
+       "mark": 985,
+       "mark_cpu": 1970,
+       "assist": 0,
+       "bg": 1970,
+       "idle": 0,
+       "stw": 0.058,
+       "live": 1113,
+       "by_timer": true
+      }
+     ]
+    },
+    {
+     "file": "timer/a-green-3.log",
+     "variant": "a",
+     "build": "green",
+     "mode": "timer",
+     "n": 10000000,
+     "objects": 25015425,
+     "heap_mb": 1113.1962661743164,
+     "fill": "4.892s",
+     "rss_mb": 1370.67578125,
+     "gcs": [
+      {
+       "num": 14,
+       "at": 126.311,
+       "mark": 881,
+       "mark_cpu": 1763,
+       "assist": 0,
+       "bg": 1763,
+       "idle": 0,
+       "stw": 0.034,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 15,
+       "at": 248.538,
+       "mark": 852,
+       "mark_cpu": 1704,
+       "assist": 0,
+       "bg": 1704,
+       "idle": 0,
+       "stw": 0.058,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 16,
+       "at": 369.425,
+       "mark": 880,
+       "mark_cpu": 1760,
+       "assist": 0,
+       "bg": 1760,
+       "idle": 0,
+       "stw": 0.042,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 17,
+       "at": 490.343,
+       "mark": 895,
+       "mark_cpu": 1789,
+       "assist": 0,
+       "bg": 1789,
+       "idle": 0,
+       "stw": 0.041,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 18,
+       "at": 611.281,
+       "mark": 948,
+       "mark_cpu": 1895,
+       "assist": 0,
+       "bg": 1895,
+       "idle": 0,
+       "stw": 0.047,
+       "live": 1113,
+       "by_timer": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "timer",
+   "variant": "p",
+   "build": "green",
+   "n": 10000000,
+   "runs": 1,
+   "gcs": 4,
+   "all_by_timer": true,
+   "mark_clock_ms": {
+    "median": 543,
+    "min": 539,
+    "max": 550
+   },
+   "mark_cpu_ms": {
+    "median": 1087,
+    "min": 1078,
+    "max": 1101
+   },
+   "stw_ms": {
+    "median": 0.025,
+    "min": 0.022,
+    "max": 0.038
+   },
+   "live_mb": {
+    "median": 441,
+    "min": 441,
+    "max": 441
+   },
+   "interval_s": {
+    "median": 120.566,
+    "min": 120.565,
+    "max": 120.57400000000001
+   },
+   "objects": 10032986,
+   "heap_mb": 441.4065170288086,
+   "rss_mb": 506.75,
+   "fill": [
+    "2.447s"
+   ],
+   "raw": [
+    {
+     "file": "timer/p-green-1.log",
+     "variant": "p",
+     "build": "green",
+     "mode": "timer",
+     "n": 10000000,
+     "objects": 10032986,
+     "heap_mb": 441.4065170288086,
+     "fill": "2.447s",
+     "rss_mb": 506.75,
+     "gcs": [
+      {
+       "num": 15,
+       "at": 123.627,
+       "mark": 542,
+       "mark_cpu": 1083,
+       "assist": 0,
+       "bg": 1083,
+       "idle": 0,
+       "stw": 0.035,
+       "live": 441,
+       "by_timer": true
+      },
+      {
+       "num": 16,
+       "at": 244.193,
+       "mark": 546,
+       "mark_cpu": 1092,
+       "assist": 0,
+       "bg": 1092,
+       "idle": 0,
+       "stw": 0.022,
+       "live": 441,
+       "by_timer": true
+      },
+      {
+       "num": 17,
+       "at": 364.759,
+       "mark": 550,
+       "mark_cpu": 1101,
+       "assist": 0,
+       "bg": 1101,
+       "idle": 0,
+       "stw": 0.038,
+       "live": 441,
+       "by_timer": true
+      },
+      {
+       "num": 18,
+       "at": 485.333,
+       "mark": 543,
+       "mark_cpu": 1087,
+       "assist": 0,
+       "bg": 1087,
+       "idle": 0,
+       "stw": 0.025,
+       "live": 441,
+       "by_timer": true
+      },
+      {
+       "num": 19,
+       "at": 605.898,
+       "mark": 539,
+       "mark_cpu": 1078,
+       "assist": 0,
+       "bg": 1078,
+       "idle": 0,
+       "stw": 0.037,
+       "live": 441,
+       "by_timer": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "timer",
+   "variant": "b2",
+   "build": "green",
+   "n": 10000000,
+   "runs": 1,
+   "gcs": 4,
+   "all_by_timer": true,
+   "mark_clock_ms": {
+    "median": 370,
+    "min": 369,
+    "max": 389
+   },
+   "mark_cpu_ms": {
+    "median": 740,
+    "min": 738,
+    "max": 778
+   },
+   "stw_ms": {
+    "median": 0.037,
+    "min": 0.03,
+    "max": 0.05
+   },
+   "live_mb": {
+    "median": 716,
+    "min": 716,
+    "max": 716
+   },
+   "interval_s": {
+    "median": 120.39499999999998,
+    "min": 120.39499999999998,
+    "max": 121.734
+   },
+   "objects": 5015425,
+   "heap_mb": 716.844612121582,
+   "rss_mb": 842.1015625,
+   "fill": [
+    "4.435s"
+   ],
+   "raw": [
+    {
+     "file": "timer/b2-green-1.log",
+     "variant": "b2",
+     "build": "green",
+     "mode": "timer",
+     "n": 10000000,
+     "objects": 5015425,
+     "heap_mb": 716.844612121582,
+     "fill": "4.435s",
+     "rss_mb": 842.1015625,
+     "gcs": [
+      {
+       "num": 17,
+       "at": 125.604,
+       "mark": 372,
+       "mark_cpu": 744,
+       "assist": 0,
+       "bg": 744,
+       "idle": 0,
+       "stw": 0.039,
+       "live": 716,
+       "by_timer": true
+      },
+      {
+       "num": 18,
+       "at": 247.338,
+       "mark": 389,
+       "mark_cpu": 778,
+       "assist": 0,
+       "bg": 778,
+       "idle": 0,
+       "stw": 0.03,
+       "live": 716,
+       "by_timer": true
+      },
+      {
+       "num": 19,
+       "at": 367.744,
+       "mark": 373,
+       "mark_cpu": 746,
+       "assist": 0,
+       "bg": 746,
+       "idle": 0,
+       "stw": 0.037,
+       "live": 716,
+       "by_timer": true
+      },
+      {
+       "num": 20,
+       "at": 488.139,
+       "mark": 369,
+       "mark_cpu": 738,
+       "assist": 0,
+       "bg": 738,
+       "idle": 0,
+       "stw": 0.05,
+       "live": 716,
+       "by_timer": true
+      },
+      {
+       "num": 21,
+       "at": 608.534,
+       "mark": 370,
+       "mark_cpu": 740,
+       "assist": 0,
+       "bg": 740,
+       "idle": 0,
+       "stw": 0.05,
+       "live": 716,
+       "by_timer": true
+      }
+     ]
     }
    ]
   },
@@ -120,39 +498,41 @@
    "variant": "b",
    "build": "green",
    "n": 10000000,
-   "runs": 1,
-   "gcs": 0,
+   "runs": 3,
+   "gcs": 12,
    "all_by_timer": true,
    "mark_clock_ms": {
-    "median": 0,
-    "min": 0,
-    "max": 0
+    "median": 1.2,
+    "min": 1.1,
+    "max": 2.9
    },
    "mark_cpu_ms": {
-    "median": 0,
-    "min": 0,
-    "max": 0
+    "median": 1.3,
+    "min": 1.2,
+    "max": 2.2
    },
    "stw_ms": {
-    "median": 0,
-    "min": 0,
-    "max": 0
+    "median": 0.035,
+    "min": 0.021,
+    "max": 0.049
    },
    "live_mb": {
-    "median": 0,
-    "min": 0,
-    "max": 0
+    "median": 426,
+    "min": 426,
+    "max": 426
    },
    "interval_s": {
-    "median": 0,
-    "min": 0,
-    "max": 0
+    "median": 120.02099999999996,
+    "min": 120.01999999999998,
+    "max": 120.02100000000007
    },
-   "objects": 32979,
-   "heap_mb": 426.80892181396484,
-   "rss_mb": 0,
+   "objects": 32975,
+   "heap_mb": 426.80858612060547,
+   "rss_mb": 527.25,
    "fill": [
-    "2.762s"
+    "2.762s",
+    "2.697s",
+    "3.058s"
    ],
    "raw": [
     {
@@ -164,7 +544,7 @@
      "objects": 32979,
      "heap_mb": 426.80892181396484,
      "fill": "2.762s",
-     "rss_mb": 0,
+     "rss_mb": 526.125,
      "gcs": [
       {
        "num": 16,
@@ -175,6 +555,578 @@
        "bg": 1.6,
        "idle": 0,
        "stw": 0.028,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 17,
+       "at": 243.805,
+       "mark": 2.1,
+       "mark_cpu": 2.2,
+       "assist": 0,
+       "bg": 2.2,
+       "idle": 0,
+       "stw": 0.036,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 18,
+       "at": 363.826,
+       "mark": 1.2,
+       "mark_cpu": 1.3,
+       "assist": 0,
+       "bg": 1.3,
+       "idle": 0,
+       "stw": 0.021,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 19,
+       "at": 483.847,
+       "mark": 2.9,
+       "mark_cpu": 1.7,
+       "assist": 0,
+       "bg": 1.7,
+       "idle": 0,
+       "stw": 0.035,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 20,
+       "at": 603.868,
+       "mark": 1.3,
+       "mark_cpu": 1.3,
+       "assist": 0,
+       "bg": 1.3,
+       "idle": 0,
+       "stw": 0.049,
+       "live": 426,
+       "by_timer": true
+      }
+     ]
+    },
+    {
+     "file": "timer/b-green-2.log",
+     "variant": "b",
+     "build": "green",
+     "mode": "timer",
+     "n": 10000000,
+     "objects": 32971,
+     "heap_mb": 426.80372619628906,
+     "fill": "2.697s",
+     "rss_mb": 527.25,
+     "gcs": [
+      {
+       "num": 16,
+       "at": 123.721,
+       "mark": 1.2,
+       "mark_cpu": 1.3,
+       "assist": 0,
+       "bg": 1.3,
+       "idle": 0,
+       "stw": 0.021,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 17,
+       "at": 243.742,
+       "mark": 1.1,
+       "mark_cpu": 1.2,
+       "assist": 0,
+       "bg": 1.2,
+       "idle": 0,
+       "stw": 0.025,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 18,
+       "at": 363.762,
+       "mark": 1.2,
+       "mark_cpu": 1.3,
+       "assist": 0,
+       "bg": 1.3,
+       "idle": 0,
+       "stw": 0.035,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 19,
+       "at": 483.782,
+       "mark": 1.3,
+       "mark_cpu": 1.4,
+       "assist": 0,
+       "bg": 1.4,
+       "idle": 0,
+       "stw": 0.048,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 20,
+       "at": 603.803,
+       "mark": 1.2,
+       "mark_cpu": 1.2,
+       "assist": 0,
+       "bg": 1.2,
+       "idle": 0,
+       "stw": 0.035,
+       "live": 426,
+       "by_timer": true
+      }
+     ]
+    },
+    {
+     "file": "timer/b-green-3.log",
+     "variant": "b",
+     "build": "green",
+     "mode": "timer",
+     "n": 10000000,
+     "objects": 32975,
+     "heap_mb": 426.80858612060547,
+     "fill": "3.058s",
+     "rss_mb": 522.5,
+     "gcs": [
+      {
+       "num": 16,
+       "at": 124.082,
+       "mark": 1.2,
+       "mark_cpu": 1.3,
+       "assist": 0,
+       "bg": 1.3,
+       "idle": 0,
+       "stw": 0.035,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 17,
+       "at": 244.103,
+       "mark": 1.3,
+       "mark_cpu": 1.3,
+       "assist": 0,
+       "bg": 1.3,
+       "idle": 0,
+       "stw": 0.038,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 18,
+       "at": 364.124,
+       "mark": 1.4,
+       "mark_cpu": 1.6,
+       "assist": 0,
+       "bg": 1.6,
+       "idle": 0,
+       "stw": 0.037,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 19,
+       "at": 484.145,
+       "mark": 1.1,
+       "mark_cpu": 1.5,
+       "assist": 0,
+       "bg": 1.5,
+       "idle": 0,
+       "stw": 0.028,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 20,
+       "at": 604.165,
+       "mark": 1.2,
+       "mark_cpu": 1.3,
+       "assist": 0,
+       "bg": 1.3,
+       "idle": 0,
+       "stw": 0.035,
+       "live": 426,
+       "by_timer": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "timer",
+   "variant": "a",
+   "build": "nogreen",
+   "n": 10000000,
+   "runs": 3,
+   "gcs": 12,
+   "all_by_timer": true,
+   "mark_clock_ms": {
+    "median": 2668,
+    "min": 1815,
+    "max": 3100
+   },
+   "mark_cpu_ms": {
+    "median": 2839,
+    "min": 2459,
+    "max": 3630
+   },
+   "stw_ms": {
+    "median": 0.04,
+    "min": 0.027,
+    "max": 0.077
+   },
+   "live_mb": {
+    "median": 1113,
+    "min": 1113,
+    "max": 1113
+   },
+   "interval_s": {
+    "median": 122.689,
+    "min": 121.84900000000002,
+    "max": 124.53099999999998
+   },
+   "objects": 25015426,
+   "heap_mb": 1113.1601257324219,
+   "rss_mb": 1362.80078125,
+   "fill": [
+    "6.299s",
+    "5.149s",
+    "5.404s"
+   ],
+   "raw": [
+    {
+     "file": "timer/a-nogreen-1.log",
+     "variant": "a",
+     "build": "nogreen",
+     "mode": "timer",
+     "n": 10000000,
+     "objects": 25015427,
+     "heap_mb": 1113.16015625,
+     "fill": "6.299s",
+     "rss_mb": 1362.80078125,
+     "gcs": [
+      {
+       "num": 14,
+       "at": 130.026,
+       "mark": 3178,
+       "mark_cpu": 3178,
+       "assist": 0,
+       "bg": 3178,
+       "idle": 0,
+       "stw": 0.029,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 15,
+       "at": 254.557,
+       "mark": 1815,
+       "mark_cpu": 3630,
+       "assist": 0,
+       "bg": 3630,
+       "idle": 0,
+       "stw": 0.036,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 16,
+       "at": 376.406,
+       "mark": 3100,
+       "mark_cpu": 3100,
+       "assist": 0,
+       "bg": 3100,
+       "idle": 0,
+       "stw": 0.056,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 17,
+       "at": 499.537,
+       "mark": 2998,
+       "mark_cpu": 2998,
+       "assist": 0,
+       "bg": 2998,
+       "idle": 0,
+       "stw": 0.035,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 18,
+       "at": 622.567,
+       "mark": 2915,
+       "mark_cpu": 2915,
+       "assist": 0,
+       "bg": 2915,
+       "idle": 0,
+       "stw": 0.035,
+       "live": 1113,
+       "by_timer": true
+      }
+     ]
+    },
+    {
+     "file": "timer/a-nogreen-2.log",
+     "variant": "a",
+     "build": "nogreen",
+     "mode": "timer",
+     "n": 10000000,
+     "objects": 25015426,
+     "heap_mb": 1113.1600494384766,
+     "fill": "5.149s",
+     "rss_mb": 1221.078125,
+     "gcs": [
+      {
+       "num": 15,
+       "at": 126.686,
+       "mark": 2474,
+       "mark_cpu": 2474,
+       "assist": 0,
+       "bg": 2474,
+       "idle": 0,
+       "stw": 0.05,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 16,
+       "at": 249.193,
+       "mark": 2653,
+       "mark_cpu": 2653,
+       "assist": 0,
+       "bg": 2653,
+       "idle": 0,
+       "stw": 0.044,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 17,
+       "at": 371.882,
+       "mark": 2839,
+       "mark_cpu": 2839,
+       "assist": 0,
+       "bg": 2839,
+       "idle": 0,
+       "stw": 0.045,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 18,
+       "at": 494.748,
+       "mark": 2878,
+       "mark_cpu": 2878,
+       "assist": 0,
+       "bg": 2878,
+       "idle": 0,
+       "stw": 0.077,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 19,
+       "at": 617.668,
+       "mark": 2459,
+       "mark_cpu": 2459,
+       "assist": 0,
+       "bg": 2459,
+       "idle": 0,
+       "stw": 0.058,
+       "live": 1113,
+       "by_timer": true
+      }
+     ]
+    },
+    {
+     "file": "timer/a-nogreen-3.log",
+     "variant": "a",
+     "build": "nogreen",
+     "mode": "timer",
+     "n": 10000000,
+     "objects": 25015425,
+     "heap_mb": 1113.1601257324219,
+     "fill": "5.404s",
+     "rss_mb": 1225.546875,
+     "gcs": [
+      {
+       "num": 15,
+       "at": 126.936,
+       "mark": 2556,
+       "mark_cpu": 2556,
+       "assist": 0,
+       "bg": 2556,
+       "idle": 0,
+       "stw": 0.041,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 16,
+       "at": 249.524,
+       "mark": 3034,
+       "mark_cpu": 3034,
+       "assist": 0,
+       "bg": 3034,
+       "idle": 0,
+       "stw": 0.03,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 17,
+       "at": 372.59,
+       "mark": 2610,
+       "mark_cpu": 2610,
+       "assist": 0,
+       "bg": 2610,
+       "idle": 0,
+       "stw": 0.027,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 18,
+       "at": 495.228,
+       "mark": 2560,
+       "mark_cpu": 2560,
+       "assist": 0,
+       "bg": 2560,
+       "idle": 0,
+       "stw": 0.056,
+       "live": 1113,
+       "by_timer": true
+      },
+      {
+       "num": 19,
+       "at": 617.817,
+       "mark": 2668,
+       "mark_cpu": 2668,
+       "assist": 0,
+       "bg": 2668,
+       "idle": 0,
+       "stw": 0.04,
+       "live": 1113,
+       "by_timer": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "timer",
+   "variant": "b",
+   "build": "nogreen",
+   "n": 10000000,
+   "runs": 1,
+   "gcs": 4,
+   "all_by_timer": true,
+   "mark_clock_ms": {
+    "median": 2.1,
+    "min": 2.1,
+    "max": 2.6
+   },
+   "mark_cpu_ms": {
+    "median": 2.1,
+    "min": 2.1,
+    "max": 2.7
+   },
+   "stw_ms": {
+    "median": 0.032,
+    "min": 0.027,
+    "max": 0.074
+   },
+   "live_mb": {
+    "median": 426,
+    "min": 426,
+    "max": 426
+   },
+   "interval_s": {
+    "median": 120.02099999999996,
+    "min": 120.02000000000001,
+    "max": 120.02100000000007
+   },
+   "objects": 32990,
+   "heap_mb": 426.78771209716797,
+   "rss_mb": 521.875,
+   "fill": [
+    "2.242s"
+   ],
+   "raw": [
+    {
+     "file": "timer/b-nogreen-1.log",
+     "variant": "b",
+     "build": "nogreen",
+     "mode": "timer",
+     "n": 10000000,
+     "objects": 32990,
+     "heap_mb": 426.78771209716797,
+     "fill": "2.242s",
+     "rss_mb": 521.875,
+     "gcs": [
+      {
+       "num": 16,
+       "at": 123.266,
+       "mark": 1.4,
+       "mark_cpu": 2.6,
+       "assist": 0,
+       "bg": 2.6,
+       "idle": 0,
+       "stw": 0.048,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 17,
+       "at": 243.287,
+       "mark": 2.4,
+       "mark_cpu": 2.5,
+       "assist": 0,
+       "bg": 2.5,
+       "idle": 0,
+       "stw": 0.074,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 18,
+       "at": 363.307,
+       "mark": 2.1,
+       "mark_cpu": 2.1,
+       "assist": 0,
+       "bg": 2.1,
+       "idle": 0,
+       "stw": 0.036,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 19,
+       "at": 483.328,
+       "mark": 2.6,
+       "mark_cpu": 2.7,
+       "assist": 0,
+       "bg": 2.7,
+       "idle": 0,
+       "stw": 0.032,
+       "live": 426,
+       "by_timer": true
+      },
+      {
+       "num": 20,
+       "at": 603.349,
+       "mark": 2.1,
+       "mark_cpu": 2.1,
+       "assist": 0,
+       "bg": 2.1,
+       "idle": 0,
+       "stw": 0.027,
        "live": 426,
        "by_timer": true
       }

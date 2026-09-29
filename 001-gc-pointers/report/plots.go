@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
+	"strings"
 
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/font"
@@ -255,38 +256,44 @@ func drawPredictor(cs []Config) error {
 	return save("03-objects-not-bytes.png", vg.Points(900), vg.Points(400), byMB, byObj)
 }
 
-// 04: Green Tea включён и выключен, 10 млн записей: медиана и разброс по 7 сборкам
+// 04: Green Tea включён и выключен в сборках по таймеру: медиана и разброс mark по часам и CPU
 func drawGreenTea(cs []Config) error {
-	const n = 10_000_000
-	p := newPlot("Green Tea GC, 10 млн записей: точка — медиана, линия — min…max", "", "mark CPU, ms")
+	p := newPlot("Green Tea, сборки по таймеру, 10 млн записей: точка - медиана, линия - min…max", "", "mark, ms")
 	var labels []string
-	for i, v := range order {
-		g, ng := find(cs, "forced", v, "green", n), find(cs, "forced", v, "nogreen", n)
-		if g == nil || ng == nil {
+	for _, v := range []string{"a", "b"} {
+		g, ng := find(cs, "timer", v, "green", 0), find(cs, "timer", v, "nogreen", 0)
+		if g == nil || ng == nil || g.GCs == 0 || ng.GCs == 0 {
 			return nil
 		}
-		labels = append(labels, names[v])
-		for j, c := range []*Config{g, ng} {
-			x := float64(i) - 0.14 + 0.28*float64(j)
-			l, _ := line(plotter.XYs{{X: x, Y: c.MarkCPU.Min}, {X: x, Y: c.MarkCPU.Max}}, colors[v])
-			l.Width = vg.Points(3)
-			dot, _ := plotter.NewScatter(plotter.XYs{{X: x, Y: c.MarkCPU.Median}})
-			dot.GlyphStyle = draw.GlyphStyle{Color: colors[v], Radius: vg.Points(6), Shape: draw.CircleGlyph{}}
-			if j == 1 {
-				l.Color = pale(colors[v])
-				dot.GlyphStyle.Color = pale(colors[v])
+		for _, m := range []struct {
+			name string
+			get  func(*Config) Stat
+		}{{"по часам", func(c *Config) Stat { return c.MarkClock }}, {"CPU", func(c *Config) Stat { return c.MarkCPU }}} {
+			i := float64(len(labels))
+			labels = append(labels, names[v][:strings.Index(names[v], ":")]+", "+m.name)
+			for j, c := range []*Config{g, ng} {
+				st := m.get(c)
+				x := i - 0.14 + 0.28*float64(j)
+				l, _ := line(plotter.XYs{{X: x, Y: st.Min}, {X: x, Y: st.Max}}, colors[v])
+				l.Width = vg.Points(3)
+				dot, _ := plotter.NewScatter(plotter.XYs{{X: x, Y: st.Median}})
+				dot.GlyphStyle = draw.GlyphStyle{Color: colors[v], Radius: vg.Points(6), Shape: draw.CircleGlyph{}}
+				if j == 1 {
+					l.Color = pale(colors[v])
+					dot.GlyphStyle.Color = pale(colors[v])
+				}
+				lb, _ := plotter.NewLabels(plotter.XYLabels{XYs: plotter.XYs{{X: x, Y: st.Median}},
+					Labels: []string{[]string{"green ", "nogreen "}[j] + ms(st.Median)}})
+				lb.TextStyle[0].Color, lb.TextStyle[0].Font.Size, lb.TextStyle[0].YAlign = ink, vg.Points(8), draw.YCenter
+				lb.TextStyle[0].XAlign = []draw.XAlignment{draw.XRight, draw.XLeft}[j]
+				lb.Offset = vg.Point{X: vg.Points(float64(j*18 - 9))}
+				p.Add(l, dot, lb)
 			}
-			lb, _ := plotter.NewLabels(plotter.XYLabels{XYs: plotter.XYs{{X: x, Y: c.MarkCPU.Median}},
-				Labels: []string{[]string{"green ", "nogreen "}[j] + ms(c.MarkCPU.Median)}})
-			lb.TextStyle[0].Color, lb.TextStyle[0].Font.Size, lb.TextStyle[0].YAlign = ink, vg.Points(8), draw.YCenter
-			lb.TextStyle[0].XAlign = []draw.XAlignment{draw.XRight, draw.XLeft}[j]
-			lb.Offset = vg.Point{X: vg.Points(float64(j*18 - 9))}
-			p.Add(l, dot, lb)
 		}
 	}
 	p.NominalX(labels...)
-	p.X.Min, p.X.Max = -0.6, float64(len(order))-0.4
-	p.X.Tick.Label.Font.Size = vg.Points(8)
+	p.X.Min, p.X.Max = -0.6, float64(len(labels))-0.4
+	p.X.Tick.Label.Font.Size = vg.Points(9)
 	p.Y.Scale, p.Y.Tick.Marker = plot.LogScale{}, logTicks{plain: true}
 	p.Y.Min, p.Y.Max = 0.5, 10000
 	return save("04-green-tea.png", vg.Points(760), vg.Points(400), p)
@@ -294,27 +301,36 @@ func drawGreenTea(cs []Config) error {
 
 // 05: сборки по таймеру в простое, первый прогон каждого варианта
 func drawTimeline(cs []Config) error {
-	p := newPlot("Сборки по таймеру в простое: 10 млн записей, 11 минут", "секунды с запуска", "mark CPU, ms")
+	p := newPlot("Сборки по таймеру в простое: 10 млн записей, первый прогон каждой конфигурации", "секунды с запуска", "mark по часам, ms")
 	p.Y.Scale, p.Y.Tick.Marker = plot.LogScale{}, logTicks{plain: true}
 	found := false
-	for _, v := range order {
-		c := find(cs, "timer", v, "green", 0)
-		if c == nil || len(c.Raw) == 0 {
-			continue
+	for _, build := range []string{"green", "nogreen"} {
+		for _, v := range order {
+			c := find(cs, "timer", v, build, 0)
+			if c == nil || len(c.Raw) == 0 {
+				continue
+			}
+			var xys plotter.XYs
+			for _, g := range c.Raw[0].GCs {
+				xys = append(xys, plotter.XY{X: g.At, Y: max(g.Mark, 0.01)})
+			}
+			_, s := line(xys, colors[v])
+			s.GlyphStyle.Radius = vg.Points(5)
+			name := names[v]
+			if build == "nogreen" {
+				s.GlyphStyle.Shape = draw.RingGlyph{}
+				name += ", без Green Tea"
+			}
+			p.Add(s)
+			p.Legend.Add(name, s)
+			found = true
 		}
-		var xys plotter.XYs
-		for _, g := range c.Raw[0].GCs {
-			xys = append(xys, plotter.XY{X: g.At, Y: max(g.MarkCPU, 0.01)})
-		}
-		_, s := line(xys, colors[v])
-		s.GlyphStyle.Radius = vg.Points(5)
-		p.Add(s)
-		p.Legend.Add(names[v], s)
-		found = true
 	}
 	if !found {
 		return nil
 	}
 	p.Legend.Top = true
-	return save("05-timer-timeline.png", vg.Points(720), vg.Points(360), p)
+	p.Y.Max *= 30 // место под легенду
+	p.X.Min, p.X.Max = 0, 720
+	return save("05-timer-timeline.png", vg.Points(760), vg.Points(420), p)
 }

@@ -169,7 +169,7 @@ footer pre { margin: 0; font: 400 12px/1.5 var(--font-mono); white-space: pre-wr
     <div class="head">
       <div>
         <h2>Сборки по таймеру в простое</h2>
-        <p class="note">Программа заливает кэш и спит 11 минут без единой аллокации. Сборки запускает только <code>forcegcperiod</code>, раз в две минуты. Каждая точка: одна такая сборка, по вертикали mark по часам.</p>
+        <p class="note">Программа заливает кэш и спит 11 минут без единой аллокации. Сборки запускает только <code>forcegcperiod</code>, раз в две минуты. Каждая точка: одна такая сборка первого прогона, кольцо: без Green Tea. У A каждая сборка занимает около секунды на двух фоновых воркерах, idle-воркеры в простое не подключаются.</p>
       </div>
       <div class="seg" role="group" aria-label="Метрика" id="tl-metric">
         <button type="button" data-m="mark" aria-pressed="true">по часам</button>
@@ -184,7 +184,7 @@ footer pre { margin: 0; font: 400 12px/1.5 var(--font-mono); white-space: pre-wr
     <div class="head">
       <div>
         <h2>Green Tea GC</h2>
-        <p class="note">С Go 1.26 сборщик Green Tea включён по умолчанию и обходит память страницами: копит работу по спанам и сканирует объекты одного спана вместе. На этом Skylake медианы сдвигаются в обе стороны. Зато разброс между сборками с Green Tea в несколько раз меньше. Точка: медиана, линия: от минимума до максимума по семи сборкам.</p>
+        <p class="note">С Go 1.26 сборщик Green Tea включён по умолчанию и обходит память страницами: копит работу по спанам и сканирует объекты одного спана вместе. В сборках по таймеру он размечает кэш A в 2,7 раза быстрее по часам и в 1,5 раза дешевле по CPU. Разница между этими числами видна в gctrace: с Green Tea работают оба фоновых воркера (CPU вдвое больше часов), без него почти всегда один (CPU равен часам). При <code>runtime.GC()</code> на восьми воркерах выигрыш у A около 20% по CPU. Точка: медиана, линия: от минимума до максимума.</p>
       </div>
     </div>
     <div class="card"><div class="legend" id="lg-green"></div><div class="chart" id="c-green"></div></div>
@@ -342,7 +342,7 @@ function renderKpis() {
     tiles.push([`${fmtNum(a.mark_cpu_ms.median * 1e6 / a.objects, 0)} ns`, "CPU на один объект в куче. Столько стоит промах кэша процессора: сама проверка указателя занимает около наносекунды"]);
   }
   if (ta && ta.gcs > 0) {
-    tiles.push([fmtMs(ta.mark_clock_ms.median), `mark по часам в сборке по таймеру, раз в ${fmtNum(ta.interval_s.min, 0)}–${fmtNum(ta.interval_s.max, 0)} s в полном простое`]);
+    tiles.push([fmtMs(ta.mark_clock_ms.median), `mark по часам в каждой сборке по таймеру, раз в ${fmtNum(ta.interval_s.min, 0)}–${fmtNum(ta.interval_s.max, 0)} s в полном простое`]);
   } else {
     tiles.push(["идёт", "прогон сборок по таймеру: 12 запусков по 11 минут, страница обновится с данными"]);
   }
@@ -480,23 +480,28 @@ function renderTimeline() {
 // ---------- 5. green tea ----------
 function renderGreen() {
   const host = document.getElementById("c-green");
-  const rows = ORDER.map(v => [cfg("forced", v, "green", 1e7), cfg("forced", v, "nogreen", 1e7)]).filter(([g, n]) => g && n);
-  if (!rows.length) { host.innerHTML = `<div class="empty">нет данных</div>`; return; }
+  const groups = [];
+  for (const v of ["a", "b"]) {
+    const g = cfg("timer", v, "green"), n = cfg("timer", v, "nogreen");
+    if (!g || !n || !g.gcs || !n.gcs) continue;
+    groups.push([v, "по часам", "mark_clock_ms", g, n], [v, "CPU", "mark_cpu_ms", g, n]);
+  }
+  if (!groups.length) { host.innerHTML = `<div class="empty">нет данных по таймеру</div>`; return; }
   const f = frame(host, { height: 340, bottom: 56 });
-  const all = rows.flat().flatMap(c => [c.mark_cpu_ms.min, c.mark_cpu_ms.max]);
+  const all = groups.flatMap(([, , k, g, n]) => [g[k].min, g[k].max, n[k].min, n[k].max]);
   const sy = scale("log", logDomain(Math.min(...all), Math.max(...all)), [f.y0, f.y1]);
-  const band = (f.x1 - f.x0) / rows.length;
-  axes(f, () => 0, sy, { xTicks: [], yTicks: sy.ticks(), xFmt: String, yFmt: v => fmtNum(v, 1), yTitle: "mark CPU, ms" });
-  rows.forEach((pair, i) => {
+  const band = (f.x1 - f.x0) / groups.length;
+  axes(f, () => 0, sy, { xTicks: [], yTicks: sy.ticks(), xFmt: String, yFmt: v => fmtNum(v, 1), yTitle: "mark, ms" });
+  groups.forEach(([v, label, k, g, n], i) => {
     const cx = f.x0 + band * i + band / 2;
-    const short = NAME[pair[0].variant].split(" · ");
-    el("text", { x: cx, y: f.y0 + 20, "text-anchor": "middle", class: "lab-2" }, f.svg).textContent = short[0];
-    if (f.W > 620) el("text", { x: cx, y: f.y0 + 36, "text-anchor": "middle", class: "tick" }, f.svg).textContent = short[1];
-    pair.forEach((c, j) => {
-      const x = cx + (j ? 16 : -16), col = COLOR(c.variant);
-      el("line", { x1: x, x2: x, y1: sy(c.mark_cpu_ms.min), y2: sy(c.mark_cpu_ms.max), style: `stroke:${col};stroke-width:3;stroke-linecap:round;opacity:${j ? .55 : 1}` }, f.svg);
-      dot(f.svg, x, sy(c.mark_cpu_ms.median), col, 5, tipHtml(c), j === 1);
-      if (f.W > 620) el("text", { x: x + (j ? 12 : -12), y: sy(c.mark_cpu_ms.median) + 4, "text-anchor": j ? "start" : "end", class: "lab" }, f.svg).textContent = fmtMs(c.mark_cpu_ms.median);
+    el("text", { x: cx, y: f.y0 + 20, "text-anchor": "middle", class: "lab-2" }, f.svg).textContent = `${NAME[v].split(" · ")[0]}, ${label}`;
+    [g, n].forEach((c, j) => {
+      const st = c[k], x = cx + (j ? 16 : -16), col = COLOR(v);
+      el("line", { x1: x, x2: x, y1: sy(st.min), y2: sy(st.max), style: `stroke:${col};stroke-width:3;stroke-linecap:round;opacity:${j ? .55 : 1}` }, f.svg);
+      const html = `<b>${NAME[v]}</b><br>${j ? "без Green Tea" : "Green Tea"} · сборки по таймеру · ${c.runs} прогон(а), ${c.gcs} сборок<br>
+        mark ${label}: <span class="mono">${fmtMs(st.median)}</span> (${fmtMs(st.min)}…${fmtMs(st.max)})`;
+      dot(f.svg, x, sy(st.median), col, 5, html, j === 1);
+      if (f.W > 620) el("text", { x: x + (j ? 12 : -12), y: sy(st.median) + 4, "text-anchor": j ? "start" : "end", class: "lab" }, f.svg).textContent = fmtMs(st.median);
     });
   });
   legend("lg-green", [["var(--ink-2)", "с Green Tea"], ["var(--ink-2)", "без Green Tea (GOEXPERIMENT=nogreenteagc)", true]]);
