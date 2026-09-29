@@ -8,7 +8,7 @@
 
 | # | Вопрос | Страница |
 |---|---|---|
-| [001](001-gc-pointers/) | Сколько стоит сборка мусора для кэша на 10 млн записей с указателями и без | [go.faustze.tech/001-gc-pointers](https://go.faustze.tech/001-gc-pointers/) |
+| [001](001-gc-pointers/) | Сколько стоит сборка мусора для кэша на 10 млн записей с указателями и без: от 1,2 ms до 1 s на сборку по таймеру | [go.faustze.tech/001-gc-pointers](https://go.faustze.tech/001-gc-pointers/) |
 
 ## Папка замера
 

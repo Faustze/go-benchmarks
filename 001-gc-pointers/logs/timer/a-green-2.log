@@ -1,0 +1,26 @@
+gc 1 @0.005s 3%: 0.026+1.1+0.030 ms clock, 0.20+0.11/1.6/1.9+0.24 ms cpu, 3->4->2 MB, 4 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 2 @0.011s 4%: 0.015+2.2+0.017 ms clock, 0.12+0.25/2.8/3.9+0.13 ms cpu, 5->5->4 MB, 5 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 3 @0.019s 5%: 0.019+4.4+0.013 ms clock, 0.15+0.076/5.7/4.1+0.10 ms cpu, 8->9->8 MB, 9 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 4 @0.037s 5%: 0.019+3.2+0.017 ms clock, 0.15+0/4.9/12+0.14 ms cpu, 14->15->13 MB, 16 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 5 @0.068s 4%: 0.019+6.3+0.051 ms clock, 0.15+0.050/11/24+0.41 ms cpu, 23->24->21 MB, 26 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 6 @0.115s 4%: 0.055+8.4+0.014 ms clock, 0.44+0.074/15/36+0.11 ms cpu, 38->40->33 MB, 43 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 7 @0.204s 4%: 0.023+18+0.052 ms clock, 0.18+0.085/33/81+0.41 ms cpu, 60->63->55 MB, 66 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 8 @0.368s 4%: 0.019+36+0.054 ms clock, 0.15+0.11/72/176+0.43 ms cpu, 101->107->96 MB, 111 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 9 @0.637s 4%: 0.021+61+0.014 ms clock, 0.16+0.055/120/301+0.11 ms cpu, 174->182->158 MB, 193 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 10 @1.081s 4%: 0.031+88+0.017 ms clock, 0.25+0/174/429+0.13 ms cpu, 284->296->246 MB, 316 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 11 @1.837s 4%: 0.022+179+0.030 ms clock, 0.18+0/357/885+0.24 ms cpu, 440->464->418 MB, 493 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 12 @3.239s 5%: 0.021+316+0.052 ms clock, 0.16+0.18/632/1579+0.42 ms cpu, 751->788->712 MB, 836 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 13 @5.709s 4%: 0.024+463+0.003 ms clock, 0.19+0.051/922/2285+0.028 ms cpu, 1283->1332->1113 MB, 1424 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 14 @6.199s 6%: 0.15+410+0.004 ms clock, 1.2+0/819/2455+0.035 ms cpu, 1113->1113->1113 MB, 2226 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+=== FILLED variant=a n=10000000 mode=timer fill=6.147s idle=11m0s objects=25015425 heap=1167265568 ===
+GC forced
+gc 15 @128.984s 0%: 0.047+1001+0.004 ms clock, 0.38+0/2002/0+0.039 ms cpu, 1113->1113->1113 MB, 2226 MB goal, 0 MB stacks, 0 MB globals, 8 P
+GC forced
+gc 16 @250.034s 0%: 0.037+1066+0.003 ms clock, 0.29+0/2132/0+0.030 ms cpu, 1113->1113->1113 MB, 2226 MB goal, 0 MB stacks, 0 MB globals, 8 P
+GC forced
+gc 17 @371.137s 0%: 0.034+974+0.003 ms clock, 0.27+0/1949/0+0.025 ms cpu, 1113->1113->1113 MB, 2226 MB goal, 0 MB stacks, 0 MB globals, 8 P
+GC forced
+gc 18 @492.157s 0%: 0.048+957+0.003 ms clock, 0.38+0/1914/0+0.029 ms cpu, 1113->1113->1113 MB, 2226 MB goal, 0 MB stacks, 0 MB globals, 8 P
+GC forced
+gc 19 @613.156s 0%: 0.058+985+0.003 ms clock, 0.46+0/1970/0+0.026 ms cpu, 1113->1113->1113 MB, 2226 MB goal, 0 MB stacks, 0 MB globals, 8 P
+=== END len=10000000 last.LastReadID=9999999 ===
