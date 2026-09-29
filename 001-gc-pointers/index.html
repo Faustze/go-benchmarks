@@ -134,9 +134,9 @@ details.more > summary { font: 500 16px var(--font-display); color: var(--ink); 
 
 <div class="wrap">
   <header>
-    <div class="eyebrow"><a href="../" class="back">go-benchmarks</a> · замер 001 · Go 1.27.1 · i7-6700</div>
+    <div class="eyebrow"><a href="../" class="back">go-benchmarks</a> · замер 001 · Go 1.27.1 · i7-6700 · GOMAXPROCS=8</div>
     <h1>Сколько стоит указатель</h1>
-    <p class="lede">Если в памяти сервиса живут миллионы объектов (кэш, индекс, in-memory репозиторий), сборщик мусора обходит каждый из них на каждой сборке. Замер повторяет кейс discord на Go 1.27.1: одни и те же 10 млн записей в четырёх раскладках. Ниже сначала что делать, потом как проверить свой сервис, потом графики.</p>
+    <p class="lede">Если в памяти сервиса живут миллионы объектов (кэш, индекс, in-memory репозиторий), сборщик мусора на каждой сборке размечает каждый живой объект и читает указатели внутри него. Замер повторяет кейс discord на Go 1.27.1: одни и те же 10 млн записей в четырёх раскладках. Ниже сначала что делать, потом как проверить свой сервис, потом графики.</p>
   </header>
 
   <div class="kpis" id="kpis"></div>
@@ -145,7 +145,7 @@ details.more > summary { font: 500 16px var(--font-display); color: var(--ink); 
     <div class="head">
       <div>
         <h2>Что делать</h2>
-        <p class="note">Касается только того, что живёт долго и в миллионах экземпляров. Временные объекты на запрос к моменту сборки уже мёртвые, сборщик их не обходит. Эффект ниже измерен на сборке по таймеру, 10 млн записей, mark по часам.</p>
+        <p class="note">Касается только того, что живёт долго и в миллионах экземпляров. Временные объекты на запрос к моменту сборки уже мёртвые, сборщик их не обходит. Эффект ниже измерен на сборке по таймеру, 10 млн записей, mark/scan по часам.</p>
       </div>
     </div>
     <div class="acts" id="acts"></div>
@@ -156,7 +156,7 @@ details.more > summary { font: 500 16px var(--font-display); color: var(--ink); 
     <div class="head">
       <div>
         <h2>Как прикинуть цену у себя</h2>
-        <p class="note">Цена разметки примерно равна числу живых объектов, умноженному на задержку памяти. На i7-6700 вышло около 100 ns CPU на объект. На другом железе число будет другим, но порядок тот же: миллион долгоживущих объектов стоит порядка 100 ms CPU на каждую сборку.</p>
+        <p class="note">Цена разметки примерно равна числу живых объектов, умноженному на задержку памяти. На i7-6700 вышло около 100 ns CPU на объект. Это цифра моего железа и моих структур (по раскладкам вышло от 42 до 202 ns), на другом CPU будет своя. Для прикидки: миллион долгоживущих объектов на i7-6700 стоит порядка 100 ms CPU на каждую сборку.</p>
       </div>
     </div>
     <div class="steps">
@@ -167,7 +167,7 @@ n := s[0].Value.Uint64()
 fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">// ~100 ns на объект</span></pre>
       <p class="note"><b>2. Какие типы их держат.</b> Heap-профиль по числу объектов, <code>top</code> покажет, где создаются самые многочисленные:</p>
       <pre class="cmd">go tool pprof -sample_index=inuse_objects http://localhost:6060/debug/pprof/heap</pre>
-      <p class="note"><b>3. Сколько длится сборка на самом деле.</b> Второе число в <code>ms clock</code> это mark по часам, строки после <code>GC forced</code> запустил таймер:</p>
+      <p class="note"><b>3. Сколько длится сборка на самом деле.</b> Второе число в <code>ms clock</code> это mark/scan по часам, строки после <code>GC forced</code> запустил таймер:</p>
       <pre class="cmd">GODEBUG=gctrace=1 ./app 2&gt;&amp;1 | grep -A1 "GC forced"
 <span class="c">gc 15 @128.984s 0%: 0.047+1001+0.004 ms clock, ...</span></pre>
     </div>
@@ -177,7 +177,7 @@ fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">
     <div class="head">
       <div>
         <h2>Одна сборка, четыре раскладки</h2>
-        <p class="note">Сборка по таймеру в полном простое, mark по часам, медиана. Данные одинаковые, меняется только число указателей на запись. На линейной шкале плоская map не видна вовсе.</p>
+        <p class="note">Сборка по таймеру в полном простое, mark/scan по часам, медиана. Данные одинаковые, меняется только число указателей на запись. На линейной шкале плоская map не видна вовсе.</p>
       </div>
       <div class="seg" role="group" aria-label="Шкала">
         <button type="button" id="hero-lin" aria-pressed="true">линейная</button>
@@ -269,7 +269,7 @@ fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">
   </details>
 
   <footer>
-    <div>Цифры сняты из строк <span class="mono">GODEBUG=gctrace=1</span>. Первая сборка после заливки в каждом прогоне считается прогревом и в статистику не входит. Код, сырые логи, методика и гипотеза до прогона: <a href="https://github.com/Faustze/go-benchmarks/tree/main/001-gc-pointers">github.com/Faustze/go-benchmarks/tree/main/001-gc-pointers</a>.</div>
+    <div><a href="https://github.com/Faustze/go-benchmarks/tree/main/001-gc-pointers">source code</a></div>
     <pre id="env"></pre>
   </footer>
 </div>
@@ -373,7 +373,7 @@ let DATA = null;
 const cfg = (mode, v, build, n) => DATA.configs.find(c => c.mode === mode && c.variant === v && c.build === build && (!n || c.n === n));
 const tipHtml = c => `<b>${NAME[c.variant]}</b><br><span class="mono">${PTRS[c.variant]}</span><br>${c.build === "green" ? "Green Tea" : "без Green Tea"} · ${fmtCount(c.n)} записей<br>
   mark CPU: <span class="mono">${fmtMs(c.mark_cpu_ms.median)}</span> (${fmtMs(c.mark_cpu_ms.min)}…${fmtMs(c.mark_cpu_ms.max)})<br>
-  mark по часам: <span class="mono">${fmtMs(c.mark_clock_ms.median)}</span><br>
+  mark/scan по часам: <span class="mono">${fmtMs(c.mark_clock_ms.median)}</span><br>
   объектов в куче: <span class="mono">${fmtCount(c.objects)}</span> · хип ${fmtNum(c.live_mb.median, 0)} MB`;
 
 // ---------- KPI ----------
@@ -394,9 +394,9 @@ function renderKpis() {
 // ---------- actions ----------
 const ACTS = [
   { t: "Ключ числом, запись значением", was: "map[string]*Entry", now: "map[uint64]Entry", from: "a", to: "b",
-    p: "Строковый ключ превращается в хэш или числовой id, запись хранится значением без указателей внутри. В замере «было» это LRU как у discord: такая map плюс двусвязный список." },
+    p: "Строковый ключ превращается в числовой id (хэш подходит, только если коллизии исключены или обработаны), запись хранится значением без указателей внутри. В замере «было» это LRU как у discord: такая map плюс двусвязный список." },
   { t: "Значение вместо указателя", was: "map[K]*T\n[]*T", now: "map[K]T\n[]T", from: "p", to: "b",
-    p: "Минус один объект и один указатель на каждую запись. Работает, если T сам без указателей." },
+    p: "Минус один объект и один указатель на каждую запись. Работает, если T сам без указателей и отдельная identity записи не нужна: никто не держит *T, запись меняется целиком через m[k] = v." },
   { t: "Ключ без строки", was: "map[string]T", now: "map[uint64]T", from: "b2", to: "b",
     p: "Строка это указатель на байты. Один строковый ключ заставляет сборщик обходить всю map, даже если значения плоские." },
   { t: "Поля без скрытых указателей", was: "CreatedAt time.Time\nID        string\nMeta      any", now: "CreatedAt int64\nID        [16]byte\nMeta      Meta",
@@ -431,7 +431,7 @@ function renderHero() {
   const band = (f.y0 - f.y1) / rows.length;
   axes(f, sx, () => 0, {
     xTicks: heroLog ? sx.ticks() : sx.ticks(), yTicks: [], xFmt: v => heroLog ? fmtNum(v, 1) : fmtNum(v, 0), yFmt: () => "",
-    xTitle: "mark по часам, ms (медиана сборок по таймеру)",
+    xTitle: "mark/scan по часам, ms (медиана сборок по таймеру)",
   });
   rows.forEach((c, i) => {
     const yc = f.y1 + band * i + band / 2 + (narrow ? 8 : 0);
@@ -527,12 +527,12 @@ function renderTimeline() {
   const vals = pts.map(p => Math.max(p.g[tlMetric], 0.01));
   const sy = scale("log", logDomain(Math.min(...vals), Math.max(...vals)), [f.y0, f.y1]);
   axes(f, sx, sy, { xTicks: [0, 120, 240, 360, 480, 600, 720], yTicks: sy.ticks(), xFmt: v => v + " s", yFmt: v => fmtNum(v, 2),
-    xTitle: "секунды с запуска программы", yTitle: tlMetric === "mark" ? "mark по часам, ms" : "mark CPU, ms" });
+    xTitle: "секунды с запуска программы", yTitle: tlMetric === "mark" ? "mark/scan по часам, ms" : "mark CPU, ms" });
   for (const x of [120, 240, 360, 480, 600]) el("line", { x1: sx(x), x2: sx(x), y1: f.y0, y2: f.y1, style: "stroke:var(--axis);stroke-dasharray:2 4" }, f.svg);
   for (const p of pts) {
     const { c, run } = p.s, g = p.g;
     const html = `<b>${NAME[c.variant]}</b><br>${c.build === "green" ? "Green Tea" : "без Green Tea"} · прогон ${run} · gc ${g.num}${p.warm ? " (прогрев)" : ""}<br>
-      @<span class="mono">${fmtNum(g.at, 1)} s</span><br>mark по часам: <span class="mono">${fmtMs(g.mark)}</span><br>
+      @<span class="mono">${fmtNum(g.at, 1)} s</span><br>mark/scan по часам: <span class="mono">${fmtMs(g.mark)}</span><br>
       mark CPU: <span class="mono">${fmtMs(g.mark_cpu)}</span> (фон ${fmtMs(g.bg)}, idle ${fmtMs(g.idle)})`;
     dot(f.svg, sx(Math.min(g.at, 720)), sy(Math.max(g[tlMetric], 0.01)), COLOR(c.variant), 4.5, html, c.build === "nogreen");
   }
@@ -540,7 +540,7 @@ function renderTimeline() {
   legend("lg-timeline", seen.map(k => { const [v, b] = k.split("|"); return [COLOR(v), `${NAME[v]}${b === "nogreen" ? " · без Green Tea" : ""}`, b === "nogreen"]; }));
 
   const t = document.getElementById("t-timer");
-  t.innerHTML = `<thead><tr><th>Конфигурация</th><th>Прогонов</th><th>Сборок в зачёте</th><th>Интервал, s (мин…макс)</th><th>mark по часам, ms (медиана / макс)</th><th>mark CPU, ms (медиана / макс)</th><th>STW макс, ms</th><th>Живой хип, MB</th><th>Max RSS, MB</th></tr></thead><tbody>` +
+  t.innerHTML = `<thead><tr><th>Конфигурация</th><th>Прогонов</th><th>Сборок в зачёте</th><th>Интервал, s (мин…макс)</th><th>mark/scan по часам, ms (медиана / макс)</th><th>mark CPU, ms (медиана / макс)</th><th>STW макс, ms</th><th>Живой хип, MB</th><th>Max RSS, MB</th></tr></thead><tbody>` +
     timer.map(c => `<tr><td><span class="dot" style="background:${COLOR(c.variant)}"></span>${NAME[c.variant]} · ${c.build}</td><td>${c.runs}</td><td>${c.gcs}</td>
       <td>${fmtNum(c.interval_s.min, 0)}…${fmtNum(c.interval_s.max, 0)}</td><td>${fmtNum(c.mark_clock_ms.median, 2)} / ${fmtNum(c.mark_clock_ms.max, 2)}</td>
       <td>${fmtNum(c.mark_cpu_ms.median, 2)} / ${fmtNum(c.mark_cpu_ms.max, 2)}</td><td>${fmtNum(c.stw_ms.max, 3)}</td><td>${fmtNum(c.live_mb.median, 0)}</td><td>${fmtNum(c.rss_mb, 0)}</td></tr>`).join("") + "</tbody>";
@@ -584,7 +584,7 @@ const TYPES = [
   ["[]T", true, "Указатель на массив, длина и ёмкость. Слайс из чисел: один указатель на слайс, сам массив noscan."],
   ["*T, map, chan, func", true, "Каждый из них указатель. map[K]V сканируется, только если K или V содержат указатели."],
   ["interface{}, any, error", true, "Два слова: тип и указатель на значение. Поле any в структуре превращает её в сканируемую."],
-  ["time.Time", true, "Внутри loc *Location. Структура с полем time.Time уже не noscan. Для кэша храните Unix-время в int64."],
+  ["time.Time", true, "Внутри loc *Location. Структура с полем time.Time уже не noscan. Для кэша можно хранить Unix-время в int64, если не нужны часовой пояс и монотонное время."],
   ["struct с одним указателем", true, "Достаточно одного поля-указателя, чтобы сборщик читал весь объект и шёл по ссылке."],
 ];
 function renderTypes() {
@@ -595,7 +595,7 @@ function renderTypes() {
 // ---------- full table ----------
 function renderTable() {
   const rows = DATA.configs.filter(c => c.gcs > 0);
-  document.getElementById("t-all").innerHTML = `<thead><tr><th>Вариант</th><th>Режим</th><th>Сборка</th><th>Записей</th><th>Сборок</th><th>mark по часам, ms</th><th>mark CPU, ms (мед.)</th><th>min…max</th><th>Объектов</th><th>Живой хип, MB</th><th>ns CPU / объект</th></tr></thead><tbody>` +
+  document.getElementById("t-all").innerHTML = `<thead><tr><th>Вариант</th><th>Режим</th><th>Сборка</th><th>Записей</th><th>Сборок</th><th>mark/scan по часам, ms</th><th>mark CPU, ms (мед.)</th><th>min…max</th><th>Объектов</th><th>Живой хип, MB</th><th>ns CPU / объект</th></tr></thead><tbody>` +
     rows.map(c => `<tr><td><span class="dot" style="background:${COLOR(c.variant)}"></span>${NAME[c.variant]}</td><td>${c.mode === "timer" ? "таймер" : "runtime.GC()"}</td><td>${c.build}</td><td>${fmtCount(c.n)}</td><td>${c.gcs}</td>
       <td>${fmtNum(c.mark_clock_ms.median, 2)}</td><td>${fmtNum(c.mark_cpu_ms.median, 2)}</td><td>${fmtNum(c.mark_cpu_ms.min, 1)}…${fmtNum(c.mark_cpu_ms.max, 1)}</td>
       <td>${fmtCount(c.objects)}</td><td>${fmtNum(c.live_mb.median, 0)}</td><td>${fmtNum(c.mark_cpu_ms.median * 1e6 / c.objects, 0)}</td></tr>`).join("") + "</tbody>";
