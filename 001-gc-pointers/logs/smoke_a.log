@@ -1,0 +1,10 @@
+gc 1 @0.005s 4%: 0.037+1.6+0.027 ms clock, 0.29+0.28/2.3/0.92+0.21 ms cpu, 3->4->2 MB, 4 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 2 @0.011s 5%: 0.013+2.0+0.013 ms clock, 0.11+0.045/2.6/2.4+0.10 ms cpu, 5->5->4 MB, 5 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 3 @0.019s 5%: 0.019+2.2+0.027 ms clock, 0.15+0/3.3/6.2+0.22 ms cpu, 8->9->7 MB, 9 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 4 @0.027s 4%: 0.022+4.2+0.006 ms clock, 0.18+0/2.7/11+0.049 ms cpu, 10->10->10 MB, 15 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+=== FILLED variant=a n=100000 fill=27ms idle=5m0s ===
+GC forced
+gc 5 @121.053s 0%: 0.040+5.5+0.004 ms clock, 0.32+0/11/0+0.036 ms cpu, 10->10->10 MB, 20 MB goal, 0 MB stacks, 0 MB globals, 8 P
+GC forced
+gc 6 @241.074s 0%: 0.039+8.1+0.005 ms clock, 0.31+0/15/0+0.041 ms cpu, 10->10->10 MB, 20 MB goal, 0 MB stacks, 0 MB globals, 8 P
+=== END len=100000 last.LastReadID=99999 ===

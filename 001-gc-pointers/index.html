@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Замер на Go 1.27.1: сколько CPU стоит разметка GC для кэша на 10 млн записей с указателями и без.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <title>Указатели и GC в Go · замер 001</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,6 +107,7 @@ tr:last-child td { border-bottom: 0; }
 .fixes ul, .fixes ol { margin: 0; padding: 0; }
 details summary { cursor: pointer; font: 500 15px var(--font-body); color: var(--ink-2); }
 footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; border-top: 1px solid var(--line); padding-top: 18px; }
+footer a { color: var(--ink-2); }
 footer pre { margin: 0; font: 400 12px/1.5 var(--font-mono); white-space: pre-wrap; }
 @media (max-width: 560px) { .wrap { padding-inline: 16px; gap: 36px; } .kpi .v { font-size: 26px; } }
 @media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
@@ -221,7 +224,7 @@ footer pre { margin: 0; font: 400 12px/1.5 var(--font-mono); white-space: pre-wr
   </section>
 
   <footer>
-    <div>Цифры сняты из строк <span class="mono">GODEBUG=gctrace=1</span>. Первая сборка после заливки в каждом прогоне считается прогревом и в статистику не входит.</div>
+    <div>Цифры сняты из строк <span class="mono">GODEBUG=gctrace=1</span>. Первая сборка после заливки в каждом прогоне считается прогревом и в статистику не входит. Код, сырые логи, методика и гипотеза до прогона: <a href="https://github.com/Faustze/go-benchmarks/tree/main/001-gc-pointers">github.com/Faustze/go-benchmarks/tree/main/001-gc-pointers</a>.</div>
     <pre id="env"></pre>
   </footer>
 </div>

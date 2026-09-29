@@ -1,0 +1,17 @@
+gc 1 @0.007s 1%: 0.070+0.52+0.039 ms clock, 0.56+0/0.72/0.73+0.31 ms cpu, 3->3->1 MB, 4 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 2 @0.014s 2%: 0.036+0.68+0.038 ms clock, 0.29+0/1.1/1.1+0.30 ms cpu, 4->4->3 MB, 4 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 3 @0.019s 2%: 0.049+0.83+0.035 ms clock, 0.39+0/1.4/1.3+0.28 ms cpu, 6->6->4 MB, 6 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 4 @0.035s 2%: 0.020+1.4+0.045 ms clock, 0.16+0/2.2/2.1+0.36 ms cpu, 9->9->7 MB, 10 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 5 @0.048s 3%: 0.024+2.5+0.017 ms clock, 0.19+0/4.8/0.90+0.14 ms cpu, 14->14->11 MB, 15 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 6 @0.096s 2%: 0.028+2.1+0.035 ms clock, 0.22+0.051/3.9/7.2+0.28 ms cpu, 20->21->16 MB, 22 MB goal, 0 MB stacks, 0 MB globals, 8 P
+gc 7 @0.135s 1%: 0.024+2.4+0.004 ms clock, 0.19+0/4.9/9.5+0.034 ms cpu, 27->27->22 MB, 33 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+=== FILLED variant=b2 n=300000 mode=forced fill=135ms idle=11m0s objects=133670 heap=23276848 ===
+gc 8 @1.138s 0%: 0.067+3.6+0.007 ms clock, 0.53+0/1.7/10+0.056 ms cpu, 22->22->22 MB, 44 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 9 @1.343s 0%: 0.067+2.6+0.007 ms clock, 0.54+0/4.2/9.5+0.061 ms cpu, 22->22->22 MB, 44 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 10 @1.546s 0%: 0.076+2.3+0.003 ms clock, 0.61+0/4.2/10+0.027 ms cpu, 22->22->22 MB, 44 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 11 @1.749s 0%: 0.11+2.1+0.023 ms clock, 0.89+0/4.0/11+0.18 ms cpu, 22->22->22 MB, 44 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 12 @1.952s 0%: 0.031+2.0+0.003 ms clock, 0.24+0/4.0/11+0.030 ms cpu, 22->22->22 MB, 44 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 13 @2.154s 0%: 0.080+8.2+0.004 ms clock, 0.64+0/0.090/8.2+0.036 ms cpu, 22->22->22 MB, 44 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 14 @2.363s 0%: 0.031+2.1+0.010 ms clock, 0.24+0/4.0/10+0.084 ms cpu, 22->22->22 MB, 44 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+gc 15 @2.566s 0%: 0.085+2.2+0.003 ms clock, 0.68+0/4.3/10+0.029 ms cpu, 22->22->22 MB, 44 MB goal, 0 MB stacks, 0 MB globals, 8 P (forced)
+=== END len=300000 last.LastReadID=299999 ===
