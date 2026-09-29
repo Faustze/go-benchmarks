@@ -26,10 +26,10 @@ func init() {
 var order = []string{"a", "p", "b2", "b"}
 
 var names = map[string]string{
-	"a":  "A: LRU, map[string]*entry",
-	"p":  "P: map[uint64]*ReadState",
-	"b2": "B2: map[string]ReadState",
-	"b":  "B: map[uint64]ReadState",
+	"a":  "A: LRU как у discord, map[string]*entry",
+	"p":  "P: map указателей, map[uint64]*ReadState",
+	"b2": "B2: строковый ключ, map[string]ReadState",
+	"b":  "B: плоская map, map[uint64]ReadState",
 }
 
 func rgb(hex uint32) color.RGBA {
@@ -114,6 +114,10 @@ func human(v float64) string {
 }
 
 func ms(v float64) string {
+	return strings.Replace(msDot(v), ".", ",", 1) // десятичная запятая, как в тексте
+}
+
+func msDot(v float64) string {
 	switch {
 	case v >= 1000:
 		return fmt.Sprintf("%.1f s", v/1000)
@@ -136,6 +140,7 @@ func save(name string, w, h vg.Length, ps ...*plot.Plot) error {
 	dc := draw.New(c)
 	dc.SetColor(paper)
 	dc.Fill(dc.Rectangle.Path())
+	dc = draw.Crop(dc, vg.Points(12), -vg.Points(12), vg.Points(6), -vg.Points(6)) // поля, чтобы подписи не прилипали к краю
 	if len(ps) == 1 {
 		ps[0].Draw(dc)
 	} else {
