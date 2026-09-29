@@ -178,7 +178,7 @@ func drawAll(cs []Config) error {
 
 // 01: одна сборка по таймеру на 10 млн записей, mark по часам по вариантам
 func drawHero(cs []Config) error {
-	p := newPlot("Одна сборка по таймеру, 10 млн записей: сколько длится mark", "mark по часам, ms (медиана)", "")
+	p := newPlot("Одна сборка по таймеру, 10 млн записей: сколько длится mark/scan", "mark/scan по часам, ms (медиана)", "")
 	var labels []string
 	for i := len(order) - 1; i >= 0; i-- { // A сверху
 		v := order[i]
@@ -305,7 +305,7 @@ func drawGreenTea(cs []Config) error {
 
 // 05: сборки по таймеру в простое, первый прогон каждого варианта
 func drawTimeline(cs []Config) error {
-	p := newPlot("Сборки по таймеру в простое: 10 млн записей, первый прогон каждой конфигурации", "секунды с запуска", "mark по часам, ms")
+	p := newPlot("Сборки по таймеру в простое: 10 млн записей, первый прогон каждой конфигурации", "секунды с запуска", "mark/scan по часам, ms")
 	p.Y.Scale, p.Y.Tick.Marker = plot.LogScale{}, logTicks{plain: true}
 	found := false
 	for _, build := range []string{"green", "nogreen"} {
