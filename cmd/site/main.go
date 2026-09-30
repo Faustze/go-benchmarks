@@ -134,9 +134,14 @@ func serve(ctx context.Context, cfg site.Config, addr string) error {
 }
 
 // noCache: после пересборки браузер должен взять свежие файлы, а не свою копию.
+// Шрифты не меняются, их кэшируем: иначе каждая перезагрузка качает их заново и текст рисуется запасным шрифтом.
 func noCache(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Cache-Control", "no-store")
+		if strings.HasPrefix(r.URL.Path, "/assets/fonts/") {
+			w.Header().Set("Cache-Control", "max-age=3600")
+		} else {
+			w.Header().Set("Cache-Control", "no-store")
+		}
 		h.ServeHTTP(w, r)
 	})
 }
