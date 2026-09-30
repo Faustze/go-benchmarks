@@ -4,6 +4,7 @@
 #   ./001-gc-pointers/run.sh env      # окружение в logs/env.txt
 #   ./001-gc-pointers/run.sh scaling  # быстрая серия: runtime.GC() на разных n (~10 мин)
 #   ./001-gc-pointers/run.sh timer    # матрица сборок по таймеру, 10 млн (~2,5 ч)
+#   ./001-gc-pointers/run.sh timer-extra  # догон до трёх прогонов: p, b2, b·nogreen (~70 мин)
 #   ./001-gc-pointers/run.sh report   # data.json и картинки в img/
 # Прогоны идут строго по очереди, машину в это время не нагружать.
 set -euo pipefail
@@ -59,11 +60,19 @@ timer)
 	run green timer/p-green-1 -variant p
 	run green timer/b2-green-1 -variant b2
 	;;
+timer-extra)
+	mkdir -p "$LOGS/timer"
+	for i in 2 3; do
+		run green "timer/p-green-$i" -variant p
+		run green "timer/b2-green-$i" -variant b2
+		run nogreen "timer/b-nogreen-$i" -variant b
+	done
+	;;
 report)
 	(cd report && go run .)
 	;;
 *)
-	echo "использование: $0 build | env | scaling | timer | report" >&2
+	echo "использование: $0 build | env | scaling | timer | timer-extra | report" >&2
 	exit 2
 	;;
 esac
