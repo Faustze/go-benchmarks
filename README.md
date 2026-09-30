@@ -1,68 +1,68 @@
 # go-benchmarks
 
-Замеры производительности Go. Каждый отвечает на один вопрос числом и содержит окружение, гипотезу до прогона, методику и сырые данные, чтобы его можно было повторить.
+Go performance measurements. Each one answers a single question with a number and includes the environment, the hypothesis written before the run, the methodology and the raw data, so it can be reproduced.
 
-Сайт: https://go.faustze.tech/
+Site: https://go.faustze.tech/
 
-## Замеры
+## Measurements
 
-| # | Вопрос | Страница |
+| # | Question | Page |
 |---|---|---|
-| [001](articles/001-gc-pointers/) | Сколько стоит разметка в сборщике мусора для кэша на 10 млн записей с указателями и без: от 1,2 ms до 1 s на сборку по таймеру | [go.faustze.tech/001-gc-pointers](https://go.faustze.tech/001-gc-pointers/) |
+| [001](articles/001-gc-pointers/) | What GC marking costs for a 10M-entry cache with and without pointers: from 1.2 ms to 1 s per timer-triggered collection | [go.faustze.tech/001-gc-pointers](https://go.faustze.tech/001-gc-pointers/) |
 
-## Устройство репозитория
+## Repository layout
 
 ```
 go-benchmarks/
-├── articles/              # статьи: одна папка на замер + главная
-│   ├── _index.ru.md       # текст главной
-│   └── NNN-тема/          # замер: статья, данные, код эксперимента
-├── cmd/site/              # серверная часть: команда site build | serve
-├── internal/              # серверная часть: content, render, shortcode, data, i18n, site
-├── web/                   # клиентская часть: всё, что попадает в браузер
-│   ├── layouts/           # шаблоны страниц и шорткодов (html/template)
-│   ├── css/               # стили по файлам, site.css собирает их через @import
-│   ├── js/                # острова графиков
-│   ├── fonts/             # шрифты (SIL OFL), раздаются с сайта
-│   └── static/            # копируется в корень сайта как есть: CNAME, иконки
-├── i18n/                  # строки интерфейса: ru.toml, en.toml
-├── vendor/                # зависимости генератора, сборка не ходит в сеть
-└── .github/workflows/     # тесты, сборка и публикация на GitHub Pages
+├── articles/              # articles: one folder per measurement + home page
+│   ├── _index.ru.md       # home page text
+│   └── NNN-topic/         # measurement: article, data, experiment code
+├── cmd/site/              # server side: site build | serve command
+├── internal/              # server side: content, render, shortcode, data, i18n, site
+├── web/                   # client side: everything that reaches the browser
+│   ├── layouts/           # page and shortcode templates (html/template)
+│   ├── css/               # styles split into files, site.css bundles them via @import
+│   ├── js/                # chart islands
+│   ├── fonts/             # fonts (SIL OFL), served from the site
+│   └── static/            # copied to the site root as is: CNAME, icons
+├── i18n/                  # UI strings: ru.toml, en.toml
+├── vendor/                # generator dependencies, the build never hits the network
+└── .github/workflows/     # tests, build and deploy to GitHub Pages
 ```
 
-Серверная часть собирает сайт в `public/` (в git не попадает): Markdown превращается в HTML, числа и таблицы подставляются из `data.json` шорткодами, стили склеиваются в один файл. Клиенту уходит готовый HTML, один CSS и шрифты. JavaScript нужен только интерактивным графикам, данные для них вшиты в страницу.
+The server side builds the site into `public/` (not tracked by git): Markdown becomes HTML, numbers and tables are filled in from `data.json` by shortcodes, styles are bundled into a single file. The client gets ready HTML, one CSS file and fonts. JavaScript is only needed for interactive charts, their data is embedded in the page.
 
-## Папка замера
+## Measurement folder
 
 ```
-articles/NNN-краткое-описание/
-├── index.ru.md  # статья: frontmatter TOML между +++, текст, шорткоды {{< … >}}
-├── index.en.md  # перевод, если есть
-├── README.md    # вопрос → окружение → гипотеза → методика → результаты → вывод
-├── go.mod       # свой модуль, если эксперименту нужны зависимости
-├── main.go      # или *_test.go для микробенчмарка
-├── run.sh       # воспроизводимый запуск, все серии по очереди
-├── report/      # разбор логов и графики на Go
-├── logs/        # сырые данные: gctrace, time -v, окружение
-├── data.json    # сводка: из неё статья берёт числа, таблицы и графики
-└── img/         # картинки: без JS вместо графиков
+articles/NNN-short-description/
+├── index.ru.md  # article: TOML frontmatter between +++, text, {{< … >}} shortcodes
+├── index.en.md  # translation, if any
+├── README.md    # question → environment → hypothesis → methodology → results → conclusion
+├── go.mod       # separate module if the experiment needs dependencies
+├── main.go      # or *_test.go for a microbenchmark
+├── run.sh       # reproducible run, all series one after another
+├── report/      # log parsing and charts in Go
+├── logs/        # raw data: gctrace, time -v, environment
+├── data.json    # summary: the article takes numbers, tables and charts from it
+└── img/         # images: shown instead of charts without JS
 ```
 
-Бинарники собираются в `bin/` и в git не попадают. Логи называются `*.log`. На сайт из папки замера уходят только статья и `img/`, код и логи открыты здесь, на GitHub.
+Binaries are built into `bin/` and are not tracked by git. Logs are named `*.log`. Only the article and `img/` from a measurement folder go to the site; code and logs are available here on GitHub.
 
-## Сборка сайта
+## Building the site
 
 ```sh
-go run ./cmd/site serve   # http://localhost:1313, пересборка при изменениях
-go run ./cmd/site build   # в public/
+go run ./cmd/site serve   # http://localhost:1313, rebuilds on changes
+go run ./cmd/site build   # into public/
 go test ./...
 ```
 
-Зависимости генератора лежат в `vendor/`. После `go get` нужен `go mod vendor`.
+Generator dependencies live in `vendor/`. Run `go mod vendor` after `go get`.
 
-## Правила
+## Rules
 
-- Гипотеза записывается в README до первого прогона и после прогона не правится.
-- Один прогон не считается замером: число прогонов и прогревочных записывается в методику.
-- Среднее как главная метрика не используется, только медиана, минимум и максимум.
-- Цифры сравниваются только внутри одного окружения.
+- The hypothesis is written in the README before the first run and is not edited afterwards.
+- A single run is not a measurement: the number of runs and warm-up runs is recorded in the methodology.
+- The mean is not used as the main metric, only the median, minimum and maximum.
+- Numbers are compared only within the same environment.
