@@ -1,0 +1,7 @@
+/* {{< timer-table >}}, {{< all-table >}}: таблицы данных. */
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.prose table.data { display: table; width: 100%; border: 0; border-radius: 0; }
+.prose table.data th, .prose table.data td { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.prose table.data td { font: 400 12.5px var(--font-mono); color: var(--ink); }
+.prose table.data th:first-child, .prose table.data td:first-child { text-align: left; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; }

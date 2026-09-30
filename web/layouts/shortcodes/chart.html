@@ -1,0 +1,45 @@
+{{- /* {{< chart имя >}}: остров графика. Разметка, переключатели и легенда готовы при сборке,
+   у контейнера задана высота, поэтому скрипт рисует SVG без сдвига текста. Без JS видна PNG из img/. */ -}}
+{{- $name := index .Args 0 -}}
+{{- $img := print .Page.Bundle "img/" -}}
+{{- if eq $name "hero"}}
+<div class="chart-card wide" data-island="hero">
+  <div class="seg" role="group" aria-label="{{T "chart.scale"}}">
+    <button type="button" data-scale="log" aria-pressed="true">{{T "chart.log"}}</button>
+    <button type="button" data-scale="lin" aria-pressed="false">{{T "chart.linear"}}</button>
+  </div>
+  <div class="card"><div class="chart" data-chart="hero" style="height:302px"><noscript><img src="{{$img}}01-mark-cpu-10m.png" alt="{{T "chart.alt_hero"}}"></noscript></div></div>
+</div>
+{{- else if eq $name "objects"}}
+<div class="two wide">
+  <div class="card"><div class="lab-2">{{T "chart.by_live"}}</div><div class="chart" data-chart="mb" style="height:320px"><noscript><img src="{{$img}}03-objects-not-bytes.png" alt="{{T "chart.alt_objects"}}"></noscript></div></div>
+  <div class="card"><div class="lab-2">{{T "chart.by_objects"}}</div><div class="chart" data-chart="obj" style="height:320px"></div></div>
+</div>
+{{- else if eq $name "timeline"}}
+<div class="chart-card wide" data-island="timeline">
+  <div class="seg" role="group" aria-label="{{T "chart.metric"}}">
+    <button type="button" data-metric="mark" aria-pressed="true">{{T "chart.by_clock"}}</button>
+    <button type="button" data-metric="mark_cpu" aria-pressed="false">{{T "chart.cpu"}}</button>
+  </div>
+  <div class="card">
+    <div class="legend">{{range configs "timer"}}<span><i class="{{if eq .Build "nogreen"}}hollow{{end}}" style="--c:var(--s-{{.Variant}})"></i>{{T (print "variant." .Variant)}}{{if eq .Build "nogreen"}} · {{T "build.nogreen"}}{{end}}</span>{{end}}</div>
+    <div class="chart" data-chart="timeline" style="height:360px"><noscript><img src="{{$img}}05-timer-timeline.png" alt="{{T "chart.alt_timeline"}}"></noscript></div>
+  </div>
+</div>
+{{- else if eq $name "green"}}
+<div class="card wide">
+  <div class="legend"><span><i style="--c:var(--ink-2)"></i>{{T "chart.green_with"}}</span><span><i class="hollow" style="--c:var(--ink-2)"></i>{{T "build.nogreen_env"}}</span></div>
+  <div class="chart" data-chart="green" style="height:340px"><noscript><img src="{{$img}}04-green-tea.png" alt="{{T "chart.alt_green"}}"></noscript></div>
+</div>
+{{- else if eq $name "scaling"}}
+<div class="chart-card wide" data-island="scaling">
+  <div class="seg" role="group" aria-label="{{T "chart.build"}}">
+    <button type="button" data-build="green" aria-pressed="true">{{T "build.green"}}</button>
+    <button type="button" data-build="nogreen" aria-pressed="false">{{T "build.nogreen"}}</button>
+  </div>
+  <div class="card">
+    <div class="legend">{{range list "a" "p" "b2" "b"}}<span><i style="--c:var(--s-{{.}})"></i>{{T (print "variant." .)}} <span class="muted">· {{T (print "ptrs." .)}}</span></span>{{end}}</div>
+    <div class="chart" data-chart="scaling" style="height:380px"><noscript><img src="{{$img}}02-scaling.png" alt="{{T "chart.alt_scaling"}}"></noscript></div>
+  </div>
+</div>
+{{- else}}{{errorf "неизвестный график %q" $name}}{{end}}

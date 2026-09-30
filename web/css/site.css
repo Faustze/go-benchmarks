@@ -1,0 +1,14 @@
+/* Точка входа стилей. Сборка склеивает @import в один /assets/site.css, чтобы браузер делал один запрос.
+   Порядок важен: токены и шрифты раньше всего, компоненты после текста статьи. */
+@import "tokens.css";
+@import "fonts.css";
+@import "base.css";
+@import "layout/header.css";
+@import "layout/footer.css";
+@import "layout/home.css";
+@import "prose.css";
+@import "components/lang.css";
+@import "components/kpi.css";
+@import "components/chart.css";
+@import "components/table.css";
+@import "components/totop.css";

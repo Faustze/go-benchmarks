@@ -1,0 +1,6 @@
+/* Шапка страницы: подпись с номером замера, заголовок, переключатель языка. */
+.top { display: grid; gap: 14px; max-width: var(--col); width: 100%; margin-inline: auto; text-align: center; justify-items: center; }
+.eyebrow { font: 600 12px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.eyebrow a { text-decoration: none; border-bottom: 1px solid currentColor; }
+h1 { font: 700 clamp(28px, 5vw, 44px)/1.08 var(--font-display); margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+.lede { font-size: 17px; color: var(--ink-2); margin: 0; }
