@@ -4,14 +4,14 @@
 .totop {
   position: fixed; right: 20px; bottom: 20px; z-index: 5;
   width: 40px; height: 40px; display: grid; place-items: center;
-  border-radius: 50%; color: var(--s-b2); background: var(--surface);
-  border: 1px solid color-mix(in srgb, var(--s-b2) 45%, transparent);
+  border-radius: 50%; color: var(--accent); background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
   box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
   transition: background .15s, color .15s;
 }
 .totop svg { width: 18px; height: 18px; }
-.totop:hover, .totop:focus-visible { background: var(--s-b2); color: var(--surface); }
-.totop:focus-visible { outline: 2px solid var(--s-b2); outline-offset: 2px; }
+.totop:hover, .totop:focus-visible { background: var(--accent); color: var(--surface); }
+.totop:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 @supports (animation-timeline: scroll()) {
   .totop { opacity: 0; visibility: hidden; animation: totop-in linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
   @keyframes totop-in { from { opacity: 0; visibility: hidden; } to { opacity: 1; visibility: visible; } }
