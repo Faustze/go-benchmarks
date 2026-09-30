@@ -48,7 +48,7 @@
 html, body { margin: 0; }
 body { background: var(--bg); color: var(--ink); font: 400 15px/1.55 var(--font-body); }
 .wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 64px; display: grid; gap: 48px; }
-header { display: grid; gap: 14px; max-width: 70ch; }
+header { display: grid; gap: 14px; max-width: 76ch; width: 100%; margin-inline: auto; text-align: center; justify-items: center; }
 .eyebrow a { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; }
 .eyebrow { font: 600 12px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
 h1 { font: 700 clamp(28px, 5vw, 44px)/1.08 var(--font-display); margin: 0; text-wrap: balance; letter-spacing: -.01em; }
@@ -56,13 +56,13 @@ h2 { font: 500 20px/1.25 var(--font-display); margin: 0; text-wrap: balance; }
 p { margin: 0; }
 .lede { font-size: 17px; color: var(--ink-2); }
 code, .mono { font-family: var(--font-mono); font-size: .88em; }
-.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
-.kpi { background: var(--surface); padding: 18px 18px 16px; display: grid; gap: 6px; align-content: start; }
+.kpis { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.kpi { flex: 1 1 180px; background: var(--surface); padding: 18px 18px 16px; display: grid; gap: 6px; align-content: start; justify-items: center; text-align: center; }
 .kpi .v { font: 600 30px/1.1 var(--font-mono); letter-spacing: -.02em; }
 .kpi .l { color: var(--ink-2); font-size: 13.5px; }
 section { display: grid; gap: 16px; min-width: 0; }
-.head { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: end; justify-content: space-between; }
-.head > div { display: grid; gap: 6px; max-width: 68ch; }
+.head { display: grid; gap: 12px; justify-items: center; }
+.head > div:not(.seg) { display: grid; gap: 6px; max-width: 76ch; width: 100%; }
 .note { color: var(--ink-2); font-size: 14.5px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 12px 10px; min-width: 0; }
 .chart { width: 100%; position: relative; }
@@ -106,7 +106,7 @@ tr:last-child td { border-bottom: 0; }
 .fixes li::before { counter-increment: fix; content: counter(fix); font: 600 12px/22px var(--font-mono); color: var(--accent); }
 .fixes ul, .fixes ol { margin: 0; padding: 0; }
 details summary { cursor: pointer; font: 500 15px var(--font-body); color: var(--ink-2); }
-footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; border-top: 1px solid var(--line); padding-top: 18px; }
+footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; justify-items: center; border-top: 1px solid var(--line); padding-top: 18px; }
 footer a { color: var(--ink-2); }
 .acts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
 .act { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
@@ -119,12 +119,13 @@ footer a { color: var(--ink-2); }
 .act p { color: var(--ink-2); font-size: 13.5px; }
 .effect { font: 600 13px/1.4 var(--font-mono); color: var(--ink); border-top: 1px solid var(--line); padding-top: 10px; }
 .effect.na { font-weight: 400; color: var(--muted); }
-.callout { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; color: var(--ink-2); font-size: 14.5px; max-width: 76ch; }
+.callout { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; color: var(--ink-2); font-size: 14.5px; max-width: 76ch; width: 100%; margin-inline: auto; }
 pre.cmd { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; overflow-x: auto; font: 400 12.5px/1.6 var(--font-mono); margin: 0; color: var(--ink); }
 pre.cmd .c { color: var(--muted); }
-.steps { display: grid; gap: 12px; max-width: 80ch; }
+.steps { display: grid; gap: 12px; max-width: 76ch; width: 100%; margin-inline: auto; }
+.terms { max-width: 76ch; width: 100%; margin-inline: auto; }
 .more { display: grid; gap: 28px; }
-details.more > summary { font: 500 16px var(--font-display); color: var(--ink); }
+details.more > summary { font: 500 16px var(--font-display); color: var(--ink); text-align: center; }
 .more > section { margin-top: 48px; }
 @media (max-width: 560px) { .wrap { padding-inline: 16px; gap: 36px; } .kpi .v { font-size: 26px; } .more > section { margin-top: 36px; } }
 @media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
@@ -141,7 +142,7 @@ details.more > summary { font: 500 16px var(--font-display); color: var(--ink); 
 
   <div class="kpis" id="kpis"></div>
 
-  <p class="note" style="max-width:76ch"><b>Что значат числа.</b> Mark/scan по часам: сколько длится фоновая разметка, программа в это время работает. Mark CPU: сколько процессорного времени разметка съела. STW: сколько программа реально стояла, здесь меньше 0,1 ms на сборку. Живой хип: сколько памяти занято после разметки. Остальные фазы цикла GC короткие, поэтому дальше «сборка» почти везде означает её разметку.</p>
+  <p class="note terms"><b>Что значат числа.</b> Mark/scan по часам: сколько длится фоновая разметка, программа в это время работает. Mark CPU: сколько процессорного времени разметка съела. STW: сколько программа реально стояла, здесь меньше 0,1 ms на сборку. Живой хип: сколько памяти занято после разметки. Остальные фазы цикла GC короткие, поэтому дальше «сборка» почти везде означает её разметку.</p>
 
   <section>
     <div class="head">
@@ -266,7 +267,7 @@ fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">
     </section>
 
     <section>
-      <h2>Все конфигурации</h2>
+      <div class="head"><div><h2>Все конфигурации</h2></div></div>
       <div class="tablewrap"><table id="t-all"></table></div>
     </section>
   </details>
@@ -429,7 +430,7 @@ function renderHero() {
   const rows = ORDER.map(v => cfg("timer", v, "green")).filter(c => c && c.gcs);
   if (!rows.length) { host.innerHTML = `<div class="empty">нет данных</div>`; return; }
   const narrow = host.clientWidth < 560;
-  const f = frame(host, { height: 70 + rows.length * 58, left: narrow ? 12 : 220, right: narrow ? 20 : 270, top: narrow ? 20 : 8, bottom: 44 });
+  const f = frame(host, { height: 70 + rows.length * 58, left: narrow ? 12 : 220, right: narrow ? 20 : 310, top: narrow ? 20 : 8, bottom: 44 });
   const max = Math.max(...rows.map(r => r.mark_clock_ms.median));
   const sx = heroLog ? scale("log", logDomain(0.5, max), [f.x0, f.x1]) : scale("lin", [0, max * 1.05], [f.x0, f.x1]);
   const band = (f.y0 - f.y1) / rows.length;
