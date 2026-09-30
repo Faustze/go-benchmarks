@@ -125,7 +125,8 @@ pre.cmd .c { color: var(--muted); }
 .steps { display: grid; gap: 12px; max-width: 80ch; }
 .more { display: grid; gap: 28px; }
 details.more > summary { font: 500 16px var(--font-display); color: var(--ink); }
-@media (max-width: 560px) { .wrap { padding-inline: 16px; gap: 36px; } .kpi .v { font-size: 26px; } }
+.more > section { margin-top: 48px; }
+@media (max-width: 560px) { .wrap { padding-inline: 16px; gap: 36px; } .kpi .v { font-size: 26px; } .more > section { margin-top: 36px; } }
 @media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
 </style>
 </head>
@@ -135,7 +136,7 @@ details.more > summary { font: 500 16px var(--font-display); color: var(--ink); 
   <header>
     <div class="eyebrow"><a href="../" class="back">go-benchmarks</a> · замер 001 · Go 1.27.1 · i7-6700 · GOMAXPROCS=8</div>
     <h1>Сколько стоит указатель</h1>
-    <p class="lede">Если в памяти сервиса живут миллионы объектов (кэш, индекс, in-memory репозиторий), сборщик мусора на каждой сборке размечает каждый живой объект и читает указатели внутри него. Замер повторяет кейс discord на Go 1.27.1: одни и те же 10 млн записей в четырёх раскладках. Ниже сначала что делать, потом как проверить свой сервис, потом графики.</p>
+    <p class="lede">Если в памяти сервиса живут миллионы объектов (кэш, in-memory индекс), сборщик мусора на каждой сборке размечает каждый живой объект и читает указатели внутри него. Замер повторяет кейс discord на Go 1.27.1: одни и те же 10 млн записей в четырёх раскладках. Ниже сначала что делать и как проверить свой сервис, графики в конце.</p>
   </header>
 
   <div class="kpis" id="kpis"></div>
@@ -144,7 +145,7 @@ details.more > summary { font: 500 16px var(--font-display); color: var(--ink); 
     <div class="head">
       <div>
         <h2>Что делать</h2>
-        <p class="note">Касается только того, что живёт долго и в миллионах экземпляров. Временные объекты на запрос к моменту сборки уже мёртвые, сборщик их не обходит. Эффект ниже измерен на сборке по таймеру, 10 млн записей, mark/scan по часам.</p>
+        <p class="note">Касается только того, что живёт долго и в миллионах экземпляров. Временные объекты на запрос к моменту сборки уже мёртвые, сборщик их не обходит. Эффект ниже измерен на сборке по таймеру при 10 млн записей (mark/scan по часам).</p>
       </div>
     </div>
     <div class="acts" id="acts"></div>
@@ -164,9 +165,10 @@ details.more > summary { font: 500 16px var(--font-display); color: var(--ink); 
 metrics.Read(s) <span class="c">// import "runtime/metrics"</span>
 n := s[0].Value.Uint64()
 fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">// ~100 ns на объект</span></pre>
-      <p class="note"><b>2. Какие типы их держат.</b> Heap-профиль по числу объектов, <code>top</code> покажет, где создаются самые многочисленные:</p>
+      <p class="note"><b>2. Какие типы их держат.</b> Heap-профиль по числу объектов, <code>top</code> покажет, где создаётся больше всего объектов:</p>
       <pre class="cmd">go tool pprof -sample_index=inuse_objects http://localhost:6060/debug/pprof/heap</pre>
-      <p class="note"><b>3. Сколько длится сборка на самом деле.</b> Второе число в <code>ms clock</code> это mark/scan по часам, строки после <code>GC forced</code> запустил таймер:</p>
+      <p class="note"><b>3. Сколько длится сборка на самом деле.</b> Второе слагаемое в <code>ms clock</code> показывает mark/scan по часам.</p>
+      <p class="note"><b>4. Пришла ли сборка по таймеру.</b> Перед такой сборкой gctrace печатает строку <code>GC forced</code>:</p>
       <pre class="cmd">GODEBUG=gctrace=1 ./app 2&gt;&amp;1 | grep -A1 "GC forced"
 <span class="c">gc 15 @128.984s 0%: 0.047+1001+0.004 ms clock, ...</span></pre>
     </div>
@@ -176,7 +178,7 @@ fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">
     <div class="head">
       <div>
         <h2>Одна сборка, четыре раскладки</h2>
-        <p class="note">Сборка по таймеру в полном простое, mark/scan по часам, медиана. Данные одинаковые, меняется только число указателей на запись. На линейной шкале плоская map не видна вовсе.</p>
+        <p class="note">Медиана mark/scan по часам для сборок по таймеру в полном простое. Данные одинаковые, меняется только число указателей на запись. На линейной шкале плоская map не видна вовсе.</p>
       </div>
       <div class="seg" role="group" aria-label="Шкала">
         <button type="button" id="hero-lin" aria-pressed="true">линейная</button>
@@ -216,7 +218,7 @@ fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">
   <section>
     <div class="head">
       <div>
-        <h2>Green Tea помог, но не отменил</h2>
+        <h2>Green Tea ускорил, разрыв остался</h2>
         <p class="note">С Go 1.26 новый сборщик включён по умолчанию. Сборку LRU он ускорил в 2,7 раза по часам, плоская map всё равно дешевле в сотни раз. Точка: медиана, линия: от минимума до максимума.</p>
       </div>
     </div>
@@ -227,14 +229,14 @@ fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">
     <div class="head">
       <div>
         <h2>Где в Go прячутся указатели</h2>
-        <p class="note">Сборщик заходит внутрь объекта, если в его типе есть хоть одно поле-указатель. Тип только из чисел, <code>bool</code> и массивов из них он пропускает целиком.</p>
+        <p class="note">Сборщик заходит внутрь объекта, если в его типе есть хоть одно поле-указатель. Тип без указателей (числа, <code>bool</code>, массивы из них, структуры из таких полей) он пропускает целиком.</p>
       </div>
     </div>
     <div class="types" id="types"></div>
   </section>
 
   <details class="more">
-    <summary>Подробности: методика, рост с размером, все конфигурации</summary>
+    <summary>Подробности: методика и все цифры</summary>
 
     <section>
       <div class="head">
@@ -251,7 +253,7 @@ fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">
       <div class="head">
         <div>
           <h2>Рост с размером кэша</h2>
-          <p class="note">Вызовы <code>runtime.GC()</code>, CPU разметки. У вариантов с указателями цена растёт вместе с числом записей, у плоской map почти стоит на месте.</p>
+          <p class="note">Вызовы <code>runtime.GC()</code>, CPU разметки. У вариантов с указателями цена растёт вместе с числом записей, у плоской map почти не меняется.</p>
         </div>
         <div class="seg" role="group" aria-label="Сборка Go">
           <button type="button" data-build="green" aria-pressed="true">Green Tea</button>
@@ -392,15 +394,15 @@ function renderKpis() {
 // ---------- actions ----------
 const ACTS = [
   { t: "Ключ числом, запись значением", was: "map[string]*Entry", now: "map[uint64]Entry", from: "a", to: "b",
-    p: "Строковый ключ превращается в числовой id (хэш подходит, только если коллизии исключены или обработаны), запись хранится значением без указателей внутри. В замере «было» это LRU как у discord: такая map плюс двусвязный список." },
+    p: "Строковый ключ превращается в числовой id (хэш подходит, только если коллизии исключены или обработаны), запись хранится значением без указателей внутри. В замере «было» соответствует LRU как у discord: такая map плюс двусвязный список." },
   { t: "Значение вместо указателя", was: "map[K]*T\n[]*T", now: "map[K]T\n[]T", from: "p", to: "b",
     p: "Минус один объект и один указатель на каждую запись. Работает, если T сам без указателей и отдельная identity записи не нужна: никто не держит *T, запись меняется целиком через m[k] = v." },
   { t: "Ключ без строки", was: "map[string]T", now: "map[uint64]T", from: "b2", to: "b",
-    p: "Строка это указатель на байты. Один строковый ключ заставляет сборщик обходить всю map, даже если значения плоские." },
+    p: "Строка хранит указатель на байты. Один строковый ключ заставляет сборщик обходить всю map, даже если значения плоские." },
   { t: "Поля без скрытых указателей", was: "CreatedAt time.Time\nID        string\nMeta      any", now: "CreatedAt int64\nID        [16]byte\nMeta      Meta",
     p: "В time.Time прячется *Location, в string и any тоже указатели. Одно такое поле делает сканируемой всю структуру.", na: "отдельно не мерил, механизм тот же" },
   { t: "Связи через индексы", was: "prev, next *entry", now: "prev, next int32 // индексы в []entry",
-    p: "LRU, списки и деревья можно держать в слайсе узлов. В LRU из замера prev и next дают 2 указателя из 6 на запись.", na: "отдельно не мерил" },
+    p: "Списки и деревья (LRU тоже список) можно держать в слайсе узлов. В LRU из замера prev и next дают 2 указателя из 6 на запись.", na: "отдельно не мерил" },
   { t: "Строки в одном буфере", was: "[]string", now: "buf  []byte\nspan []struct{ off, n uint32 }",
     p: "Байты всех строк лежат в одном []byte, запись хранит смещение и длину. Так устроены bigcache и freecache.", na: "отдельно не мерил" },
 ];
