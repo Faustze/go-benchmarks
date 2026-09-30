@@ -1,0 +1,28 @@
+/* {{< chart >}}: острова графиков. Высоту контейнера задаёт шорткод, скрипт рисует SVG внутри. */
+.chart-card { display: grid; gap: 12px; justify-items: center; }
+.chart-card > .card { width: 100%; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 12px 10px; min-width: 0; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.chart { width: 100%; position: relative; }
+.chart svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.chart noscript img { display: block; max-width: 100%; max-height: 100%; margin: 0 auto; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--ink-2); padding: 0 8px 8px; }
+.legend > span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; background: var(--c); }
+.legend i.hollow { background: transparent; border: 2px solid var(--c); }
+div.lab-2 { color: var(--ink-2); font-size: 11.5px; padding: 0 8px 6px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.seg button { font: 500 13px/1 var(--font-body); color: var(--ink-2); background: none; border: 0; padding: 8px 12px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+.seg button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.axis text { fill: var(--muted); font: 400 11px var(--font-mono); }
+.axis-title { fill: var(--ink-2); font: 500 12px var(--font-body); }
+.lab { fill: var(--ink); font: 500 12px var(--font-mono); }
+text.lab-2 { fill: var(--ink-2); font: 400 11.5px var(--font-body); }
+.gridl { stroke: var(--grid); stroke-width: 1; }
+.base { stroke: var(--axis); stroke-width: 1; }
+.tip { position: fixed; pointer-events: none; z-index: 10; background: var(--ink); color: var(--surface); font: 400 12.5px/1.45 var(--font-body); padding: 8px 10px; border-radius: 6px; max-width: 280px; opacity: 0; transition: opacity .08s; }
+.tip b { font-weight: 600; }
+.tip .mono { font: 400 12px var(--font-mono); }
+@media (prefers-reduced-motion: reduce) { .tip { transition: none; } }

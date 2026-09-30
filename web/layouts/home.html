@@ -1,0 +1,17 @@
+{{define "home" -}}
+<main class="home">
+  <div class="intro">{{.Content}}</div>
+  <ol class="toc">
+    {{- range .Articles}}
+    <li><a href="{{.URL}}">
+      <span class="n">{{.Number}}</span>
+      <span class="q">{{.Meta.Title}}</span>
+      <span class="m">{{with .Meta.Go}}Go {{.}}{{end}}{{with .Meta.Description}} · {{.}}{{end}}</span>
+    </a></li>
+    {{- end}}
+  </ol>
+</main>
+<footer>
+  <div><a href="https://github.com/Faustze/go-benchmarks">github.com/Faustze/go-benchmarks</a></div>
+</footer>
+{{- end}}

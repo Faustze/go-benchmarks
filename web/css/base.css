@@ -1,0 +1,12 @@
+/* Основа: сброс, тело страницы, ссылки, код, общая обёртка. */
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 400 15px/1.55 var(--font-body); }
+a { color: inherit; text-underline-offset: 2px; }
+code { font-family: var(--font-mono); font-size: .88em; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 64px; display: grid; gap: 40px; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.muted { color: var(--muted); }
+@media (max-width: 560px) { .wrap { padding-inline: 16px; gap: 32px; } }

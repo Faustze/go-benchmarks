@@ -1,0 +1,25 @@
+/* Текст статьи из Markdown: колонка по центру, широкие блоки (.wide, таблицы) на всю ширину обёртки. */
+/* minmax(0, 1fr): иначе широкая таблица с nowrap растягивает колонку сетки за край страницы, вместо того чтобы прокручиваться внутри себя */
+.prose { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+.prose > * { max-width: var(--col); width: 100%; margin: 0 auto; }
+.prose > .wide, .prose > table, .prose > details, .prose details > .wide { max-width: none; }
+.prose > p:first-child { font-size: 17px; color: var(--ink-2); text-align: center; }
+.prose h2 { font: 500 20px/1.25 var(--font-display); margin-top: 36px; text-wrap: balance; }
+.prose h3 { font: 600 15px/1.3 var(--font-body); margin-top: 12px; }
+.prose p, .prose li { color: var(--ink-2); font-size: 14.5px; }
+.prose p strong, .prose li strong { color: var(--ink); }
+.prose ul, .prose ol { padding-left: 1.2em; display: grid; gap: 6px; }
+.prose pre { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; overflow-x: auto; font: 400 12.5px/1.6 var(--font-mono); color: var(--ink); }
+.prose pre code { font-size: inherit; }
+.prose blockquote { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.prose blockquote p { margin: 0; }
+.prose table { border-collapse: collapse; font-size: 13px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; display: block; overflow-x: auto; }
+.prose th, .prose td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+.prose th { font: 500 12px var(--font-body); color: var(--ink-2); background: var(--bg); }
+.prose td { color: var(--ink-2); }
+.prose tr:last-child td { border-bottom: 0; }
+.prose details > summary { cursor: pointer; font: 500 16px var(--font-display); text-align: center; }
+.prose details[open] > summary { margin-bottom: 14px; }
+.prose details > :not(summary) { max-width: var(--col); margin-inline: auto; min-width: 0; }
+.prose details > .wide { width: 100%; }
+.prose details > h2:first-of-type { margin-top: 12px; }
