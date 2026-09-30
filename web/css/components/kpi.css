@@ -1,0 +1,5 @@
+/* {{< kpis >}}: плитки. flex, чтобы неполный последний ряд растягивался, а не оставлял пустые ячейки. */
+.kpis { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-block: 8px; }
+.kpi { flex: 1 1 180px; background: var(--surface); padding: 18px 18px 16px; display: grid; gap: 6px; align-content: start; justify-items: center; text-align: center; }
+.kpi .v { font: 600 30px/1.1 var(--font-mono); letter-spacing: -.02em; }
+.kpi .l { color: var(--ink-2); font-size: 13.5px; }

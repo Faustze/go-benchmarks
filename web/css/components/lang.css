@@ -1,0 +1,14 @@
+/* Переключатель языка: в правом верхнем углу страницы, уходит вместе с прокруткой.
+   Язык без перевода приглушён, но ссылка работает: откроется оригинал с пометкой. */
+.lang { position: absolute; top: 16px; right: 20px; z-index: 5; display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); font: 600 12px/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+.lang a, .lang span { padding: 6px 9px; border-radius: 6px; text-decoration: none; color: var(--ink-2); }
+.lang a:hover, .lang a:focus-visible { background: var(--bg); color: var(--ink); }
+.lang a:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.lang [aria-current="true"] { background: var(--ink); color: var(--surface); }
+.lang a.none { color: var(--muted); }
+body { position: relative; }
+/* на узком экране шапка по центру упирается в угол: освобождаем под переключатель строку сверху */
+@media (max-width: 560px) { .lang { top: 10px; right: 12px; } .wrap { padding-top: 60px; } }
+
+/* Пометка «перевода пока нет» под заголовком. */
+.fallback { margin: 0; padding: 8px 14px; border: 1px dashed color-mix(in srgb, var(--s-b2) 55%, transparent); border-radius: 8px; color: var(--ink-2); font-size: 13.5px; }

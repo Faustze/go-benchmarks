@@ -1,0 +1,9 @@
+{{- /* {{< kpis >}}: плитки с главными числами замера, собираются при сборке, без JS. */ -}}
+{{- $a := cfg "timer.a.green" -}}
+<div class="kpis wide">
+  <div class="kpi"><div class="v">{{ratio "timer.a.green.mark_clock_ms" "timer.b.green.mark_clock_ms" "x0"}}</div><div class="l">{{T "kpi.ratio"}}</div></div>
+  <div class="kpi"><div class="v">{{num "timer.a.green.mark_clock_ms" "ms"}}</div><div class="l">{{printf (T "kpi.clock") (fmt $a.Interval.Min "n0") (fmt $a.Interval.Max "n0")}}</div></div>
+  <div class="kpi"><div class="v">{{fmt (maxSTW "timer") "ms"}}</div><div class="l">{{T "kpi.stw"}}</div></div>
+  <div class="kpi"><div class="v">{{with nsRange}}{{fmt (index . 0) "r10"}}–{{fmt (index . 1) "r10"}}{{end}} ns</div><div class="l">{{T "kpi.ns"}}</div></div>
+  <div class="kpi"><div class="v">{{ratio "timer.a.nogreen.mark_clock_ms" "timer.a.green.mark_clock_ms" "x1"}}</div><div class="l">{{T "kpi.green"}}</div></div>
+</div>

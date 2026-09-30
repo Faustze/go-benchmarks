@@ -6,3 +6,6 @@ bin/
 *.out
 *.prof
 *.pprof
+
+# результат сборки сайта
+public/

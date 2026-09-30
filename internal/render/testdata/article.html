@@ -1,0 +1,31 @@
+<p>Вводный абзац с <code>кодом</code> и <a href="https://go.dev/doc/gc-guide">ссылкой</a>.</p>
+<h2 id="как-прикинуть-цену-у-себя">Как прикинуть цену у себя</h2>
+<p><strong>1. Сколько объектов живёт в куче.</strong> Метрика из стандартной библиотеки:</p>
+<pre><code class="language-go">s := []metrics.Sample{{Name: &quot;/gc/heap/objects:objects&quot;}}
+metrics.Read(s)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Тип</th>
+<th>Указатели</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>string</code></td>
+<td>есть</td>
+</tr>
+<tr>
+<td><code>[16]byte</code></td>
+<td>нет</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Что не помогает.</strong> Кавычки «ёлочки» и тире-дефис - остаются как есть.</p>
+</blockquote>
+<details>
+<summary>Подробности</summary>
+<p>Текст внутри раскрывашки.</p>
+</details>
