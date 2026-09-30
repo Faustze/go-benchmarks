@@ -136,10 +136,12 @@ details.more > summary { font: 500 16px var(--font-display); color: var(--ink); 
   <header>
     <div class="eyebrow"><a href="../" class="back">go-benchmarks</a> · замер 001 · Go 1.27.1 · i7-6700 · GOMAXPROCS=8</div>
     <h1>Сколько стоит указатель</h1>
-    <p class="lede">Если в памяти сервиса живут миллионы объектов (кэш, in-memory индекс), сборщик мусора на каждой сборке размечает каждый живой объект и читает указатели внутри него. Замер повторяет кейс discord на Go 1.27.1: одни и те же 10 млн записей в четырёх раскладках. Ниже сначала что делать и как проверить свой сервис, графики в конце.</p>
+    <p class="lede">Если в памяти сервиса живут миллионы объектов (кэш, in-memory индекс), сборщик мусора на каждой сборке обходит их: идёт от корней по указателям и в каждом живом объекте читает поля-указатели. Замер проверяет механику из кейса discord на Go 1.27.1, на синтетическом кэше без запросов и вытеснения: одни и те же 10 млн записей в четырёх раскладках. Ниже сначала что делать и как проверить свой сервис, графики в конце.</p>
   </header>
 
   <div class="kpis" id="kpis"></div>
+
+  <p class="note" style="max-width:76ch"><b>Что значат числа.</b> Mark/scan по часам: сколько длится фоновая разметка, программа в это время работает. Mark CPU: сколько процессорного времени разметка съела. STW: сколько программа реально стояла, здесь меньше 0,1 ms на сборку. Живой хип: сколько памяти занято после разметки. Остальные фазы цикла GC короткие, поэтому дальше «сборка» почти везде означает её разметку.</p>
 
   <section>
     <div class="head">
@@ -149,14 +151,14 @@ details.more > summary { font: 500 16px var(--font-display); color: var(--ink); 
       </div>
     </div>
     <div class="acts" id="acts"></div>
-    <div class="callout"><b>Что не помогает.</b> <code>GOGC</code> и <code>GOMEMLIMIT</code> меняют, как часто сборка приходит из-за роста кучи. Сборку по таймеру раз в две минуты они не отменяют, и каждая такая сборка обходит все живые объекты. <code>GOGC=off</code> выключает и её, но тогда куча растёт без сборок вообще.</div>
+    <div class="callout"><b>Что не помогает.</b> Обычные значения <code>GOGC</code> и <code>GOMEMLIMIT</code> меняют, как часто сборка приходит из-за роста кучи. Сборку по таймеру раз в две минуты они не отменяют, и каждая такая сборка обходит все живые объекты. <code>GOGC=off</code> выключает и таймер. Если при этом задан <code>GOMEMLIMIT</code>, сборки придут, когда куча дойдёт до лимита, без лимита куча растёт без сборок вообще. Это из кода рантайма и <a href="https://go.dev/doc/gc-guide">гайда по GC</a>, отдельно не мерил.</div>
   </section>
 
   <section>
     <div class="head">
       <div>
         <h2>Как прикинуть цену у себя</h2>
-        <p class="note">Цена разметки примерно равна числу живых объектов, умноженному на задержку памяти. На i7-6700 вышло около 100 ns CPU на объект. Это цифра моего железа и моих структур (на 10 млн записей по раскладкам и режимам вышло от 40 до 200 ns), на другом CPU будет своя. Для прикидки: миллион долгоживущих объектов на i7-6700 стоит порядка 100 ms CPU на каждую сборку.</p>
+        <p class="note">В этом замере цену разметки лучше всего объяснило число живых объектов: на i7-6700 вышло около 100 ns CPU на объект. Это цифра моего железа и моих структур (на 10 млн записей по раскладкам и режимам вышло от 40 до 200 ns), константой Go GC она не является. На цену влияют ещё размер сканируемой части объекта и то, как объекты разбросаны по памяти, на другом CPU цифра будет своя. Для прикидки: миллион долгоживущих объектов на i7-6700 стоит порядка 100 ms CPU на каждую сборку.</p>
       </div>
     </div>
     <div class="steps">
@@ -165,7 +167,7 @@ details.more > summary { font: 500 16px var(--font-display); color: var(--ink); 
 metrics.Read(s) <span class="c">// import "runtime/metrics"</span>
 n := s[0].Value.Uint64()
 fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">// ~100 ns на объект</span></pre>
-      <p class="note"><b>2. Какие типы их держат.</b> Heap-профиль по числу объектов, <code>top</code> покажет, где создаётся больше всего объектов:</p>
+      <p class="note"><b>2. Где их создали.</b> Heap-профиль по числу живых объектов, <code>top</code> покажет функции, которые создали больше всего живых объектов. Кто их удерживает, профиль не покажет, это ищется по коду:</p>
       <pre class="cmd">go tool pprof -sample_index=inuse_objects http://localhost:6060/debug/pprof/heap</pre>
       <p class="note"><b>3. Сколько длится сборка на самом деле.</b> Второе слагаемое в <code>ms clock</code> показывает mark/scan по часам.</p>
       <p class="note"><b>4. Пришла ли сборка по таймеру.</b> Перед такой сборкой gctrace печатает строку <code>GC forced</code>:</p>
@@ -178,11 +180,11 @@ fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">
     <div class="head">
       <div>
         <h2>Одна сборка, четыре раскладки</h2>
-        <p class="note">Медиана mark/scan по часам для сборок по таймеру в полном простое. Данные одинаковые, меняется только число указателей на запись. На линейной шкале плоская map не видна вовсе.</p>
+        <p class="note">Медиана mark/scan по часам для сборок по таймеру в полном простое. Данные одинаковые, меняется только число указателей на запись. В скобках разброс по 12 сборкам. Шкала логарифмическая, на линейной плоская map не видна вовсе.</p>
       </div>
       <div class="seg" role="group" aria-label="Шкала">
-        <button type="button" id="hero-lin" aria-pressed="true">линейная</button>
-        <button type="button" id="hero-log" aria-pressed="false">логарифмическая</button>
+        <button type="button" id="hero-log" aria-pressed="true">логарифмическая</button>
+        <button type="button" id="hero-lin" aria-pressed="false">линейная</button>
       </div>
     </div>
     <div class="card"><div class="chart" id="c-hero"></div></div>
@@ -191,8 +193,8 @@ fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">
   <section>
     <div class="head">
       <div>
-        <h2>Сборщик считает объекты</h2>
-        <p class="note">20 прогонов с <code>runtime.GC()</code> от 100 тыс. до 10 млн записей. По объёму памяти точки разбросаны на три порядка: плоская map на 426 MB стоит миллисекунду. По числу объектов все варианты ложатся на одну линию.</p>
+        <h2>Цену объясняет число объектов</h2>
+        <p class="note">20 прогонов с <code>runtime.GC()</code> от 100 тыс. до 10 млн записей, по одному на точку, так что это наблюдение на одном workload, закон отсюда не вывести. По объёму памяти точки разбросаны на три порядка: плоская map на 426 MB стоит миллисекунду, map указателей на 441 MB стоит сотни. По числу объектов все варианты ложатся близко к одной линии.</p>
       </div>
     </div>
     <div class="two">
@@ -205,7 +207,7 @@ fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">
     <div class="head">
       <div>
         <h2>Кейс discord: сборка раз в две минуты</h2>
-        <p class="note">Программа заливает кэш и 11 минут не делает ничего. Сборки всё равно приходят раз в две минуты, и LRU каждый раз занимает два ядра из восьми примерно на секунду. Кольцо: без Green Tea.</p>
+        <p class="note">Программа заливает кэш и 11 минут не делает ничего. Сборки всё равно приходят раз в две минуты, и LRU каждый раз занимает два логических CPU из восьми примерно на секунду. Полые точки: без Green Tea.</p>
       </div>
       <div class="seg" role="group" aria-label="Метрика" id="tl-metric">
         <button type="button" data-m="mark" aria-pressed="true">по часам</button>
@@ -219,7 +221,7 @@ fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">
     <div class="head">
       <div>
         <h2>Green Tea ускорил, разрыв остался</h2>
-        <p class="note">С Go 1.26 новый сборщик включён по умолчанию. Сборку LRU он ускорил в 2,7 раза по часам, плоская map всё равно дешевле в сотни раз. Точка: медиана, линия: от минимума до максимума.</p>
+        <p class="note">С Go 1.26 новый сборщик включён по умолчанию. В этом замере сборку LRU он ускорил в 2,7 раза по часам, плоская map всё равно дешевле в сотни раз. Точка: медиана, линия: от минимума до максимума.</p>
       </div>
     </div>
     <div class="card"><div class="legend" id="lg-green"></div><div class="chart" id="c-green"></div></div>
@@ -243,7 +245,7 @@ fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">
         <div>
           <h2>Как мерил</h2>
           <p class="note">Два режима. <b>Таймер</b>: 10 млн записей, 11 минут простоя без аллокаций, сборки запускает только <code>forcegcperiod</code>; по три прогона на каждую конфигурацию. <b><code>runtime.GC()</code></b>: 8 вызовов подряд на размерах от 100 тыс. до 10 млн, один прогон на конфигурацию. Цифры из <code>GODEBUG=gctrace=1</code>, первая сборка после заливки в зачёт не идёт.</p>
-          <p class="note">Интервал между сборками равен 120 s плюс длительность прошлой сборки: рантайм отсчитывает две минуты от её конца. У LRU без Green Tea в 14 сборках из 15 размечал фактически один фоновый воркер из двух (CPU равен часам), с Green Tea всегда оба, отсюда большая часть выигрыша по часам.</p>
+          <p class="note">Интервал между сборками равен 120 s плюс длительность прошлой сборки: рантайм отсчитывает две минуты от её конца. У LRU без Green Tea в 14 сборках из 15 размечал фактически один фоновый воркер из двух (CPU равен часам), с Green Tea всегда оба, отсюда большая часть выигрыша по часам. Это наблюдение этого замера, свойством Green Tea вообще его считать нельзя: почему без него работает один воркер, я пока не разобрал.</p>
         </div>
       </div>
       <div class="tablewrap"><table id="t-timer"></table></div>
@@ -253,7 +255,7 @@ fmt.Printf("~%v CPU на сборку\n", time.Duration(n)*100) <span class="c">
       <div class="head">
         <div>
           <h2>Рост с размером кэша</h2>
-          <p class="note">Вызовы <code>runtime.GC()</code>, CPU разметки. У вариантов с указателями цена растёт вместе с числом записей, у плоской map почти не меняется.</p>
+          <p class="note">Вызовы <code>runtime.GC()</code>, CPU разметки, один прогон на точку. У вариантов с указателями цена растёт вместе с числом записей, у плоской map почти не меняется.</p>
         </div>
         <div class="seg" role="group" aria-label="Сборка Go">
           <button type="button" data-build="green" aria-pressed="true">Green Tea</button>
@@ -381,10 +383,12 @@ function renderKpis() {
   const ta = cfg("timer", "a", "green"), tb = cfg("timer", "b", "green"), tn = cfg("timer", "a", "nogreen");
   const tiles = [];
   if (ta && tb && ta.gcs && tb.gcs) {
-    tiles.push([`×${fmtNum(ta.mark_clock_ms.median / tb.mark_clock_ms.median, 0)}`, "во столько раз сборка плоской map короче, чем LRU как у discord, при тех же 10 млн записей"]);
-    tiles.push([fmtMs(ta.mark_clock_ms.median), `длится сборка LRU раз в ${fmtNum(ta.interval_s.min, 0)}–${fmtNum(ta.interval_s.max, 0)} s даже в полном простое, на двух ядрах из восьми`]);
+    tiles.push([`×${fmtNum(ta.mark_clock_ms.median / tb.mark_clock_ms.median, 0)}`, "во столько раз разметка плоской map короче, чем LRU как у discord, при тех же 10 млн записей"]);
+    tiles.push([fmtMs(ta.mark_clock_ms.median), `длится разметка LRU раз в ${fmtNum(ta.interval_s.min, 0)}–${fmtNum(ta.interval_s.max, 0)} s даже в полном простое, на двух логических CPU из восьми`]);
   }
-  tiles.push(["≈100 ns", "CPU на каждый живой объект за сборку. Миллион долгоживущих объектов стоит порядка 100 ms на каждую сборку"]);
+  const timer = DATA.configs.filter(c => c.mode === "timer" && c.gcs);
+  if (timer.length) tiles.push([`${fmtMs(Math.max(...timer.map(c => c.stw_ms.max)))}`, "самая длинная пауза STW во всех сборках по таймеру. Остальное время сборки программа работает"]);
+  tiles.push(["≈100 ns", "CPU на живой объект за сборку в этом замере, от 40 до 200 ns по раскладкам. Миллион долгоживущих объектов здесь стоит порядка 100 ms на сборку"]);
   if (ta && tn && ta.gcs && tn.gcs) {
     tiles.push([`×${fmtNum(tn.mark_clock_ms.median / ta.mark_clock_ms.median, 1)}`, "ускорил сборку LRU Green Tea. Разница с плоской map осталась в сотни раз"]);
   }
@@ -394,17 +398,17 @@ function renderKpis() {
 // ---------- actions ----------
 const ACTS = [
   { t: "Ключ числом, запись значением", was: "map[string]*Entry", now: "map[uint64]Entry", from: "a", to: "b",
-    p: "Строковый ключ превращается в числовой id (хэш подходит, только если коллизии исключены или обработаны), запись хранится значением без указателей внутри. В замере «было» соответствует LRU как у discord: такая map плюс двусвязный список." },
+    p: "Строковый ключ превращается в уникальный числовой id, запись хранится значением без указателей внутри. Хэш строки вместо id подходит, только если коллизии исключены или обработаны. В замере «было» соответствует LRU как у discord: такая map плюс двусвязный список." },
   { t: "Значение вместо указателя", was: "map[K]*T\n[]*T", now: "map[K]T\n[]T", from: "p", to: "b",
-    p: "Минус один объект и один указатель на каждую запись. Работает, если T сам без указателей и отдельная identity записи не нужна: никто не держит *T, запись меняется целиком через m[k] = v." },
+    p: "Минус один объект и один указатель на каждую запись. Работает, если T маленький, сам без указателей и отдельная identity записи не нужна: никто не держит *T, запись меняется целиком через m[k] = v. Цена: T копируется при каждом чтении и обновлении, для большого T это дорого." },
   { t: "Ключ без строки", was: "map[string]T", now: "map[uint64]T", from: "b2", to: "b",
     p: "Строка хранит указатель на байты. Один строковый ключ заставляет сборщик обходить всю map, даже если значения плоские." },
   { t: "Поля без скрытых указателей", was: "CreatedAt time.Time\nID        string\nMeta      any", now: "CreatedAt int64\nID        [16]byte\nMeta      Meta",
-    p: "В time.Time прячется *Location, в string и any тоже указатели. Одно такое поле делает сканируемой всю структуру.", na: "отдельно не мерил, механизм тот же" },
+    p: "В time.Time прячется *Location, в string и any тоже указатели. Одно такое поле делает сканируемой всю структуру. int64 (например, Unix-наносекунды) подходит, если нужен только момент времени: часовой пояс и монотонные часы теряются.", na: "отдельно не мерил, механизм тот же" },
   { t: "Связи через индексы", was: "prev, next *entry", now: "prev, next int32 // индексы в []entry",
-    p: "Списки и деревья (LRU тоже список) можно держать в слайсе узлов. В LRU из замера prev и next дают 2 указателя из 6 на запись.", na: "отдельно не мерил" },
+    p: "Списки и деревья (LRU тоже список) можно держать в слайсе узлов. В LRU из замера prev и next дают 2 указателя из 6 на запись. Цена: освободившиеся слоты надо вести самому, например списком свободных.", na: "отдельно не мерил" },
   { t: "Строки в одном буфере", was: "[]string", now: "buf  []byte\nspan []struct{ off, n uint32 }",
-    p: "Байты всех строк лежат в одном []byte, запись хранит смещение и длину. Так устроены bigcache и freecache.", na: "отдельно не мерил" },
+    p: "Байты всех строк лежат в одном []byte, запись хранит смещение и длину. Так устроены bigcache и freecache. Цена: удалённые строки оставляют дыры, буфер приходится уплотнять.", na: "отдельно не мерил" },
 ];
 const esc = t => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 function renderActions() {
@@ -419,13 +423,13 @@ function renderActions() {
 }
 
 // ---------- 1. hero bars ----------
-let heroLog = false;
+let heroLog = true;
 function renderHero() {
   const host = document.getElementById("c-hero");
   const rows = ORDER.map(v => cfg("timer", v, "green")).filter(c => c && c.gcs);
   if (!rows.length) { host.innerHTML = `<div class="empty">нет данных</div>`; return; }
   const narrow = host.clientWidth < 560;
-  const f = frame(host, { height: 70 + rows.length * 58, left: narrow ? 12 : 220, right: narrow ? 20 : 150, top: narrow ? 20 : 8, bottom: 44 });
+  const f = frame(host, { height: 70 + rows.length * 58, left: narrow ? 12 : 220, right: narrow ? 20 : 270, top: narrow ? 20 : 8, bottom: 44 });
   const max = Math.max(...rows.map(r => r.mark_clock_ms.median));
   const sx = heroLog ? scale("log", logDomain(0.5, max), [f.x0, f.x1]) : scale("lin", [0, max * 1.05], [f.x0, f.x1]);
   const band = (f.y0 - f.y1) / rows.length;
@@ -446,7 +450,7 @@ function renderHero() {
     hit.addEventListener("pointerleave", hideTip);
     const nameY = narrow ? yc - h / 2 - 6 : yc + 4;
     el("text", { x: narrow ? f.x0 : f.x0 - 12, y: nameY, "text-anchor": narrow ? "start" : "end", class: "lab-2" }, f.svg).textContent = NAME[c.variant];
-    el("text", { x: x0 + w + 8, y: yc + 4, class: "lab" }, f.svg).textContent = fmtMs(v) + (narrow ? "" : ` · ${fmtCount(c.objects)} объектов`);
+    el("text", { x: x0 + w + 8, y: yc + 4, class: "lab" }, f.svg).textContent = fmtMs(v) + (narrow ? "" : ` (${fmtMs(c.mark_clock_ms.min)}…${fmtMs(c.mark_clock_ms.max)}) · ${fmtCount(c.objects)} объектов`);
     bar.setAttribute("aria-label", `${NAME[c.variant]}: ${fmtMs(v)}`);
   });
 }
@@ -478,7 +482,7 @@ function renderScaling() {
   for (const v of ORDER) {
     const pts = all.filter(c => c.variant === v && c.build === scalingBuild).sort((a, b) => a.n - b.n);
     if (!pts.length) continue;
-    el("path", { d: pts.map((c, i) => `${i ? "L" : "M"}${sx(c.n)},${sy(c.mark_cpu_ms.median)}`).join(""), style: `fill:none;stroke:${COLOR(v)};stroke-width:2;stroke-linejoin:round;stroke-linecap:round` }, f.svg);
+    el("path", { d: pts.map((c, i) => `${i ? "L" : "M"}${sx(c.n)},${sy(c.mark_cpu_ms.median)}`).join(""), style: `fill:none;stroke:${COLOR(v)};stroke-width:1.25;stroke-opacity:.45;stroke-linejoin:round;stroke-linecap:round` }, f.svg);
     for (const c of pts) dot(f.svg, sx(c.n), sy(c.mark_cpu_ms.median), COLOR(v), 4, tipHtml(c));
     const last = pts[pts.length - 1];
     if (f.W > 640 && (v === "a" || v === "b")) el("text", { x: sx(last.n) - 10, y: sy(last.mark_cpu_ms.median) - 10, "text-anchor": "end", class: "lab" }, f.svg).textContent = fmtMs(last.mark_cpu_ms.median);
