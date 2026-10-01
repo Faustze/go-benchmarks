@@ -3,6 +3,6 @@
 <thead><tr><th>{{T "table.config"}}</th><th>{{T "table.runs"}}</th><th>{{T "table.gcs"}}</th><th>{{T "table.interval"}}</th><th>{{T "table.clock"}}</th><th>{{T "table.cpu"}}</th><th>{{T "table.stw"}}</th><th>{{T "table.live"}}</th><th>{{T "table.rss"}}</th></tr></thead>
 <tbody>
 {{- range configs "timer"}}
-<tr><td><span class="dot" style="background:var(--s-{{.Variant}})"></span>{{T (print "variant." .Variant)}} · {{.Build}}</td><td>{{.Runs}}</td><td>{{.GCs}}</td><td>{{fmt .Interval.Min "n0"}}…{{fmt .Interval.Max "n0"}}</td><td>{{fmt .MarkClock.Median "n2"}} / {{fmt .MarkClock.Max "n2"}}</td><td>{{fmt .MarkCPU.Median "n2"}} / {{fmt .MarkCPU.Max "n2"}}</td><td>{{fmt .STW.Max "n3"}}</td><td>{{fmt .Live.Median "n0"}}</td><td>{{fmt .RSSMB "n0"}}</td></tr>
+<tr><td><span class="dot" style="background:var(--s-{{.Variant}})"></span>{{T (print "variant." .Variant)}}</td><td>{{.Runs}}</td><td>{{.GCs}}</td><td>{{fmt .Interval.Min "n0"}}…{{fmt .Interval.Max "n0"}}</td><td>{{fmt .MarkClock.Median "n2"}} / {{fmt .MarkClock.Max "n2"}}</td><td>{{fmt .MarkCPU.Median "n2"}} / {{fmt .MarkCPU.Max "n2"}}</td><td>{{fmt .STW.Max "n3"}}</td><td>{{fmt .Live.Median "n0"}}</td><td>{{fmt .RSSMB "n0"}}</td></tr>
 {{- end}}
 </tbody></table></div>

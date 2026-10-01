@@ -107,12 +107,14 @@ func (c *pageCtx) cfg(path string) (*data.Config, error) {
 	return cfg, err
 }
 
-// configs: конфигурации режима, в которых есть сборки в зачёте.
+// configs: конфигурации режима на сборке Go по умолчанию, в которых есть сборки в зачёте.
 func (c *pageCtx) configs(mode string) ([]*data.Config, error) {
 	if c.data == nil {
 		return nil, errNoData
 	}
-	return slices.DeleteFunc(c.data.Filter(mode), func(x *data.Config) bool { return x.GCs == 0 }), nil
+	return slices.DeleteFunc(c.data.Filter(mode), func(x *data.Config) bool {
+		return x.GCs == 0 || x.Build != data.DefaultBuild
+	}), nil
 }
 
 // nsRange: минимум и максимум CPU на живой объект среди конфигураций на 10 млн записей.
