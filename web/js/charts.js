@@ -10,7 +10,6 @@ const ORDER = ["a", "p", "b2", "b"];
 const NS = "http://www.w3.org/2000/svg";
 const COLOR = v => `var(--s-${v})`;
 const NAME = v => t(`variant.${v}`);
-const BUILD = b => t(`build.${b}`);
 
 const fmtNum = (v, d = 1) => v.toLocaleString(LANG, { maximumFractionDigits: d });
 const fmtMs = v => v >= 1000 ? (v / 1000).toLocaleString(LANG, { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " s"
@@ -95,7 +94,7 @@ function dot(parent, x, y, color, r, html, hollow = false) {
 
 // ---------- данные ----------
 const find = (D, mode, v, build, n = 10_000_000) => D.configs.find(c => c.mode === mode && c.variant === v && c.build === build && c.n === n);
-const tipHtml = c => `<b>${NAME(c.variant)}</b><br><span class="mono">${t(`ptrs.${c.variant}`)}</span><br>${BUILD(c.build)} · ${fmtCount(c.n)} ${t("ui.records")}<br>
+const tipHtml = c => `<b>${NAME(c.variant)}</b><br><span class="mono">${t(`ptrs.${c.variant}`)}</span><br>${fmtCount(c.n)} ${t("ui.records")}<br>
   mark CPU: <span class="mono">${fmtMs(c.mark_cpu_ms.median)}</span> (${fmtMs(c.mark_cpu_ms.min)}…${fmtMs(c.mark_cpu_ms.max)})<br>
   ${t("chart.mark_clock").replace(", ms", "")}: <span class="mono">${fmtMs(c.mark_clock_ms.median)}</span><br>
   ${t("chart.heap_objects")}: <span class="mono">${fmtCount(c.objects)}</span> · ${t("ui.heap")} ${fmtNum(c.live_mb.median, 0)} MB`;
@@ -136,9 +135,8 @@ const charts = {
     const sx = scale("log", logDomain(Math.min(...xs), Math.max(...xs)), [f.x0, f.x1]);
     const sy = scale("log", logDomain(Math.min(...ys), Math.max(...ys)), [f.y0, f.y1]);
     axes(f, sx, sy, { xTicks: sx.ticks(), yTicks: sy.ticks(), xFmt: fmtCount, yFmt: v => fmtNum(v, 1), xTitle: t("chart.entries"), yTitle: t("chart.mark_cpu") });
-    const build = st.build || "green";
     for (const v of ORDER) {
-      const pts = all.filter(c => c.variant === v && c.build === build).sort((a, b) => a.n - b.n);
+      const pts = all.filter(c => c.variant === v).sort((a, b) => a.n - b.n);
       if (!pts.length) continue;
       el("path", { d: pts.map((c, i) => `${i ? "L" : "M"}${sx(c.n)},${sy(c.mark_cpu_ms.median)}`).join(""), style: `fill:none;stroke:${COLOR(v)};stroke-width:1.25;stroke-opacity:.45;stroke-linejoin:round;stroke-linecap:round` }, f.svg);
       for (const c of pts) dot(f.svg, sx(c.n), sy(c.mark_cpu_ms.median), COLOR(v), 4, tipHtml(c));
@@ -159,42 +157,16 @@ const charts = {
       xTitle: t("chart.seconds"), yTitle: metric === "mark" ? t("chart.mark_clock") : t("chart.mark_cpu") });
     for (const x of [120, 240, 360, 480, 600]) el("line", { x1: sx(x), x2: sx(x), y1: f.y0, y2: f.y1, style: "stroke:var(--axis);stroke-dasharray:2 4" }, f.svg);
     for (const { c, run, g, warm } of pts) {
-      const html = `<b>${NAME(c.variant)}</b><br>${BUILD(c.build)} · ${t("chart.run")} ${run} · gc ${g.num}${warm ? ` (${t("chart.warmup")})` : ""}<br>
+      const html = `<b>${NAME(c.variant)}</b><br>${t("chart.run")} ${run} · gc ${g.num}${warm ? ` (${t("chart.warmup")})` : ""}<br>
         @<span class="mono">${fmtNum(g.at, 1)} s</span><br>${t("chart.mark_clock").replace(", ms", "")}: <span class="mono">${fmtMs(g.mark)}</span><br>
         mark CPU: <span class="mono">${fmtMs(g.mark_cpu)}</span> (${t("chart.bg")} ${fmtMs(g.bg)}, idle ${fmtMs(g.idle)})`;
-      dot(f.svg, sx(Math.min(g.at, 720)), sy(Math.max(g[metric], 0.01)), COLOR(c.variant), 4.5, html, c.build === "nogreen");
+      dot(f.svg, sx(Math.min(g.at, 720)), sy(Math.max(g[metric], 0.01)), COLOR(c.variant), 4.5, html);
     }
-  },
-
-  green(host, D) {
-    const groups = [];
-    for (const v of ["a", "b"]) {
-      const g = find(D, "timer", v, "green"), n = find(D, "timer", v, "nogreen");
-      if (!g || !n || !g.gcs || !n.gcs) continue;
-      groups.push([v, t("chart.by_clock"), "mark_clock_ms", g, n], [v, t("chart.cpu"), "mark_cpu_ms", g, n]);
-    }
-    const f = frame(host, { bottom: 56 });
-    const all = groups.flatMap(([, , k, g, n]) => [g[k].min, g[k].max, n[k].min, n[k].max]);
-    const sy = scale("log", logDomain(Math.min(...all), Math.max(...all)), [f.y0, f.y1]);
-    const band = (f.x1 - f.x0) / groups.length;
-    axes(f, () => 0, sy, { xTicks: [], yTicks: sy.ticks(), xFmt: String, yFmt: v => fmtNum(v, 1), yTitle: t("chart.mark") });
-    groups.forEach(([v, label, k, g, n], i) => {
-      const cx = f.x0 + band * i + band / 2;
-      el("text", { x: cx, y: f.y0 + 20, "text-anchor": "middle", class: "lab-2" }, f.svg).textContent = `${NAME(v).split(" · ")[f.W > 620 ? 1 : 0]}, ${label}`;
-      [g, n].forEach((c, j) => {
-        const s = c[k], x = cx + (j ? 16 : -16), col = COLOR(v);
-        el("line", { x1: x, x2: x, y1: sy(s.min), y2: sy(s.max), style: `stroke:${col};stroke-width:3;stroke-linecap:round;opacity:${j ? .55 : 1}` }, f.svg);
-        const html = `<b>${NAME(v)}</b><br>${BUILD(c.build)} · ${t("chart.timer_gcs")} · ${c.runs} ${t("chart.runs")}, ${c.gcs} ${t("chart.gcs")}<br>
-          mark ${label}: <span class="mono">${fmtMs(s.median)}</span> (${fmtMs(s.min)}…${fmtMs(s.max)})`;
-        dot(f.svg, x, sy(s.median), col, 5, html, j === 1);
-        if (f.W > 620) el("text", { x: x + (j ? 12 : -12), y: sy(s.median) + 4, "text-anchor": j ? "start" : "end", class: "lab" }, f.svg).textContent = fmtMs(s.median);
-      });
-    });
   },
 };
 
 function predictor(host, D, key, fmt, title) {
-  const rows = D.configs.filter(c => c.mode === "forced" && c.build === "green" && c.objects > 0);
+  const rows = D.configs.filter(c => c.mode === "forced" && c.objects > 0);
   const f = frame(host, { left: 56 });
   const sx = scale("log", logDomain(Math.min(...rows.map(key)), Math.max(...rows.map(key))), [f.x0, f.x1]);
   const ys = rows.map(c => c.mark_cpu_ms.median);
@@ -204,7 +176,7 @@ function predictor(host, D, key, fmt, title) {
 }
 
 // ---------- запуск ----------
-// Состояние переключателей у каждого острова своё: data-scale, data-metric, data-build на кнопках.
+// Состояние переключателей у каждого острова своё: data-scale и data-metric на кнопках.
 const hosts = [...document.querySelectorAll("[data-chart]")];
 const state = new Map(hosts.map(h => [h, {}]));
 

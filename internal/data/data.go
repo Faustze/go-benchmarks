@@ -13,6 +13,10 @@ import (
 // DefaultN: размер кэша, если в адресе его нет. Все сборки по таймеру шли на 10 млн записей.
 const DefaultN = 10_000_000
 
+// DefaultBuild: сборка Go по умолчанию. Сайт показывает только её, остальные сборки
+// (например, nogreen) остаются в data.json и логах для воспроизведения.
+const DefaultBuild = "green"
+
 // Stat: медиана, минимум и максимум по всем сборкам конфигурации.
 type Stat struct {
 	Median float64 `json:"median"`
@@ -177,7 +181,7 @@ func (c *Config) SingleWorker() (n, total int) {
 }
 
 // Chart: облегчённый data.json для островов графиков, вшивается в страницу вместо отдельного запроса.
-// Сборки по отдельности нужны только графику таймера, у остальных конфигураций хватает сводки.
+// Только сборка по умолчанию. Сборки по отдельности нужны только графику таймера, у остальных конфигураций хватает сводки.
 func (d *Data) Chart() map[string]any {
 	type gc struct {
 		Num     int     `json:"num"`
@@ -205,6 +209,9 @@ func (d *Data) Chart() map[string]any {
 	}
 	out := make([]cfg, 0, len(d.Configs))
 	for _, c := range d.Configs {
+		if c.Build != DefaultBuild {
+			continue
+		}
 		x := cfg{c.Mode, c.Variant, c.Build, c.N, c.Runs, c.GCs, c.MarkClock, c.MarkCPU, c.Live, c.Objects, nil}
 		if c.Mode == "timer" {
 			for _, r := range c.Raw {

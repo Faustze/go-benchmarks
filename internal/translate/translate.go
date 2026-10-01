@@ -43,7 +43,7 @@ Rules:
 
 Glossary:
 разметка / mark phase → marking; mark/scan по часам → mark/scan wall-clock time; сборка по таймеру → timer-triggered GC;
-живой хип → live heap; раскладка → layout; плоская map → flat map; замер → benchmark; прогон → run;
+живой хип → live heap; раскладка → layout; пример → example; словарик → glossary; плоская map → flat map; замер → benchmark; прогон → run;
 фоновый воркер → background mark worker; логический CPU → logical CPU; кэш → cache; сборщик → the collector.
 
 Output ONLY the translated file, no commentary and no code fence around it. The file follows the line ---FILE---.

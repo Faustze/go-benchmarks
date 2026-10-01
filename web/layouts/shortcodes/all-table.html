@@ -1,8 +1,8 @@
 {{- /* {{< all-table >}}: все конфигурации обоих режимов. */ -}}
 <div class="tablewrap wide"><table class="data">
-<thead><tr><th>{{T "table.variant"}}</th><th>{{T "table.mode"}}</th><th>{{T "table.build"}}</th><th>{{T "table.records"}}</th><th>{{T "table.gcs_short"}}</th><th>{{T "table.clock_med"}}</th><th>{{T "table.cpu_med"}}</th><th>{{T "table.minmax"}}</th><th>{{T "table.objects"}}</th><th>{{T "table.live"}}</th><th>{{T "table.ns"}}</th></tr></thead>
+<thead><tr><th>{{T "table.variant"}}</th><th>{{T "table.mode"}}</th><th>{{T "table.records"}}</th><th>{{T "table.gcs_short"}}</th><th>{{T "table.clock_med"}}</th><th>{{T "table.cpu_med"}}</th><th>{{T "table.minmax"}}</th><th>{{T "table.objects"}}</th><th>{{T "table.live"}}</th><th>{{T "table.ns"}}</th></tr></thead>
 <tbody>
 {{- range configs ""}}
-<tr><td><span class="dot" style="background:var(--s-{{.Variant}})"></span>{{T (print "variant." .Variant)}}</td><td>{{T (print "mode." .Mode)}}</td><td>{{.Build}}</td><td>{{fmt .Records "count"}}</td><td>{{.GCs}}</td><td>{{fmt .MarkClock.Median "n2"}}</td><td>{{fmt .MarkCPU.Median "n2"}}</td><td>{{fmt .MarkCPU.Min "n1"}}…{{fmt .MarkCPU.Max "n1"}}</td><td>{{fmt .Objects "count"}}</td><td>{{fmt .Live.Median "n0"}}</td><td>{{fmt .NsPerObject "n0"}}</td></tr>
+<tr><td><span class="dot" style="background:var(--s-{{.Variant}})"></span>{{T (print "variant." .Variant)}}</td><td>{{T (print "mode." .Mode)}}</td><td>{{fmt .Records "count"}}</td><td>{{.GCs}}</td><td>{{fmt .MarkClock.Median "n2"}}</td><td>{{fmt .MarkCPU.Median "n2"}}</td><td>{{fmt .MarkCPU.Min "n1"}}…{{fmt .MarkCPU.Max "n1"}}</td><td>{{fmt .Objects "count"}}</td><td>{{fmt .Live.Median "n0"}}</td><td>{{fmt .NsPerObject "n0"}}</td></tr>
 {{- end}}
 </tbody></table></div>
